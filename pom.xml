@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tencent</groupId>
+    <groupId>com.tencent.xinge</groupId>
     <artifactId>xinge</artifactId>
     <version>1.1.8</version>
     <packaging>jar</packaging>
@@ -19,9 +19,8 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/lyon-y/XgPushJavaSDK.git</connection>
-        <url>https://github.com/lyon-y/XgPushJavaSDK</url>
-        <tag>HEAD</tag>
+        <connection>scm:git:git://github.com/xingePush/xinge-api-java</connection>
+        <url>https://github.com/xingePush/xinge-api-java.git</url>
     </scm>
 
     <developers>
@@ -32,19 +31,6 @@
         </developer>
     </developers>
 
-
-    <distributionManagement>
-        <repository>
-            <id>tdwmirror</id>
-            <name>Internal Releases</name>
-            <url>http://maven.data.oa.com/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>tdwmirror-snapshots</id>
-            <name>Internal Snapshots</name>
-            <url>http://maven.data.oa.com/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

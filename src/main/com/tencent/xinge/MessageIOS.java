@@ -137,7 +137,7 @@ public class MessageIOS {
             }
         }
         if (m_type == TYPE_REMOTE_NOTIFICATION) {
-            return  true;
+            return true;
         }
         return !m_alertStr.isEmpty() || m_alertJo.length() != 0;
     }
@@ -152,7 +152,7 @@ public class MessageIOS {
         JSONObject aps = new JSONObject();
         if (m_type == TYPE_REMOTE_NOTIFICATION) {
             aps.put("content-available", 1);
-        } else if(m_type == TYPE_APNS_NOTIFICATION){
+        } else if (m_type == TYPE_APNS_NOTIFICATION) {
             if (m_alertJo.length() != 0) {
                 aps.put("alert", m_alertJo);
             } else {
