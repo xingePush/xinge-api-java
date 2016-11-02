@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tencent</groupId>
+    <artifactId>xinge</artifactId>
+    <version>1.1.8</version>
+    <packaging>jar</packaging>
+
+    <name>xg_java_sdk</name>
+    <description>xingePush is a tool for developers, providing various ways to get in touch with specific moible APPs</description>
+    <url></url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git://github.com/lyon-y/XgPushJavaSDK.git</connection>
+        <url>https://github.com/lyon-y/XgPushJavaSDK</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>lyony</id>
+            <name>lyony</name>
+            <email>lyonyang@foxmail.com</email>
+        </developer>
+    </developers>
+
+
+    <distributionManagement>
+        <repository>
+            <id>tdwmirror</id>
+            <name>Internal Releases</name>
+            <url>http://maven.data.oa.com/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>tdwmirror-snapshots</id>
+            <name>Internal Snapshots</name>
+            <url>http://maven.data.oa.com/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.6</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <maxmem>1024m</maxmem>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+
+            <!-- bind the maven-assembly-plugin to the package phase this will create
+                a jar file without dependencies suitable for deployment to a cluster. -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass></mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase> <!-- 绑定到package生命周期阶段上 -->
+                        <goals>
+                            <goal>single</goal> <!-- 只运行一次 -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
