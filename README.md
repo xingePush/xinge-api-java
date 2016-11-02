@@ -1,9 +1,9 @@
 # xingePushJavaApi
 ## 概述
-^[信鸽](http://xg.qq.com) 是腾讯云提供的一款支持**百亿级**消息的移动App推送平台，开发者可以调用Java SDK访问信鸽推送服务。
+[信鸽](http://xg.qq.com) 是腾讯云提供的一款支持**百亿级**消息的移动App推送平台，开发者可以调用Java SDK访问信鸽推送服务。
 
 ## 引用SDK
-请到^[信鸽官网](http://xg.qq.com/xg/ctr_index/download)下载最新版本的包，使用时引用XingeApp包即可。
+请到[信鸽官网](http://xg.qq.com/xg/ctr_index/download)下载最新版本的包，使用时引用XingeApp包即可。
 
 ## 接口说明
 信鸽提供的主要推送和查询接口包括3种
