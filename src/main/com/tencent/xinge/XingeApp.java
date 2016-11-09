@@ -834,7 +834,7 @@ public class XingeApp {
     }
 
     /**
-     * 查询设备设备下所有的tag
+     * 查询设备下所有的tag
      *
      * @param deviceToken 目标设备token
      * @return 服务器执行结果，JSON形式
