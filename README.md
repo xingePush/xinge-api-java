@@ -2,8 +2,27 @@
 ## 概述
 [信鸽](http://xg.qq.com) 是腾讯云提供的一款支持**百亿级**消息的移动App推送平台，开发者可以调用Java SDK访问信鸽推送服务。
 
+目前最新的SDK版本是1.1.8，请及时更新SDK版本以获取最新的功能特性。
+
 ## 引用SDK
-请到[信鸽官网](http://xg.qq.com/xg/ctr_index/download)下载最新版本的包，使用时引用XingeApp包即可。
+- 方法一：使用maven库(**推荐**)
+    - 在项目pom.xml中引入依赖项
+    
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>com.github.xingePush</groupId>
+            <artifactId>xinge</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+    </dependencies>
+```
+- 方法二：checkout源代码
+    - git clone https://github.com/xingePush/xinge-api-java.git
+ 
+- 方法三：下载库文件
+    - 在[信鸽官网](http://xg.qq.com/xg/ctr_index/download)下载最新版本的包
+    - 使用时引用XingeApp包即可
 
 ## 接口说明
 信鸽提供的主要推送和查询接口包括3种
