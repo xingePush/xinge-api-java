@@ -108,6 +108,7 @@ public class XingeApp {
             HttpURLConnection conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("POST");
             conn.setConnectTimeout(10000);
+            conn.setReadTimeout(3000);
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setUseCaches(false);
