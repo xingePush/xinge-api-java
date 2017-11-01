@@ -1,5 +1,6 @@
 package com.tencent.xinge;
 
+import java.io.IOException;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -103,9 +104,12 @@ public class XingeApp {
         String sign = generateSign("POST", url, params);
         if (sign.isEmpty()) return new JSONObject("{\"ret_code\":-1,\"err_msg\":\"generateSign error\"}");
         params.put("sign", sign);
+        HttpURLConnection conn = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
         try {
             URL u = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+            conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("POST");
             conn.setConnectTimeout(10000);
             conn.setReadTimeout(3000);
@@ -120,14 +124,11 @@ public class XingeApp {
             //System.out.println(param);
             conn.getOutputStream().flush();
             conn.getOutputStream().close();
-            InputStreamReader isr = new InputStreamReader(conn.getInputStream());
-            BufferedReader br = new BufferedReader(isr);
+            isr = new InputStreamReader(conn.getInputStream());
+            br = new BufferedReader(isr);
             while ((temp = br.readLine()) != null) {
                 ret += temp;
             }
-            br.close();
-            isr.close();
-            conn.disconnect();
             //System.out.println(ret);
             jsonRet = new JSONObject(ret);
 
@@ -137,6 +138,24 @@ public class XingeApp {
         } catch (Exception e) {
             //e.printStackTrace();
             jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful error\"}");
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    //ignore
+                }
+            }
+            if (isr != null) {
+                try {
+                    isr.close();
+                } catch (IOException e) {
+                    //ignore
+                }
+            }
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
         return jsonRet;
     }
