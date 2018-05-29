@@ -12,7 +12,7 @@ public class ClickAction {
   }
 
   public void setActivity(String activity) {
-    this.m_activity = activity;S
+    this.m_activity = activity;
   }
 
   public void setUrl(String url) {
