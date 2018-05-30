@@ -19,3 +19,4 @@ hs_err_pid*
 PushJavaSDK.iml
 jar/
 target/
+bin/

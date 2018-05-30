@@ -19,9 +19,9 @@ public class XingeAppAndroidUnitTest extends XingeApp {
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("key1", 2);
     JSONObject json = this.callRestful("http://10.1.152.139/v1/push/single_device", params);
-    assertEquals("{\"err_msg\":\"common param error!\",\"ret_code\":-1}", json.toString());
+    assertEquals("{\"err_msg\":\"call restful timeout\",\"ret_code\":-1}", json.toString());
     json = this.callRestful("http://10.1.152.139/v1/push/single_", params);
-    assertEquals("{\"err_msg\":\"call restful error\",\"ret_code\":-1}", json.toString());
+    assertEquals("{\"err_msg\":\"call restful timeout\",\"ret_code\":-1}", json.toString());
     json = this.callRestful("abc", params);
     assertEquals("{\"err_msg\":\"generateSign error\",\"ret_code\":-1}", json.toString());
   }
@@ -45,7 +45,6 @@ public class XingeAppAndroidUnitTest extends XingeApp {
   public void testPushApi() {
     JSONObject response;
     Message message = new Message();
-    message.setTitle("title");
     message.setContent("content");
     message.setType(Message.TYPE_MESSAGE);
     message.setExpireTime(86400);

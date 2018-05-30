@@ -13,7 +13,7 @@ public class MessageUnitTest extends TestCase {
     m.addAcceptTime(acceptTime1);
     m.addAcceptTime(acceptTime2);
     String except =
-        "[{\"start\":{\"min\":2,\"hour\":1},\"end\":{\"min\":4,\"hour\":3}},{\"start\":{\"min\":6,\"hour\":5},\"end\":{\"min\":8,\"hour\":7}}]";
+        "[{\"start\":{\"min\":\"2\",\"hour\":\"1\"},\"end\":{\"min\":\"4\",\"hour\":\"3\"}},{\"start\":{\"min\":\"6\",\"hour\":\"5\"},\"end\":{\"min\":\"8\",\"hour\":\"7\"}}]";
     assertEquals(except, m.acceptTimeToJson());
   }
 
@@ -34,7 +34,8 @@ public class MessageUnitTest extends TestCase {
   public void testToJson() {
     Message m = new Message();
     m.setType(Message.TYPE_MESSAGE);
-    assertEquals("{\"content\":\"\",\"title\":\"\",\"custon_content\":{}}", m.toJson());
+    assertEquals("{\"title\":\"\",\"custom_content\":{},\"accept_time\":[],\"content\":\"\"}",
+        m.toJson());
   }
 
 }

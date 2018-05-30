@@ -514,7 +514,7 @@ public class XingeApp {
   }
 
   /**
-   * 推送给多个账号，限Android设备使用 <br/>
+   * 推送给多个账号，限Android设备使用 <br>
    * 如果目标账号数超过10000，建议改用{@link #pushAccountListMultiple}接口
    *
    * @param deviceType 设备类型，请填0
@@ -543,7 +543,7 @@ public class XingeApp {
   }
 
   /**
-   * 推送给多个账号，限iOS设备使用 <br/>
+   * 推送给多个账号，限iOS设备使用 <br>
    * 如果目标账号数超过10000，建议改用{@link #pushAccountListMultiple}接口
    *
    * @param deviceType 设备类型，请填0
@@ -715,7 +715,7 @@ public class XingeApp {
   }
 
   /**
-   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限Android系统使用<br/>
+   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限Android系统使用<br>
    * 此接口创建的任务不支持定时推送
    *
    * @param message 待推送的消息
@@ -740,7 +740,7 @@ public class XingeApp {
   }
 
   /**
-   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限iOS系统使用<br/>
+   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限iOS系统使用<br>
    * 此接口创建的任务不支持定时推送
    *
    * @param message 待推送的消息
@@ -766,7 +766,7 @@ public class XingeApp {
   }
 
   /**
-   * 推送消息给大批量账号，可对同一个pushId多次调用此接口，限Android系统使用 <br/>
+   * 推送消息给大批量账号，可对同一个pushId多次调用此接口，限Android系统使用 <br>
    * 建议用户采用此接口自行控制发送时间
    *
    * @param pushId {@link #createMultipush}返回的push_id
@@ -787,7 +787,7 @@ public class XingeApp {
   }
 
   /**
-   * 推送消息给大批量设备，可对同一个pushId多次调用此接口，限Android系统使用 <br/>
+   * 推送消息给大批量设备，可对同一个pushId多次调用此接口，限Android系统使用 <br>
    * 建议用户采用此接口自行控制发送时间
    *
    * @param pushId {@link #createMultipush}返回的push_id
