@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.json.JSONObject;
 import org.junit.Test;
 
-public class TimeIntervalUnitTest {
+public class TimeIntervalTest {
 
   @Test
   public void testIsValid() {

@@ -3,7 +3,7 @@ package com.tencent.xinge;
 import org.junit.Test;
 import junit.framework.TestCase;
 
-public class MessageUnitTest extends TestCase {
+public class MessageTest extends TestCase {
 
   @Test
   public void testAcceptTimeToJson() {
