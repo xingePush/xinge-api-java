@@ -20,61 +20,6 @@ import org.json.JSONObject;
 
 public class XingeApp {
 
-  public static final String RESTAPI_PUSHSINGLEDEVICE =
-      "http://openapi.xg.qq.com/v2/push/single_device";
-  public static final String RESTAPI_PUSHSINGLEACCOUNT =
-      "http://openapi.xg.qq.com/v2/push/single_account";
-  public static final String RESTAPI_PUSHACCOUNTLIST =
-      "http://openapi.xg.qq.com/v2/push/account_list";
-  public static final String RESTAPI_PUSHALLDEVICE = "http://openapi.xg.qq.com/v2/push/all_device";
-  public static final String RESTAPI_PUSHTAGS = "http://openapi.xg.qq.com/v2/push/tags_device";
-  public static final String RESTAPI_QUERYPUSHSTATUS =
-      "http://openapi.xg.qq.com/v2/push/get_msg_status";
-  public static final String RESTAPI_QUERYDEVICECOUNT =
-      "http://openapi.xg.qq.com/v2/application/get_app_device_num";
-  public static final String RESTAPI_QUERYTAGS = "http://openapi.xg.qq.com/v2/tags/query_app_tags";
-  public static final String RESTAPI_CANCELTIMINGPUSH =
-      "http://openapi.xg.qq.com/v2/push/cancel_timing_task";
-  public static final String RESTAPI_BATCHSETTAG = "http://openapi.xg.qq.com/v2/tags/batch_set";
-  public static final String RESTAPI_BATCHDELTAG = "http://openapi.xg.qq.com/v2/tags/batch_del";
-  public static final String RESTAPI_QUERYTOKENTAGS =
-      "http://openapi.xg.qq.com/v2/tags/query_token_tags";
-  public static final String RESTAPI_QUERYTAGTOKENNUM =
-      "http://openapi.xg.qq.com/v2/tags/query_tag_token_num";
-  public static final String RESTAPI_CREATEMULTIPUSH =
-      "http://openapi.xg.qq.com/v2/push/create_multipush";
-  public static final String RESTAPI_PUSHACCOUNTLISTMULTIPLE =
-      "http://openapi.xg.qq.com/v2/push/account_list_multiple";
-  public static final String RESTAPI_PUSHDEVICELISTMULTIPLE =
-      "http://openapi.xg.qq.com/v2/push/device_list_multiple";
-  public static final String RESTAPI_QUERYINFOOFTOKEN =
-      "http://openapi.xg.qq.com/v2/application/get_app_token_info";
-  public static final String RESTAPI_QUERYTOKENSOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/get_app_account_tokens";
-  public static final String RESTAPI_DELETETOKENOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/del_app_account_tokens";
-  public static final String RESTAPI_DELETEALLTOKENSOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/del_app_account_all_tokens";
-
-  public static final String HTTP_POST = "POST";
-  public static final String HTTP_GET = "GET";
-
-  public static final int DEVICE_ALL = 0;
-  public static final int DEVICE_BROWSER = 1;
-  public static final int DEVICE_PC = 2;
-  public static final int DEVICE_ANDROID = 3;
-  public static final int DEVICE_IOS = 4;
-  public static final int DEVICE_WINPHONE = 5;
-
-  public static final int IOSENV_PROD = 1;
-  public static final int IOSENV_DEV = 2;
-
-  public static final long IOS_MIN_ID = 2200000000L;
-
-  public static void main(String[] args) {
-    System.out.println("Hello Xinge!");
-  }
-
   public XingeApp(long accessId, String secretKey) {
     this.m_accessId = accessId;
     this.m_secretKey = secretKey;
@@ -104,7 +49,6 @@ public class XingeApp {
       while (md5Str.length() < 32) {
         md5Str = "0" + md5Str;
       }
-      // System.out.println(s);
     } catch (Exception e) {
       e.printStackTrace();
       return "";
@@ -195,14 +139,15 @@ public class XingeApp {
   }
 
   protected boolean ValidateMessageType(Message message) {
-    if (this.m_accessId < IOS_MIN_ID)
+    if (this.m_accessId < RESTAPI.IOS_MIN_ID)
       return true;
     else
       return false;
   }
 
   protected boolean ValidateMessageType(MessageIOS message, int environment) {
-    if (this.m_accessId >= IOS_MIN_ID && (environment == IOSENV_PROD || environment == IOSENV_DEV))
+    if (this.m_accessId >= RESTAPI.IOS_MIN_ID
+        && (environment == RESTAPI.IOSENV_PROD || environment == RESTAPI.IOSENV_DEV))
       return true;
     else
       return false;
@@ -417,7 +362,7 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEDEVICE, params);
   }
 
   /**
@@ -450,7 +395,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEDEVICE, params);
   }
 
   /**
@@ -479,7 +424,7 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEACCOUNT, params);
   }
 
   /**
@@ -510,7 +455,7 @@ public class XingeApp {
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEACCOUNT, params);
   }
 
   /**
@@ -539,7 +484,7 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHACCOUNTLIST, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLIST, params);
   }
 
   /**
@@ -570,7 +515,7 @@ public class XingeApp {
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
-    return callRestful(XingeApp.RESTAPI_PUSHACCOUNTLIST, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLIST, params);
   }
 
   /**
@@ -602,7 +547,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHALLDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHALLDEVICE, params);
   }
 
   /**
@@ -635,7 +580,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHALLDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHALLDEVICE, params);
   }
 
   /**
@@ -672,7 +617,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHTAGS, params);
   }
 
   /**
@@ -711,7 +656,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHTAGS, params);
   }
 
   /**
@@ -736,7 +681,7 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_CREATEMULTIPUSH, params);
+    return callRestful(RESTAPI.RESTAPI_CREATEMULTIPUSH, params);
   }
 
   /**
@@ -762,7 +707,7 @@ public class XingeApp {
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
-    return callRestful(XingeApp.RESTAPI_CREATEMULTIPUSH, params);
+    return callRestful(RESTAPI.RESTAPI_CREATEMULTIPUSH, params);
   }
 
   /**
@@ -783,7 +728,7 @@ public class XingeApp {
     params.put("account_list", new JSONArray(accountList).toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHACCOUNTLISTMULTIPLE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLISTMULTIPLE, params);
   }
 
   /**
@@ -804,7 +749,7 @@ public class XingeApp {
     params.put("device_list", new JSONArray(deviceList).toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHDEVICELISTMULTIPLE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHDEVICELISTMULTIPLE, params);
   }
 
   /**
@@ -825,7 +770,7 @@ public class XingeApp {
     }
     params.put("push_ids", jArray.toString());
 
-    return callRestful(XingeApp.RESTAPI_QUERYPUSHSTATUS, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYPUSHSTATUS, params);
   }
 
   /**
@@ -838,7 +783,7 @@ public class XingeApp {
     params.put("access_id", this.m_accessId);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYDEVICECOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYDEVICECOUNT, params);
   }
 
   /**
@@ -855,7 +800,7 @@ public class XingeApp {
     params.put("limit", limit);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTAGS, params);
   }
 
   /**
@@ -879,7 +824,7 @@ public class XingeApp {
     params.put("tag", tag);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTAGTOKENNUM, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTAGTOKENNUM, params);
   }
 
   /**
@@ -894,7 +839,7 @@ public class XingeApp {
     params.put("device_token", deviceToken);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTOKENTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTOKENTAGS, params);
   }
 
   /**
@@ -909,7 +854,7 @@ public class XingeApp {
     params.put("push_id", pushId);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_CANCELTIMINGPUSH, params);
+    return callRestful(RESTAPI.RESTAPI_CANCELTIMINGPUSH, params);
   }
 
   /**
@@ -942,7 +887,7 @@ public class XingeApp {
 
     params.put("tag_token_list", new JSONArray(tag_token_list).toString());
 
-    return callRestful(XingeApp.RESTAPI_BATCHSETTAG, params);
+    return callRestful(RESTAPI.RESTAPI_BATCHSETTAG, params);
   }
 
   /**
@@ -975,7 +920,7 @@ public class XingeApp {
 
     params.put("tag_token_list", new JSONArray(tag_token_list).toString());
 
-    return callRestful(XingeApp.RESTAPI_BATCHDELTAG, params);
+    return callRestful(RESTAPI.RESTAPI_BATCHDELTAG, params);
   }
 
   /**
@@ -990,7 +935,7 @@ public class XingeApp {
     params.put("device_token", deviceToken);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYINFOOFTOKEN, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYINFOOFTOKEN, params);
   }
 
   /**
@@ -1005,7 +950,7 @@ public class XingeApp {
     params.put("account", account);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTOKENSOFACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTOKENSOFACCOUNT, params);
   }
 
   /**
@@ -1022,7 +967,7 @@ public class XingeApp {
     params.put("device_token", deviceToken);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_DELETETOKENOFACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_DELETETOKENOFACCOUNT, params);
   }
 
   /**
@@ -1037,6 +982,6 @@ public class XingeApp {
     params.put("account", account);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_DELETEALLTOKENSOFACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_DELETEALLTOKENSOFACCOUNT, params);
   }
 }

@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.tencent.xinge.ClickAction;
 import com.tencent.xinge.Message;
 import com.tencent.xinge.MessageIOS;
+import com.tencent.xinge.RESTAPI;
 import com.tencent.xinge.Style;
 import com.tencent.xinge.TimeInterval;
 import com.tencent.xinge.XingeApp;
@@ -65,11 +66,11 @@ public class Demo {
     System.out.println(XingeApp.pushTagAndroid(000, "secretKey", "test", "测试", "tag"));
 
     System.out
-        .println(XingeApp.pushTokenIos(000L, "secretKey", "测试", "token", XingeApp.IOSENV_DEV));
+        .println(XingeApp.pushTokenIos(000L, "secretKey", "测试", "token", RESTAPI.IOSENV_DEV));
     System.out
-        .println(XingeApp.pushAccountIos(000L, "secretKey", "测试", "account", XingeApp.IOSENV_DEV));
-    System.out.println(XingeApp.pushAllIos(000L, "secretKey", "测试", XingeApp.IOSENV_DEV));
-    System.out.println(XingeApp.pushTagIos(000L, "secretKey", "测试", "tag", XingeApp.IOSENV_DEV));
+        .println(XingeApp.pushAccountIos(000L, "secretKey", "测试", "account", RESTAPI.IOSENV_DEV));
+    System.out.println(XingeApp.pushAllIos(000L, "secretKey", "测试", RESTAPI.IOSENV_DEV));
+    System.out.println(XingeApp.pushTagIos(000L, "secretKey", "测试", "tag", RESTAPI.IOSENV_DEV));
   }
 
   // 单个设备下发透传消息
@@ -102,7 +103,7 @@ public class Demo {
   protected JSONObject demoPushSingleDeviceMessageIOS() {
     MessageIOS remoteMessageIOS = new MessageIOS();
     remoteMessageIOS.setType(MessageIOS.TYPE_REMOTE_NOTIFICATION);
-    return xinge.pushSingleDevice("token", messageIOS, XingeApp.IOSENV_DEV);
+    return xinge.pushSingleDevice("token", messageIOS, RESTAPI.IOSENV_DEV);
   }
 
   // 单个设备下发通知消息iOS
@@ -114,7 +115,7 @@ public class Demo {
     custom.put("key2", 2);
     messageIOS.setCustom(custom);
 
-    JSONObject ret = xinge.pushSingleDevice("token", messageIOS, XingeApp.IOSENV_DEV);
+    JSONObject ret = xinge.pushSingleDevice("token", messageIOS, RESTAPI.IOSENV_DEV);
     return ret;
   }
 
@@ -156,7 +157,7 @@ public class Demo {
     custom.put("key2", 2);
     message.setCustom(custom);
 
-    JSONObject ret = xinge.pushSingleAccount(0, "joelliu", messageIOS, XingeApp.IOSENV_DEV);
+    JSONObject ret = xinge.pushSingleAccount(0, "joelliu", messageIOS, RESTAPI.IOSENV_DEV);
     return ret;
   }
 
@@ -164,7 +165,7 @@ public class Demo {
   protected JSONObject demoPushAccountListIOS() {
     List<String> accountList = new ArrayList<String>();
     accountList.add("joelliu");
-    JSONObject ret = xinge.pushAccountList(0, accountList, messageIOS, XingeApp.IOSENV_DEV);
+    JSONObject ret = xinge.pushAccountList(0, accountList, messageIOS, RESTAPI.IOSENV_DEV);
     return ret;
   }
 
