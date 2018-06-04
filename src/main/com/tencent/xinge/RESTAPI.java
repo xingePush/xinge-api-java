@@ -2,7 +2,13 @@ package com.tencent.xinge;
 
 public class RESTAPI {
 
+  /**
+   * POST 请求方式
+   */
   public static final String HTTP_POST = "POST";
+  /**
+   * GET 请求方式
+   */
   public static final String HTTP_GET = "GET";
 
   public static final int DEVICE_ALL = 0;
@@ -17,40 +23,72 @@ public class RESTAPI {
 
   public static final long IOS_MIN_ID = 2200000000L;
 
+  /**
+   * 接口域名
+   */
+  public static final String RESTAPI_DOMAINS = "http://openapi.xg.qq.com/";
+  /**
+   * 版本号
+   */
+  public static final String RESTAPI_VERSIONS = "v2";
+
+  /**
+   * 设备单推，使用指定的一个设备标识(Device Token)进行消息的推送
+   */
   public static final String RESTAPI_PUSHSINGLEDEVICE =
-      "http://openapi.xg.qq.com/v2/push/single_device";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/single_device";
+
+  /**
+   * 账号单推，指对通过客户端SDK绑定接口绑定的指定单个账号的推送，iOS和Android的SDK都提供相应的接口
+   */
   public static final String RESTAPI_PUSHSINGLEACCOUNT =
-      "http://openapi.xg.qq.com/v2/push/single_account";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/single_account";
+  
+  /**
+   * 账号群推，是指对通过客户端SDK绑定接口绑定的账号的群组推送，iOS和Android的SDK都提供相应的接口
+   */
   public static final String RESTAPI_PUSHACCOUNTLIST =
-      "http://openapi.xg.qq.com/v2/push/account_list";
-  public static final String RESTAPI_PUSHALLDEVICE = "http://openapi.xg.qq.com/v2/push/all_device";
-  public static final String RESTAPI_PUSHTAGS = "http://openapi.xg.qq.com/v2/push/tags_device";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/account_list";
+  
+  /**
+   * 全量推送<br>
+   * 此接口用于对全部设备推送消息，后台对本接口的调用频率有限制<br>
+   * 1)1小时内不能推相同内容的消息<br>
+   * 2)1小时内最多调用此接口30次 <br>
+   */
+  public static final String RESTAPI_PUSHALLDEVICE =
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/all_device";
+  public static final String RESTAPI_PUSHTAGS =
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/tags_device";
   public static final String RESTAPI_QUERYPUSHSTATUS =
-      "http://openapi.xg.qq.com/v2/push/get_msg_status";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/get_msg_status";
   public static final String RESTAPI_QUERYDEVICECOUNT =
-      "http://openapi.xg.qq.com/v2/application/get_app_device_num";
-  public static final String RESTAPI_QUERYTAGS = "http://openapi.xg.qq.com/v2/tags/query_app_tags";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/application/get_app_device_num";
+  public static final String RESTAPI_QUERYTAGS =
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tags/query_app_tags";
   public static final String RESTAPI_CANCELTIMINGPUSH =
-      "http://openapi.xg.qq.com/v2/push/cancel_timing_task";
-  public static final String RESTAPI_BATCHSETTAG = "http://openapi.xg.qq.com/v2/tags/batch_set";
-  public static final String RESTAPI_BATCHDELTAG = "http://openapi.xg.qq.com/v2/tags/batch_del";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/cancel_timing_task";
+  public static final String RESTAPI_BATCHSETTAG =
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tags/batch_set";
+  public static final String RESTAPI_BATCHDELTAG =
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tags/batch_del";
   public static final String RESTAPI_QUERYTOKENTAGS =
-      "http://openapi.xg.qq.com/v2/tags/query_token_tags";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tags/query_token_tags";
   public static final String RESTAPI_QUERYTAGTOKENNUM =
-      "http://openapi.xg.qq.com/v2/tags/query_tag_token_num";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tags/query_tag_token_num";
   public static final String RESTAPI_CREATEMULTIPUSH =
-      "http://openapi.xg.qq.com/v2/push/create_multipush";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/create_multipush";
   public static final String RESTAPI_PUSHACCOUNTLISTMULTIPLE =
-      "http://openapi.xg.qq.com/v2/push/account_list_multiple";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/account_list_multiple";
   public static final String RESTAPI_PUSHDEVICELISTMULTIPLE =
-      "http://openapi.xg.qq.com/v2/push/device_list_multiple";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/device_list_multiple";
   public static final String RESTAPI_QUERYINFOOFTOKEN =
-      "http://openapi.xg.qq.com/v2/application/get_app_token_info";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/application/get_app_token_info";
   public static final String RESTAPI_QUERYTOKENSOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/get_app_account_tokens";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/application/get_app_account_tokens";
   public static final String RESTAPI_DELETETOKENOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/del_app_account_tokens";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/application/del_app_account_tokens";
   public static final String RESTAPI_DELETEALLTOKENSOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/del_app_account_all_tokens";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/application/del_app_account_all_tokens";
 
 }

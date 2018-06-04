@@ -60,7 +60,7 @@ public class XingeApp {
     String temp;
     String ret = "";
     JSONObject jsonRet = null;
-    String sign = generateSign("POST", url, params);
+    String sign = generateSign(RESTAPI.HTTP_POST, url, params);
     if (sign.isEmpty())
       return new JSONObject("{\"ret_code\":-1,\"err_msg\":\"generateSign error\"}");
     params.put("sign", sign);
@@ -70,7 +70,7 @@ public class XingeApp {
     try {
       URL u = new URL(url);
       conn = (HttpURLConnection) u.openConnection();
-      conn.setRequestMethod("POST");
+      conn.setRequestMethod(RESTAPI.HTTP_POST);
       conn.setConnectTimeout(10000);
       conn.setReadTimeout(3000);
       conn.setDoOutput(true);
