@@ -18,7 +18,8 @@ import org.json.JSONObject;
  * 1. v3中appId是String类型，v2中是long <br>
  * 2. v3中请求信息是json类型，v2中是key-value字符串<br>
  * 
- * @author
+ * 接口文档说明请访问：<br>
+ * http://docs.developer.qq.com/xg/server_api/rest-api-v3ban-ben-shi-yong-zhi-nan.html
  *
  */
 public class XingeAppV3 {
@@ -32,6 +33,7 @@ public class XingeAppV3 {
    * HTTP Header Authorization 的值：Basic base64_auth_string<br>
    * base64_auth_string 生成规则是：base64(appId:secretKey)<br>
    * 留意 appId 与 secretKey 中间使用 ":" 冒号隔开<br>
+   * 
    * @param appId
    * @param secretKey
    */

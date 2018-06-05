@@ -41,6 +41,13 @@ public class Style {
     return m_clearable;
   }
 
+  /**
+   * 通知消息对象的唯一标识 <br>
+   * 1. 大于0，会覆盖先前相同id的消息；<br>
+   * 2. 等于0，展示本条通知且不影响其他消息；<br>
+   * 3. 等于-1，将清除先前所有消息，仅展示本条消息<br>
+   * 
+   */
   public int getNId() {
     return m_nId;
   }

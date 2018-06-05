@@ -24,6 +24,11 @@ public class Message {
     this.m_style = new Style(0);
   }
 
+  /**
+   * 消息标题
+   * 
+   * @param title
+   */
   public void setTitle(String title) {
     this.m_title = title;
   }
@@ -48,6 +53,11 @@ public class Message {
     return this.m_sendTime;
   }
 
+  /**
+   * 消息将在哪些时间段允许推送给用户，建议小于10个
+   * 
+   * @param acceptTime
+   */
   public void addAcceptTime(TimeInterval acceptTime) {
     this.m_acceptTimes.add(acceptTime);
   }
@@ -119,20 +129,14 @@ public class Message {
   }
 
   public boolean isValid() {
-    if (!m_raw.isEmpty())
-      return true;
-    if (m_type < TYPE_NOTIFICATION || m_type > TYPE_MESSAGE)
-      return false;
-    if (m_multiPkg < 0 || m_multiPkg > 1)
-      return false;
+    if (!m_raw.isEmpty()) return true;
+    if (m_type < TYPE_NOTIFICATION || m_type > TYPE_MESSAGE) return false;
+    if (m_multiPkg < 0 || m_multiPkg > 1) return false;
     if (m_type == TYPE_NOTIFICATION) {
-      if (!m_style.isValid())
-        return false;
-      if (!m_action.isValid())
-        return false;
+      if (!m_style.isValid()) return false;
+      if (!m_action.isValid()) return false;
     }
-    if (m_expireTime < 0 || m_expireTime > 3 * 24 * 60 * 60)
-      return false;
+    if (m_expireTime < 0 || m_expireTime > 3 * 24 * 60 * 60) return false;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     try {
       sdf.parse(m_sendTime);
@@ -140,8 +144,7 @@ public class Message {
       return false;
     }
     for (TimeInterval ti : m_acceptTimes) {
-      if (!ti.isValid())
-        return false;
+      if (!ti.isValid()) return false;
     }
     if (m_loopInterval > 0 && m_loopTimes > 0 && ((m_loopTimes - 1) * m_loopInterval + 1) > 15) {
       return false;
@@ -151,8 +154,7 @@ public class Message {
   }
 
   public String toJson() {
-    if (!m_raw.isEmpty())
-      return m_raw;
+    if (!m_raw.isEmpty()) return m_raw;
     JSONObject json = new JSONObject();
     if (m_type == TYPE_NOTIFICATION) {
       json.put("title", m_title);
