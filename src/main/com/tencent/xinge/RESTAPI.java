@@ -1,5 +1,9 @@
 package com.tencent.xinge;
 
+/**
+ * v2 REST API
+ *
+ */
 public class RESTAPI {
 
   /**

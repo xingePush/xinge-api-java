@@ -7,6 +7,11 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * 消息体，即下发到客户端的消息<br>
+ * 推送的消息体是 JSON 格式<br>
+ * Android普通消息
+ */
 public class Message {
   public static final int TYPE_NOTIFICATION = 1;
   public static final int TYPE_MESSAGE = 2;

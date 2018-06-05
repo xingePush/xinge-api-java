@@ -25,18 +25,42 @@ public class Style {
     this.m_styleId = styleId;
   }
 
+  /**
+   * 本地通知样式标识
+   * 
+   * @return
+   */
   public int getBuilderId() {
     return m_builderId;
   }
 
+  /**
+   * 是否有铃声 <br>
+   * 0：没有铃声<br>
+   * 1：有铃声<br>
+   * 
+   * @return
+   */
   public int getRing() {
     return m_ring;
   }
 
+  /**
+   * 是否使用震动<br>
+   * 0：没有震动<br>
+   * 1：有震动
+   * 
+   * @return
+   */
   public int getVibrate() {
     return m_vibrate;
   }
 
+  /**
+   * 通知栏是否可清除
+   * 
+   * @return
+   */
   public int getClearable() {
     return m_clearable;
   }
@@ -52,10 +76,24 @@ public class Style {
     return m_nId;
   }
 
+  /**
+   * 是否使用呼吸灯<br>
+   * 0：使用呼吸灯<br>
+   * 1：不使用呼吸灯<br>
+   * 
+   * @return
+   */
   public int getLights() {
     return m_lights;
   }
 
+  /**
+   * 通知栏图标是应用内图标还是上传图标<br>
+   * 0：应用内图标<br>
+   * 1：上传图标<br>
+   * 
+   * @return
+   */
   public int getIconType() {
     return m_iconType;
   }
@@ -64,6 +102,11 @@ public class Style {
     return m_styleId;
   }
 
+  /**
+   * 指定Android工程里raw目录中的铃声文件名，不需要后缀名
+   * 
+   * @param ringRaw
+   */
   public void setRingRaw(String ringRaw) {
     this.m_ringRaw = ringRaw;
   }
@@ -71,7 +114,11 @@ public class Style {
   public String getRingRaw() {
     return m_ringRaw;
   }
-
+  
+  /**
+   * 应用内图标文件名或者下载图标的url地址
+   * @param iconRes
+   */
   public void setIconRes(String iconRes) {
     this.m_iconRes = iconRes;
   }
@@ -89,18 +136,12 @@ public class Style {
   }
 
   public boolean isValid() {
-    if (m_ring < 0 || m_ring > 1)
-      return false;
-    if (m_vibrate < 0 || m_vibrate > 1)
-      return false;
-    if (m_clearable < 0 || m_clearable > 1)
-      return false;
-    if (m_lights < 0 || m_lights > 1)
-      return false;
-    if (m_iconType < 0 || m_iconType > 1)
-      return false;
-    if (m_styleId < 0 || m_styleId > 1)
-      return false;
+    if (m_ring < 0 || m_ring > 1) return false;
+    if (m_vibrate < 0 || m_vibrate > 1) return false;
+    if (m_clearable < 0 || m_clearable > 1) return false;
+    if (m_lights < 0 || m_lights > 1) return false;
+    if (m_iconType < 0 || m_iconType > 1) return false;
+    if (m_styleId < 0 || m_styleId > 1) return false;
 
     return true;
   }

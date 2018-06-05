@@ -25,7 +25,6 @@ import org.json.JSONObject;
 public class XingeAppV3 {
 
 
-  private String secretKey = null;
   private String authString = null;
   private String authStringEnc = null;
 
@@ -38,7 +37,6 @@ public class XingeAppV3 {
    * @param secretKey
    */
   public XingeAppV3(String appId, String secretKey) {
-    this.secretKey = secretKey;
     this.authString = appId + ":" + secretKey;
 
     byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
@@ -53,11 +51,11 @@ public class XingeAppV3 {
    */
   public JSONObject pushApp(String jsonRequest) {
 
-    return callRestful(RESTAPI_V3.RESTAPI_PUSHSINGLEDEVICE, jsonRequest, secretKey);
+    return callRestful(RESTAPI_V3.RESTAPI_PUSHSINGLEDEVICE, jsonRequest);
 
   }
 
-  private JSONObject callRestful(String apiAddress, String jsonRequestString, String secretKey2) {
+  private JSONObject callRestful(String apiAddress, String jsonRequestString) {
 
     URL url;
     HttpURLConnection http = null;

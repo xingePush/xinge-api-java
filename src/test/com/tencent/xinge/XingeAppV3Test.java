@@ -1,8 +1,5 @@
 package com.tencent.xinge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
