@@ -7,6 +7,10 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * iOS普通消息
+ *
+ */
 public class MessageIOS {
   public static final int TYPE_APNS_NOTIFICATION = 11;
   public static final int TYPE_REMOTE_NOTIFICATION = 12;
@@ -119,11 +123,9 @@ public class MessageIOS {
     if (!m_raw.isEmpty()) {
       return true;
     }
-    if (m_type < TYPE_APNS_NOTIFICATION || m_type > TYPE_REMOTE_NOTIFICATION)
-      return false;
+    if (m_type < TYPE_APNS_NOTIFICATION || m_type > TYPE_REMOTE_NOTIFICATION) return false;
 
-    if (m_expireTime < 0 || m_expireTime > 3 * 24 * 60 * 60)
-      return false;
+    if (m_expireTime < 0 || m_expireTime > 3 * 24 * 60 * 60) return false;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     try {
       sdf.parse(m_sendTime);
