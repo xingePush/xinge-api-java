@@ -182,7 +182,9 @@ public class Message {
       json.put("content", m_content);
       json.put("accept_time", acceptTimeToJsonArray());
     }
-    json.put("custom_content", m_custom);
+    
+    //Android系统内的自带的json版本 没有 put(String, Map) 方法，会导致出错了，APK都是先使用系统的类
+    json.put("custom_content", new JSONObject(m_custom));
     return json.toString();
   }
 
