@@ -17,164 +17,21 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
+/**
+ * 
+ * 提供V2接口
+ *
+ */
 public class XingeApp {
 
-  public static final String RESTAPI_PUSHSINGLEDEVICE =
-      "http://openapi.xg.qq.com/v2/push/single_device";
-  public static final String RESTAPI_PUSHSINGLEACCOUNT =
-      "http://openapi.xg.qq.com/v2/push/single_account";
-  public static final String RESTAPI_PUSHACCOUNTLIST =
-      "http://openapi.xg.qq.com/v2/push/account_list";
-  public static final String RESTAPI_PUSHALLDEVICE = "http://openapi.xg.qq.com/v2/push/all_device";
-  public static final String RESTAPI_PUSHTAGS = "http://openapi.xg.qq.com/v2/push/tags_device";
-  public static final String RESTAPI_QUERYPUSHSTATUS =
-      "http://openapi.xg.qq.com/v2/push/get_msg_status";
-  public static final String RESTAPI_QUERYDEVICECOUNT =
-      "http://openapi.xg.qq.com/v2/application/get_app_device_num";
-  public static final String RESTAPI_QUERYTAGS = "http://openapi.xg.qq.com/v2/tags/query_app_tags";
-  public static final String RESTAPI_CANCELTIMINGPUSH =
-      "http://openapi.xg.qq.com/v2/push/cancel_timing_task";
-  public static final String RESTAPI_BATCHSETTAG = "http://openapi.xg.qq.com/v2/tags/batch_set";
-  public static final String RESTAPI_BATCHDELTAG = "http://openapi.xg.qq.com/v2/tags/batch_del";
-  public static final String RESTAPI_QUERYTOKENTAGS =
-      "http://openapi.xg.qq.com/v2/tags/query_token_tags";
-  public static final String RESTAPI_QUERYTAGTOKENNUM =
-      "http://openapi.xg.qq.com/v2/tags/query_tag_token_num";
-  public static final String RESTAPI_CREATEMULTIPUSH =
-      "http://openapi.xg.qq.com/v2/push/create_multipush";
-  public static final String RESTAPI_PUSHACCOUNTLISTMULTIPLE =
-      "http://openapi.xg.qq.com/v2/push/account_list_multiple";
-  public static final String RESTAPI_PUSHDEVICELISTMULTIPLE =
-      "http://openapi.xg.qq.com/v2/push/device_list_multiple";
-  public static final String RESTAPI_QUERYINFOOFTOKEN =
-      "http://openapi.xg.qq.com/v2/application/get_app_token_info";
-  public static final String RESTAPI_QUERYTOKENSOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/get_app_account_tokens";
-  public static final String RESTAPI_DELETETOKENOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/del_app_account_tokens";
-  public static final String RESTAPI_DELETEALLTOKENSOFACCOUNT =
-      "http://openapi.xg.qq.com/v2/application/del_app_account_all_tokens";
-
-  public static final String HTTP_POST = "POST";
-  public static final String HTTP_GET = "GET";
-
-  public static final int DEVICE_ALL = 0;
-  public static final int DEVICE_BROWSER = 1;
-  public static final int DEVICE_PC = 2;
-  public static final int DEVICE_ANDROID = 3;
-  public static final int DEVICE_IOS = 4;
-  public static final int DEVICE_WINPHONE = 5;
 
   public static final int IOSENV_PROD = 1;
   public static final int IOSENV_DEV = 2;
 
-  public static final long IOS_MIN_ID = 2200000000L;
-
-  public static void main(String[] args) {
-    System.out.println("Hello Xinge!");
-  }
 
   public XingeApp(long accessId, String secretKey) {
     this.m_accessId = accessId;
     this.m_secretKey = secretKey;
-  }
-
-  protected String generateSign(String method, String url, Map<String, Object> params) {
-    List<Map.Entry<String, Object>> paramList =
-        new ArrayList<Map.Entry<String, Object>>(params.entrySet());
-    Collections.sort(paramList, new Comparator<Map.Entry<String, Object>>() {
-      public int compare(Map.Entry<String, Object> o1, Map.Entry<String, Object> o2) {
-        return (o1.getKey()).toString().compareTo(o2.getKey());
-      }
-    });
-    String paramStr = "";
-    String md5Str = "";
-    for (Map.Entry<String, Object> entry : paramList) {
-      paramStr += entry.getKey() + "=" + entry.getValue().toString();
-    }
-    try {
-      URL u = new URL(url);
-      MessageDigest md5 = MessageDigest.getInstance("MD5");
-      String s = method + u.getHost() + u.getPath() + paramStr + this.m_secretKey;
-      byte[] bArr = s.getBytes("UTF-8");
-      byte[] md5Value = md5.digest(bArr);
-      BigInteger bigInt = new BigInteger(1, md5Value);
-      md5Str = bigInt.toString(16);
-      while (md5Str.length() < 32) {
-        md5Str = "0" + md5Str;
-      }
-      // System.out.println(s);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return "";
-    }
-    return md5Str;
-  }
-
-  protected JSONObject callRestful(String url, Map<String, Object> params) {
-    String temp;
-    String ret = "";
-    JSONObject jsonRet = null;
-    String sign = generateSign("POST", url, params);
-    if (sign.isEmpty())
-      return new JSONObject("{\"ret_code\":-1,\"err_msg\":\"generateSign error\"}");
-    params.put("sign", sign);
-    HttpURLConnection conn = null;
-    InputStreamReader isr = null;
-    BufferedReader br = null;
-    try {
-      URL u = new URL(url);
-      conn = (HttpURLConnection) u.openConnection();
-      conn.setRequestMethod("POST");
-      conn.setConnectTimeout(10000);
-      conn.setReadTimeout(3000);
-      conn.setDoOutput(true);
-      conn.setDoInput(true);
-      conn.setUseCaches(false);
-      StringBuffer param = new StringBuffer();
-      for (String key : params.keySet()) {
-        param.append(key).append("=").append(URLEncoder.encode(params.get(key).toString(), "UTF-8"))
-            .append("&");
-      }
-      conn.getOutputStream().write(param.toString().getBytes("UTF-8"));
-      // System.out.println(param);
-      conn.getOutputStream().flush();
-      conn.getOutputStream().close();
-      isr = new InputStreamReader(conn.getInputStream());
-      br = new BufferedReader(isr);
-      while ((temp = br.readLine()) != null) {
-        ret += temp;
-      }
-      // System.out.println(ret);
-      jsonRet = new JSONObject(ret);
-
-    } catch (java.net.SocketTimeoutException e) {
-      // e.printStackTrace();
-      jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful timeout\"}");
-    } catch (Exception e) {
-      // e.printStackTrace();
-      jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful error\"}");
-    } finally {
-      if (br != null) {
-        try {
-          br.close();
-        } catch (IOException e) {
-          // ignore
-        }
-      }
-      if (isr != null) {
-        try {
-          isr.close();
-        } catch (IOException e) {
-          // ignore
-        }
-      }
-      if (conn != null) {
-        conn.disconnect();
-      }
-    }
-    return jsonRet;
   }
 
   protected boolean ValidateToken(String token) {
@@ -195,14 +52,15 @@ public class XingeApp {
   }
 
   protected boolean ValidateMessageType(Message message) {
-    if (this.m_accessId < IOS_MIN_ID)
+    if (this.m_accessId < RESTAPI.IOS_MIN_ID)
       return true;
     else
       return false;
   }
 
   protected boolean ValidateMessageType(MessageIOS message, int environment) {
-    if (this.m_accessId >= IOS_MIN_ID && (environment == IOSENV_PROD || environment == IOSENV_DEV))
+    if (this.m_accessId >= RESTAPI.IOS_MIN_ID
+        && (environment == RESTAPI.IOSENV_PROD || environment == RESTAPI.IOSENV_DEV))
       return true;
     else
       return false;
@@ -309,7 +167,7 @@ public class XingeApp {
    * @param secretKey 推送密钥
    * @param content 内容
    * @param token 目标设备token
-   * @param env 推送的目标环境 必须是其中一种： {@link #IOSENV_PROD}生产环境 {@link #IOSENV_DEV}开发环境
+   * @param env 推送的目标环境 必须是其中一种： 生产环境 开发环境
    * @return 服务器执行结果，JSON形式
    */
   public static JSONObject pushTokenIos(long accessId, String secretKey, String content,
@@ -331,7 +189,7 @@ public class XingeApp {
    * @param secretKey 推送密钥
    * @param content 内容
    * @param account 目标账号
-   * @param env 推送的目标环境 必须是其中一种： {@link #IOSENV_PROD}生产环境 {@link #IOSENV_DEV}开发环境
+   * @param env 推送的目标环境 必须是其中一种： 生产环境 开发环境
    * @return 服务器执行结果，JSON形式
    */
   public static JSONObject pushAccountIos(long accessId, String secretKey, String content,
@@ -352,7 +210,7 @@ public class XingeApp {
    * @param accessId 推送目标应用ID
    * @param secretKey 推送密钥
    * @param content 内容
-   * @param env 推送的目标环境 必须是其中一种： {@link #IOSENV_PROD}生产环境 {@link #IOSENV_DEV}开发环境
+   * @param env 推送的目标环境 必须是其中一种： 生产环境 开发环境
    * @return 服务器执行结果，JSON形式
    */
   public static JSONObject pushAllIos(long accessId, String secretKey, String content, int env) {
@@ -417,7 +275,7 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEDEVICE, params, m_secretKey);
   }
 
   /**
@@ -425,7 +283,7 @@ public class XingeApp {
    *
    * @param deviceToken 目标设备token
    * @param message 待推送的消息
-   * @param environment 推送的目标环境 必须是其中一种： {@link #IOSENV_PROD}生产环境 {@link #IOSENV_DEV}开发环境
+   * @param environment 推送的目标环境 必须是其中一种： 生产环境 开发环境
    * @return 服务器执行结果，JSON形式
    */
   public JSONObject pushSingleDevice(String deviceToken, MessageIOS message, int environment) {
@@ -450,7 +308,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEDEVICE, params, m_secretKey);
   }
 
   /**
@@ -479,7 +337,7 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEACCOUNT, params, m_secretKey);
   }
 
   /**
@@ -510,11 +368,11 @@ public class XingeApp {
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
-    return callRestful(XingeApp.RESTAPI_PUSHSINGLEACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHSINGLEACCOUNT, params, m_secretKey);
   }
 
   /**
-   * 推送给多个账号，限Android设备使用 <br/>
+   * 推送给多个账号，限Android设备使用 <br>
    * 如果目标账号数超过10000，建议改用{@link #pushAccountListMultiple}接口
    *
    * @param deviceType 设备类型，请填0
@@ -539,11 +397,11 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHACCOUNTLIST, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLIST, params, m_secretKey);
   }
 
   /**
-   * 推送给多个账号，限iOS设备使用 <br/>
+   * 推送给多个账号，限iOS设备使用 <br>
    * 如果目标账号数超过10000，建议改用{@link #pushAccountListMultiple}接口
    *
    * @param deviceType 设备类型，请填0
@@ -570,7 +428,7 @@ public class XingeApp {
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
-    return callRestful(XingeApp.RESTAPI_PUSHACCOUNTLIST, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLIST, params, m_secretKey);
   }
 
   /**
@@ -602,7 +460,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHALLDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHALLDEVICE, params, m_secretKey);
   }
 
   /**
@@ -635,7 +493,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHALLDEVICE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHALLDEVICE, params, m_secretKey);
   }
 
   /**
@@ -672,7 +530,7 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHTAGS, params, m_secretKey);
   }
 
   /**
@@ -711,11 +569,11 @@ public class XingeApp {
       params.put("loop_times", message.getLoopTimes());
     }
 
-    return callRestful(XingeApp.RESTAPI_PUSHTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHTAGS, params, m_secretKey);
   }
 
   /**
-   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限Android系统使用<br/>
+   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限Android系统使用<br>
    * 此接口创建的任务不支持定时推送
    *
    * @param message 待推送的消息
@@ -736,11 +594,11 @@ public class XingeApp {
     params.put("message", message.toJson());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_CREATEMULTIPUSH, params);
+    return callRestful(RESTAPI.RESTAPI_CREATEMULTIPUSH, params, m_secretKey);
   }
 
   /**
-   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限iOS系统使用<br/>
+   * 创建大批量推送消息，后续可调用{@link #pushAccountListMultiple}或{@link #pushDeviceListMultiple}接口批量添加设备，限iOS系统使用<br>
    * 此接口创建的任务不支持定时推送
    *
    * @param message 待推送的消息
@@ -762,11 +620,11 @@ public class XingeApp {
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
-    return callRestful(XingeApp.RESTAPI_CREATEMULTIPUSH, params);
+    return callRestful(RESTAPI.RESTAPI_CREATEMULTIPUSH, params, m_secretKey);
   }
 
   /**
-   * 推送消息给大批量账号，可对同一个pushId多次调用此接口，限Android系统使用 <br/>
+   * 推送消息给大批量账号，可对同一个pushId多次调用此接口，限Android系统使用 <br>
    * 建议用户采用此接口自行控制发送时间
    *
    * @param pushId {@link #createMultipush}返回的push_id
@@ -783,11 +641,11 @@ public class XingeApp {
     params.put("account_list", new JSONArray(accountList).toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHACCOUNTLISTMULTIPLE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLISTMULTIPLE, params, m_secretKey);
   }
 
   /**
-   * 推送消息给大批量设备，可对同一个pushId多次调用此接口，限Android系统使用 <br/>
+   * 推送消息给大批量设备，可对同一个pushId多次调用此接口，限Android系统使用 <br>
    * 建议用户采用此接口自行控制发送时间
    *
    * @param pushId {@link #createMultipush}返回的push_id
@@ -804,7 +662,7 @@ public class XingeApp {
     params.put("device_list", new JSONArray(deviceList).toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_PUSHDEVICELISTMULTIPLE, params);
+    return callRestful(RESTAPI.RESTAPI_PUSHDEVICELISTMULTIPLE, params, m_secretKey);
   }
 
   /**
@@ -825,7 +683,7 @@ public class XingeApp {
     }
     params.put("push_ids", jArray.toString());
 
-    return callRestful(XingeApp.RESTAPI_QUERYPUSHSTATUS, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYPUSHSTATUS, params, m_secretKey);
   }
 
   /**
@@ -838,7 +696,7 @@ public class XingeApp {
     params.put("access_id", this.m_accessId);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYDEVICECOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYDEVICECOUNT, params, m_secretKey);
   }
 
   /**
@@ -855,7 +713,7 @@ public class XingeApp {
     params.put("limit", limit);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTAGS, params, m_secretKey);
   }
 
   /**
@@ -879,7 +737,7 @@ public class XingeApp {
     params.put("tag", tag);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTAGTOKENNUM, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTAGTOKENNUM, params, m_secretKey);
   }
 
   /**
@@ -894,7 +752,7 @@ public class XingeApp {
     params.put("device_token", deviceToken);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTOKENTAGS, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTOKENTAGS, params, m_secretKey);
   }
 
   /**
@@ -909,7 +767,7 @@ public class XingeApp {
     params.put("push_id", pushId);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_CANCELTIMINGPUSH, params);
+    return callRestful(RESTAPI.RESTAPI_CANCELTIMINGPUSH, params, m_secretKey);
   }
 
   /**
@@ -942,7 +800,7 @@ public class XingeApp {
 
     params.put("tag_token_list", new JSONArray(tag_token_list).toString());
 
-    return callRestful(XingeApp.RESTAPI_BATCHSETTAG, params);
+    return callRestful(RESTAPI.RESTAPI_BATCHSETTAG, params, m_secretKey);
   }
 
   /**
@@ -975,7 +833,7 @@ public class XingeApp {
 
     params.put("tag_token_list", new JSONArray(tag_token_list).toString());
 
-    return callRestful(XingeApp.RESTAPI_BATCHDELTAG, params);
+    return callRestful(RESTAPI.RESTAPI_BATCHDELTAG, params, m_secretKey);
   }
 
   /**
@@ -990,7 +848,7 @@ public class XingeApp {
     params.put("device_token", deviceToken);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYINFOOFTOKEN, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYINFOOFTOKEN, params, m_secretKey);
   }
 
   /**
@@ -1005,7 +863,7 @@ public class XingeApp {
     params.put("account", account);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_QUERYTOKENSOFACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_QUERYTOKENSOFACCOUNT, params, m_secretKey);
   }
 
   /**
@@ -1022,7 +880,7 @@ public class XingeApp {
     params.put("device_token", deviceToken);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_DELETETOKENOFACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_DELETETOKENOFACCOUNT, params, m_secretKey);
   }
 
   /**
@@ -1037,6 +895,105 @@ public class XingeApp {
     params.put("account", account);
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
-    return callRestful(XingeApp.RESTAPI_DELETEALLTOKENSOFACCOUNT, params);
+    return callRestful(RESTAPI.RESTAPI_DELETEALLTOKENSOFACCOUNT, params, m_secretKey);
+  }
+
+
+  protected String generateSign(String method, String url, Map<String, Object> params,
+      String m_secretKey) {
+    List<Map.Entry<String, Object>> paramList =
+        new ArrayList<Map.Entry<String, Object>>(params.entrySet());
+    Collections.sort(paramList, new Comparator<Map.Entry<String, Object>>() {
+      public int compare(Map.Entry<String, Object> o1, Map.Entry<String, Object> o2) {
+        return (o1.getKey()).toString().compareTo(o2.getKey());
+      }
+    });
+    String paramStr = "";
+    String md5Str = "";
+    for (Map.Entry<String, Object> entry : paramList) {
+      paramStr += entry.getKey() + "=" + entry.getValue().toString();
+    }
+    try {
+      URL u = new URL(url);
+      MessageDigest md5 = MessageDigest.getInstance("MD5");
+      String s = method + u.getHost() + u.getPath() + paramStr + m_secretKey;
+      byte[] bArr = s.getBytes("UTF-8");
+      byte[] md5Value = md5.digest(bArr);
+      BigInteger bigInt = new BigInteger(1, md5Value);
+      md5Str = bigInt.toString(16);
+      while (md5Str.length() < 32) {
+        md5Str = "0" + md5Str;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "";
+    }
+    return md5Str;
+  }
+
+
+  protected JSONObject callRestful(String url, Map<String, Object> params, String m_secretKey) {
+    String temp;
+    String ret = "";
+    JSONObject jsonRet = null;
+    String sign = generateSign(RESTAPI.HTTP_POST, url, params, m_secretKey);
+    if (sign.isEmpty())
+      return new JSONObject("{\"ret_code\":-1,\"err_msg\":\"generateSign error\"}");
+    params.put("sign", sign);
+    HttpURLConnection conn = null;
+    InputStreamReader isr = null;
+    BufferedReader br = null;
+    try {
+      URL u = new URL(url);
+      conn = (HttpURLConnection) u.openConnection();
+      conn.setRequestMethod(RESTAPI.HTTP_POST);
+      conn.setConnectTimeout(10000);
+      conn.setReadTimeout(3000);
+      conn.setDoOutput(true);
+      conn.setDoInput(true);
+      conn.setUseCaches(false);
+      StringBuffer param = new StringBuffer();
+      for (String key : params.keySet()) {
+        param.append(key).append("=").append(URLEncoder.encode(params.get(key).toString(), "UTF-8"))
+            .append("&");
+      }
+      conn.getOutputStream().write(param.toString().getBytes("UTF-8"));
+      System.out.println(param);
+      conn.getOutputStream().flush();
+      conn.getOutputStream().close();
+      isr = new InputStreamReader(conn.getInputStream());
+      br = new BufferedReader(isr);
+      while ((temp = br.readLine()) != null) {
+        ret += temp;
+      }
+      // System.out.println(ret);
+      jsonRet = new JSONObject(ret);
+
+    } catch (java.net.SocketTimeoutException e) {
+      // e.printStackTrace();
+      jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful timeout\"}");
+    } catch (Exception e) {
+      // e.printStackTrace();
+      jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful error\"}");
+    } finally {
+      if (br != null) {
+        try {
+          br.close();
+        } catch (IOException e) {
+          // ignore
+        }
+      }
+      if (isr != null) {
+        try {
+          isr.close();
+        } catch (IOException e) {
+          // ignore
+        }
+      }
+      if (conn != null) {
+        conn.disconnect();
+      }
+    }
+    return jsonRet;
   }
 }

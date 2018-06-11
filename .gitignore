@@ -19,5 +19,9 @@ hs_err_pid*
 PushJavaSDK.iml
 jar/
 target/
+<<<<<<< HEAD
 xinge.eml
 xinge.iml
+=======
+bin/
+>>>>>>> 9e2338ce2a5cfd5552b2a8495d56096334ed10c2

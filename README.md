@@ -15,7 +15,7 @@ Master Branch: [![Travis CI](https://travis-ci.org/xingePush/xinge-api-java.svg?
         <dependency>
             <groupId>com.github.xingePush</groupId>
             <artifactId>xinge</artifactId>
-            <version>1.1.8</version>
+            <version>1.1.9</version>
         </dependency>
     </dependencies>
 ```

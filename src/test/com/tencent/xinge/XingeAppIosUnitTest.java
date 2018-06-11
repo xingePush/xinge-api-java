@@ -33,7 +33,7 @@ public class XingeAppIosUnitTest extends XingeApp {
     messageIOS.setCustom(custom);
 
     String deviceToken = "f1462334cf0a7adca2d248317580b564155565f6ad10b2d7c1b0b1940b10bf48";
-    System.out.println(pushSingleDevice(deviceToken, messageIOS, XingeApp.IOSENV_DEV));
+    System.out.println(pushSingleDevice(deviceToken, messageIOS, RESTAPI.IOSENV_DEV));
   }
 
   @Test
@@ -48,7 +48,7 @@ public class XingeAppIosUnitTest extends XingeApp {
 
     List<String> tags = new ArrayList<String>();
     tags.add("1111");
-    JSONObject response = pushTags(0, tags, "OR", messageIOS, XingeApp.IOSENV_DEV);
+    JSONObject response = pushTags(0, tags, "OR", messageIOS, RESTAPI.IOSENV_DEV);
     System.out.println(response);
     assertEquals(0, response.getInt("ret_code"));
     Long pushTagsId = response.getJSONObject("result").getLong("push_id");
