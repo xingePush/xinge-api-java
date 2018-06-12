@@ -56,18 +56,26 @@ public class MessageAndroid extends Message {
   }
 
   /**
-   * 消息标题
+   * 设置 消息标题
    * 
-   * @param title
+   * @param title 消息标题
    */
   public void setTitle(String title) {
     this.title = title;
   }
 
+  /**
+   * 设置消息内容
+   * @param content 消息内容
+   */
   public void setContent(String content) {
     this.content = content;
   }
 
+  /**
+   * 
+   * @param expireTime
+   */
   public void setExpireTime(int expireTime) {
     this.m_expireTime = expireTime;
   }
@@ -76,6 +84,10 @@ public class MessageAndroid extends Message {
     return this.m_expireTime;
   }
 
+  /**
+   * 
+   * @param sendTime
+   */
   public void setSendTime(String sendTime) {
     this.m_sendTime = sendTime;
   }
@@ -85,9 +97,10 @@ public class MessageAndroid extends Message {
   }
 
   /**
-   * 消息将在哪些时间段允许推送给用户，建议小于10个
+   * 消息将在哪些时间段允许推送给用户，<br>
+   * 建议小于10个
    * 
-   * @param acceptTime
+   * @param acceptTime 时间段
    */
   public void addAcceptTime(TimeInterval acceptTime) {
     this.accept_time.add(acceptTime);

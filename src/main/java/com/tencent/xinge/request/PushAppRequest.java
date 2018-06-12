@@ -8,21 +8,8 @@ import com.tencent.xinge.bean.Message;
 
 public class PushAppRequest {
 
-	/**
-	 * Push API 必要参数 <br>
-	 * 推送目标 all：全量推送 tag：标签推送 token：单设备推送 token_list ：设备列表推送 account：单账号推送
-	 * account_list：账号列表推送
-	 */
 	private String audience_type;
-	/**
-	 * Push API 必要参数 <br>
-	 * 客户端平台类型 android：安卓 ios：苹果 all：安卓&&苹果，仅支持全量推送和标签推送
-	 */
 	private String platform;
-
-	/**
-	 * Push API 必要参数 <br>
-	 */
 	private Message message;
 
 	/**
@@ -186,6 +173,11 @@ public class PushAppRequest {
 		return message;
 	}
 
+	/**
+	 * Push API 必要参数 <br>
+	 * 
+	 * @param message
+	 */
 	public void setMessage(Message message) {
 		this.message = message;
 	}
@@ -194,6 +186,19 @@ public class PushAppRequest {
 		return audience_type;
 	}
 
+	/**
+	 * Push API 必要参数 <br>
+	 * 
+	 * account_list：账号列表推送
+	 * 
+	 * @param audience_type
+	 *            推送目标 <br>
+	 *            all：全量推送 <br>
+	 *            tag：标签推送 <br>
+	 *            token：单设备推送 <br>
+	 *            token_list ：设备列表推送 <br>
+	 *            account：单账号推送
+	 */
 	public void setAudience_type(String audience_type) {
 		this.audience_type = audience_type;
 	}
@@ -202,6 +207,16 @@ public class PushAppRequest {
 		return platform;
 	}
 
+	/**
+	 * Push API 必要参数 <br>
+	 * 
+	 * 
+	 * @param platform
+	 *            客户端平台类型 <br>
+	 *            android：安卓 <br>
+	 *            ios：苹果 <br>
+	 *            all：安卓&&苹果，仅支持全量推送和标签推送
+	 */
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
@@ -242,6 +257,17 @@ public class PushAppRequest {
 		return account_type;
 	}
 
+	/**
+	 * Push API 必要参数 <br>
+	 * 推送目标 <br>
+	 * all：全量推送 <br>
+	 * tag：标签推送 token：单设备推送 <br>
+	 * token_list ：设备列表推送 <br>
+	 * account：单账号推送 <br>
+	 * account_list：账号列表推送
+	 * 
+	 * @param account_type
+	 */
 	public void setAccount_type(int account_type) {
 		this.account_type = account_type;
 	}
@@ -250,6 +276,10 @@ public class PushAppRequest {
 		return token_list;
 	}
 
+	/**
+	 * 
+	 * @param token_list
+	 */
 	public void setToken_list(List<String> token_list) {
 		this.token_list = token_list;
 	}

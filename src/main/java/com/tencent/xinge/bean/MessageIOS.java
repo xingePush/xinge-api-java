@@ -13,9 +13,6 @@ import org.json.JSONObject;
  */
 public class MessageIOS extends Message {
 
-	/**
-	 * 
-	 */
 	public static final int TYPE_APNS_NOTIFICATION = 11;
 	public static final int TYPE_REMOTE_NOTIFICATION = 12;
 
@@ -103,6 +100,12 @@ public class MessageIOS extends Message {
 		return json_arr;
 	}
 
+	/**
+	 * 设置 用户自定义的键值对
+	 * 
+	 * @param custom
+	 *            用户自定义的键值对
+	 */
 	public void setCustom(Map<String, Object> custom) {
 		this.custom_content = custom;
 	}
@@ -143,6 +146,13 @@ public class MessageIOS extends Message {
 		return loop_times;
 	}
 
+	/**
+	 * 设置循环执行消息下发的次数，<br>
+	 * 建议取值[1, 15]
+	 * 
+	 * @param loopTimes
+	 *            循环执行消息下发的次数
+	 */
 	public void setLoopTimes(int loopTimes) {
 		loop_times = loopTimes;
 	}
