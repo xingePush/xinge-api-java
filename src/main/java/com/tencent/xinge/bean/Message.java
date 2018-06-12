@@ -2,7 +2,8 @@ package com.tencent.xinge.bean;
 
 public class Message {
 
-	public String toJson() {
+	@Override
+	public String toString() {
 		return null;
 	}
 

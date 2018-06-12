@@ -184,7 +184,7 @@ public class MessageAndroid extends Message {
     return true;
   }
 
-  public String toJson() {
+  public String toString() {
     if (!m_raw.isEmpty()) return m_raw;
     JSONObject json = new JSONObject();
     if (type == TYPE_NOTIFICATION) {

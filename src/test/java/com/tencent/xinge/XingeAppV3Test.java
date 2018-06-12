@@ -48,7 +48,7 @@ public class XingeAppV3Test {
     JSONObject jsonObj = new JSONObject();
     jsonObj.put("audience_type", "all");
     jsonObj.put("platform", "android");
-    jsonObj.put("message", androidMessage.toJson());
+    jsonObj.put("message", androidMessage.toString());
     jsonObj.put("message_type", "notify");
     jsonObj.put("seq", 123);
     jsonObj.put("environment", "product");

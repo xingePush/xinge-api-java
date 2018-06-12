@@ -277,7 +277,7 @@ public class XingeApp {
     params.put("multi_pkg", message.getMultiPkg());
     params.put("device_token", deviceToken);
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
     return callRestful(RESTAPI.RESTAPI_PUSHSINGLEDEVICE, params, m_secretKey);
@@ -304,7 +304,7 @@ public class XingeApp {
     params.put("send_time", message.getSendTime());
     params.put("device_token", deviceToken);
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
@@ -339,7 +339,7 @@ public class XingeApp {
     params.put("device_type", deviceType);
     params.put("account", account);
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
     return callRestful(RESTAPI.RESTAPI_PUSHSINGLEACCOUNT, params, m_secretKey);
@@ -369,7 +369,7 @@ public class XingeApp {
     params.put("device_type", deviceType);
     params.put("account", account);
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
@@ -399,7 +399,7 @@ public class XingeApp {
     params.put("device_type", deviceType);
     params.put("account_list", new JSONArray(accountList).toString());
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
     return callRestful(RESTAPI.RESTAPI_PUSHACCOUNTLIST, params, m_secretKey);
@@ -429,7 +429,7 @@ public class XingeApp {
     params.put("device_type", deviceType);
     params.put("account_list", new JSONArray(accountList).toString());
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
@@ -457,7 +457,7 @@ public class XingeApp {
     params.put("multi_pkg", message.getMultiPkg());
     params.put("device_type", deviceType);
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
     if (message.getLoopInterval() > 0 && message.getLoopTimes() > 0) {
@@ -489,7 +489,7 @@ public class XingeApp {
     params.put("send_time", message.getSendTime());
     params.put("device_type", deviceType);
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
@@ -527,7 +527,7 @@ public class XingeApp {
     params.put("message_type", message.getType());
     params.put("tags_list", new JSONArray(tagList).toString());
     params.put("tags_op", tagOp);
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
     if (message.getLoopInterval() > 0 && message.getLoopTimes() > 0) {
@@ -565,7 +565,7 @@ public class XingeApp {
     params.put("message_type", message.getType());
     params.put("tags_list", new JSONArray(tagList).toString());
     params.put("tags_op", tagOp);
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 
@@ -596,7 +596,7 @@ public class XingeApp {
     params.put("expire_time", message.getExpireTime());
     params.put("multi_pkg", message.getMultiPkg());
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
 
     return callRestful(RESTAPI.RESTAPI_CREATEMULTIPUSH, params, m_secretKey);
@@ -621,7 +621,7 @@ public class XingeApp {
     params.put("access_id", this.m_accessId);
     params.put("expire_time", message.getExpireTime());
     params.put("message_type", message.getType());
-    params.put("message", message.toJson());
+    params.put("message", message.toString());
     params.put("timestamp", System.currentTimeMillis() / 1000);
     params.put("environment", environment);
 

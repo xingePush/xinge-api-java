@@ -1,5 +1,7 @@
 package com.tencent.xinge.request;
 
+import java.util.List;
+
 import org.json.JSONObject;
 
 import com.tencent.xinge.bean.Message;
@@ -28,29 +30,34 @@ public class PushAppRequest {
 	 * iOS平台用，必须为0，不区分通知栏消息和静默消息 1，表示Android通知栏消息 2，表示Android透传消息
 	 */
 	private String message_type = "notify";
-	
+
 	/**
 	 * Push API 可选参数<br>
 	 */
 	private int expire_time = 259200;
-	
-	
+
 	/**
 	 * Push API 可选参数<br>
 	 */
 	private String send_time;
-	
-	
+
 	/**
 	 * Push API 可选参数<br>
 	 */
 	private boolean multi_pkg = false;
 
+	/**
+	 * Push API 可选参数<br>
+	 */
 	private int loop_times;
 
+	/**
+	 * Push API 可选参数<br>
+	 */
 	private int loop_interval;
 
 	/**
+	 * Push API 可选参数<br>
 	 * 仅iOS <br>
 	 * 此字段描述的是App的环境 <br>
 	 * 1，表示发布环境，对应App已经发布到AppStore <br>
@@ -59,7 +66,51 @@ public class PushAppRequest {
 	 */
 	private String environment = "product";
 
-	public PushAppRequest(String message_type, Message message) {
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private String stat_tag;
+
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private int seq;
+
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private JSONObject tag_list;
+
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private List<String> account_list;
+
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private int account_type;
+
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private List<String> token_list;
+
+	/**
+	 * Push API 可选参数<br>
+	 */
+	private String push_id;
+
+	/**
+	 * 
+	 * @param audience_type
+	 * @param platform
+	 * @param message_type
+	 * @param message
+	 */
+	public PushAppRequest(String audience_type, String platform, String message_type, Message message) {
+		this.audience_type = audience_type;
+		this.platform = platform;
 		this.message_type = message_type;
 		this.message = message;
 	}
@@ -68,9 +119,9 @@ public class PushAppRequest {
 	public String toString() {
 
 		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("audience_type", this);
-		jsonObj.put("platform", "android");
-		jsonObj.put("message", message.toJson());
+		jsonObj.put("audience_type", this.getAudience_type());
+		jsonObj.put("platform", this.getPlatform());
+		jsonObj.put("message", this.getMessage().toString());
 		jsonObj.put("message_type", "notify");
 		jsonObj.put("seq", 123);
 		jsonObj.put("environment", "product");
@@ -156,6 +207,62 @@ public class PushAppRequest {
 
 	public void setPlatform(String platform) {
 		this.platform = platform;
+	}
+
+	public String getStat_tag() {
+		return stat_tag;
+	}
+
+	public void setStat_tag(String stat_tag) {
+		this.stat_tag = stat_tag;
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	public JSONObject getTag_list() {
+		return tag_list;
+	}
+
+	public void setTag_list(JSONObject tag_list) {
+		this.tag_list = tag_list;
+	}
+
+	public List<String> getAccount_list() {
+		return account_list;
+	}
+
+	public void setAccount_list(List<String> account_list) {
+		this.account_list = account_list;
+	}
+
+	public int getAccount_type() {
+		return account_type;
+	}
+
+	public void setAccount_type(int account_type) {
+		this.account_type = account_type;
+	}
+
+	public List<String> getToken_list() {
+		return token_list;
+	}
+
+	public void setToken_list(List<String> token_list) {
+		this.token_list = token_list;
+	}
+
+	public String getPush_id() {
+		return push_id;
+	}
+
+	public void setPush_id(String push_id) {
+		this.push_id = push_id;
 	}
 
 }

@@ -34,8 +34,6 @@ public class MessageIOS extends Message {
 	private String m_sound;
 	private String m_category;
 
-	
-
 	/**
 	 * 循环执行消息下发的间隔，以天为单位，取值[1, 14]。loop_times和loop_interval一起表示消息下发任务的循环规则，不可超过14天
 	 */
@@ -149,8 +147,6 @@ public class MessageIOS extends Message {
 		loop_times = loopTimes;
 	}
 
-
-
 	public boolean isValid() {
 		if (!m_raw.isEmpty()) {
 			return true;
@@ -177,7 +173,8 @@ public class MessageIOS extends Message {
 		return !m_alertStr.isEmpty() || m_alertJo.length() != 0;
 	}
 
-	public String toJson() {
+	@Override
+	public String toString() {
 		if (!m_raw.isEmpty()) {
 			return m_raw;
 		}
