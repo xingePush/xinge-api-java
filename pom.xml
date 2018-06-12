@@ -25,18 +25,17 @@
     </scm>
 
     <developers>
+       <developer>
+            <id>caofangkun</id>
+            <name>caofangkun</name>
+            <email>caofangkun@gmail.com</email>
+        </developer>
         <developer>
             <id>lyony</id>
             <name>lyony</name>
             <email>lyonyang@foxmail.com</email>
         </developer>
     </developers>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
 
     <distributionManagement>
         <snapshotRepository>
@@ -77,8 +76,7 @@
 
     <build>
         <defaultGoal>install</defaultGoal>
-        <sourceDirectory>src/main</sourceDirectory>
-
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
