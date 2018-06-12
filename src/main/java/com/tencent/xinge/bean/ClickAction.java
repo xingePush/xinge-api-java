@@ -1,4 +1,4 @@
-package com.tencent.xinge;
+package com.tencent.xinge.bean;
 
 import org.json.JSONObject;
 
@@ -6,6 +6,17 @@ public class ClickAction {
   public static final int TYPE_ACTIVITY = 1;
   public static final int TYPE_URL = 2;
   public static final int TYPE_INTENT = 3;
+  
+  private int m_actionType;
+  private String m_url;
+  private int m_confirmOnUrl;
+  private String m_activity;
+  private String m_intent;
+  private int m_atyAttrIntentFlag;
+  private int m_atyAttrPendingIntentFlag;
+  private String m_packageDownloadUrl;
+  private int m_confirmOnPackageDownloadUrl;
+  private String m_packageName;
 
   public void setActionType(int actionType) {
     this.m_actionType = actionType;
@@ -113,14 +124,5 @@ public class ClickAction {
     m_packageName = "";
   }
 
-  private int m_actionType;
-  private String m_url;
-  private int m_confirmOnUrl;
-  private String m_activity;
-  private String m_intent;
-  private int m_atyAttrIntentFlag;
-  private int m_atyAttrPendingIntentFlag;
-  private String m_packageDownloadUrl;
-  private int m_confirmOnPackageDownloadUrl;
-  private String m_packageName;
+
 }

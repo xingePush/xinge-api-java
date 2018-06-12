@@ -13,6 +13,8 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 
+import com.tencent.xinge.api.RESTAPI_V3;
+
 /**
  * 提供V3接口<br>
  * 1. v3中appId是String类型，v2中是long <br>

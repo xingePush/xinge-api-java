@@ -1,4 +1,4 @@
-package com.tencent.xinge;
+package com.tencent.xinge.api;
 
 /**
  * v2 REST API

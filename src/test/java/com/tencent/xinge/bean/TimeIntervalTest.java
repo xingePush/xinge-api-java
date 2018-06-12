@@ -1,8 +1,10 @@
-package com.tencent.xinge;
+package com.tencent.xinge.bean;
 
 import static org.junit.Assert.*;
 import org.json.JSONObject;
 import org.junit.Test;
+
+import com.tencent.xinge.bean.TimeInterval;
 
 public class TimeIntervalTest {
 

@@ -17,6 +17,11 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.tencent.xinge.api.RESTAPI;
+import com.tencent.xinge.bean.MessageAndroid;
+import com.tencent.xinge.bean.MessageIOS;
+import com.tencent.xinge.bean.TagTokenPair;
+
 /**
  * 
  * 提供V2接口
@@ -51,7 +56,7 @@ public class XingeApp {
     return params;
   }
 
-  protected boolean ValidateMessageType(Message message) {
+  protected boolean ValidateMessageType(MessageAndroid message) {
     if (this.m_accessId < RESTAPI.IOS_MIN_ID)
       return true;
     else
@@ -83,8 +88,8 @@ public class XingeApp {
    */
   public static JSONObject pushTokenAndroid(long accessId, String secretKey, String title,
       String content, String token) {
-    Message message = new Message();
-    message.setType(Message.TYPE_NOTIFICATION);
+    MessageAndroid message = new MessageAndroid();
+    message.setType(MessageAndroid.TYPE_NOTIFICATION);
     message.setTitle(title);
     message.setContent(content);
 
@@ -105,8 +110,8 @@ public class XingeApp {
    */
   public static JSONObject pushAccountAndroid(long accessId, String secretKey, String title,
       String content, String account) {
-    Message message = new Message();
-    message.setType(Message.TYPE_NOTIFICATION);
+    MessageAndroid message = new MessageAndroid();
+    message.setType(MessageAndroid.TYPE_NOTIFICATION);
     message.setTitle(title);
     message.setContent(content);
 
@@ -126,8 +131,8 @@ public class XingeApp {
    */
   public static JSONObject pushAllAndroid(long accessId, String secretKey, String title,
       String content) {
-    Message message = new Message();
-    message.setType(Message.TYPE_NOTIFICATION);
+    MessageAndroid message = new MessageAndroid();
+    message.setType(MessageAndroid.TYPE_NOTIFICATION);
     message.setTitle(title);
     message.setContent(content);
 
@@ -148,8 +153,8 @@ public class XingeApp {
    */
   public static JSONObject pushTagAndroid(long accessId, String secretKey, String title,
       String content, String tag) {
-    Message message = new Message();
-    message.setType(Message.TYPE_NOTIFICATION);
+    MessageAndroid message = new MessageAndroid();
+    message.setType(MessageAndroid.TYPE_NOTIFICATION);
     message.setTitle(title);
     message.setContent(content);
 
@@ -258,7 +263,7 @@ public class XingeApp {
    * @param message 待推送的消息
    * @return 服务器执行结果，JSON形式
    */
-  public JSONObject pushSingleDevice(String deviceToken, Message message) {
+  public JSONObject pushSingleDevice(String deviceToken, MessageAndroid message) {
     if (!ValidateMessageType(message)) {
       return new JSONObject("{'ret_code':-1,'err_msg':'message type error!'}");
     }
@@ -319,7 +324,7 @@ public class XingeApp {
    * @param message 待推送的消息
    * @return 服务器执行结果，JSON形式
    */
-  public JSONObject pushSingleAccount(int deviceType, String account, Message message) {
+  public JSONObject pushSingleAccount(int deviceType, String account, MessageAndroid message) {
     if (!ValidateMessageType(message)) {
       return new JSONObject("{'ret_code':-1,'err_msg':'message type error!'}");
     }
@@ -380,7 +385,7 @@ public class XingeApp {
    * @param message 待推送的消息
    * @return 服务器执行结果，JSON形式
    */
-  public JSONObject pushAccountList(int deviceType, List<String> accountList, Message message) {
+  public JSONObject pushAccountList(int deviceType, List<String> accountList, MessageAndroid message) {
     if (!ValidateMessageType(message)) {
       return new JSONObject("{'ret_code':-1,'err_msg':'message type error!'}");
     }
@@ -438,7 +443,7 @@ public class XingeApp {
    * @param message 待推送的消息
    * @return 服务器执行结果，JSON形式
    */
-  public JSONObject pushAllDevice(int deviceType, Message message) {
+  public JSONObject pushAllDevice(int deviceType, MessageAndroid message) {
     if (!ValidateMessageType(message)) {
       return new JSONObject("{'ret_code':-1,'err_msg':'message type error!'}");
     }
@@ -505,7 +510,7 @@ public class XingeApp {
    * @param message 待推送的消息
    * @return 服务器执行结果，JSON形式
    */
-  public JSONObject pushTags(int deviceType, List<String> tagList, String tagOp, Message message) {
+  public JSONObject pushTags(int deviceType, List<String> tagList, String tagOp, MessageAndroid message) {
     if (!ValidateMessageType(message)) {
       return new JSONObject("{'ret_code':-1,'err_msg':'message type error!'}");
     }
@@ -579,7 +584,7 @@ public class XingeApp {
    * @param message 待推送的消息
    * @return 服务器执行结果，JSON形式
    */
-  public JSONObject createMultipush(Message message) {
+  public JSONObject createMultipush(MessageAndroid message) {
     if (!ValidateMessageType(message)) {
       return new JSONObject("{'ret_code':-1,'err_msg':'message type error!'}");
     }

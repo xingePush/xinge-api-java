@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.tencent.xinge.bean.MessageAndroid;
+
 public class XingeAppAndroidUnitTest {
 
 
@@ -53,9 +55,9 @@ public class XingeAppAndroidUnitTest {
   @Test
   public void testPushApi() {
     JSONObject response;
-    Message message = new Message();
+    MessageAndroid message = new MessageAndroid();
     message.setContent("content");
-    message.setType(Message.TYPE_MESSAGE);
+    message.setType(MessageAndroid.TYPE_MESSAGE);
     message.setExpireTime(86400);
 
     response = xingev2.pushSingleDevice("2a060d364fd921ec4fd8a1aaf4ea25f638f5f55f", message);

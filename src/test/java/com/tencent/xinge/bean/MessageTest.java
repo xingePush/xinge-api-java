@@ -1,10 +1,13 @@
-package com.tencent.xinge;
+package com.tencent.xinge.bean;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
 import org.junit.Test;
+
+import com.tencent.xinge.bean.MessageAndroid;
+import com.tencent.xinge.bean.TimeInterval;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -13,7 +16,7 @@ public class MessageTest extends TestCase {
 
   @Test
   public void testAcceptTimeToJson() {
-    Message m = new Message();
+    MessageAndroid m = new MessageAndroid();
     TimeInterval acceptTime1 = new TimeInterval(1, 2, 3, 4);
     TimeInterval acceptTime2 = new TimeInterval(5, 6, 7, 8);
     m.addAcceptTime(acceptTime1);
@@ -25,10 +28,10 @@ public class MessageTest extends TestCase {
 
   @Test
   public void testIsValid() {
-    Message m = new Message();
+    MessageAndroid m = new MessageAndroid();
     assertEquals(0, m.getType());
     assertFalse(m.isValid());
-    m.setType(Message.TYPE_MESSAGE);
+    m.setType(MessageAndroid.TYPE_MESSAGE);
     assertTrue(m.isValid());
     m.setSendTime("abc");
     assertFalse(m.isValid());
@@ -38,8 +41,8 @@ public class MessageTest extends TestCase {
 
   @Test
   public void testToJson() {
-    Message m = new Message();
-    m.setType(Message.TYPE_MESSAGE);
+    MessageAndroid m = new MessageAndroid();
+    m.setType(MessageAndroid.TYPE_MESSAGE);
     assertEquals("{\"title\":\"\",\"custom_content\":{},\"accept_time\":[],\"content\":\"\"}",
         m.toJson());
   }

@@ -1,4 +1,4 @@
-package com.tencent.xinge;
+package com.tencent.xinge.bean;
 
 import org.json.JSONObject;
 

@@ -5,14 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONObject;
-import com.tencent.xinge.ClickAction;
-import com.tencent.xinge.Message;
-import com.tencent.xinge.MessageIOS;
-import com.tencent.xinge.RESTAPI;
-import com.tencent.xinge.Style;
-import com.tencent.xinge.TimeInterval;
+
 import com.tencent.xinge.XingeApp;
-import com.tencent.xinge.TagTokenPair;
+import com.tencent.xinge.api.RESTAPI;
+import com.tencent.xinge.bean.ClickAction;
+import com.tencent.xinge.bean.MessageAndroid;
+import com.tencent.xinge.bean.MessageIOS;
+import com.tencent.xinge.bean.Style;
+import com.tencent.xinge.bean.TagTokenPair;
+import com.tencent.xinge.bean.TimeInterval;
 
 public class Demo {
   public static void main(String[] args) {
@@ -75,10 +76,10 @@ public class Demo {
 
   // 单个设备下发透传消息
   protected JSONObject demoPushSingleDeviceMessage() {
-    Message message = new Message();
+    MessageAndroid message = new MessageAndroid();
     message.setTitle("title");
     message.setContent("content");
-    message.setType(Message.TYPE_MESSAGE);
+    message.setType(MessageAndroid.TYPE_MESSAGE);
     message.setExpireTime(86400);
     JSONObject ret = xinge.pushSingleDevice("token", message);
 
@@ -121,22 +122,22 @@ public class Demo {
 
   // 下发单个账号
   protected JSONObject demoPushSingleAccount() {
-    Message message = new Message();
+    MessageAndroid message = new MessageAndroid();
     message.setExpireTime(86400);
     message.setTitle("title");
     message.setContent("content");
-    message.setType(Message.TYPE_MESSAGE);
+    message.setType(MessageAndroid.TYPE_MESSAGE);
     JSONObject ret = xinge.pushSingleAccount(0, "joelliu", message);
     return ret;
   }
 
   // 下发多个账号
   protected JSONObject demoPushAccountList() {
-    Message message = new Message();
+    MessageAndroid message = new MessageAndroid();
     message.setExpireTime(86400);
     message.setTitle("title");
     message.setContent("content");
-    message.setType(Message.TYPE_MESSAGE);
+    message.setType(MessageAndroid.TYPE_MESSAGE);
     List<String> accountList = new ArrayList<String>();
     accountList.add("joelliu");
     JSONObject ret = xinge.pushAccountList(0, accountList, message);
@@ -186,11 +187,11 @@ public class Demo {
 
   // 大批量下发给帐号 // iOS 请构造MessageIOS消息
   protected JSONObject demoPushAccountListMultiple() {
-    Message message = new Message();
+    MessageAndroid message = new MessageAndroid();
     message.setExpireTime(86400);
     message.setTitle("title");
     message.setContent("content");
-    message.setType(Message.TYPE_NOTIFICATION);
+    message.setType(MessageAndroid.TYPE_NOTIFICATION);
 
     JSONObject ret = xinge.createMultipush(message);
     if (ret.getInt("ret_code") != 0)
@@ -217,11 +218,11 @@ public class Demo {
 
   // 大批量下发给设备 // iOS 请构造MessageIOS消息
   protected JSONObject demoPushDeviceListMultiple() {
-    Message message = new Message();
+    MessageAndroid message = new MessageAndroid();
     message.setExpireTime(86400);
     message.setTitle("title");
     message.setContent("content");
-    message.setType(Message.TYPE_NOTIFICATION);
+    message.setType(MessageAndroid.TYPE_NOTIFICATION);
 
     JSONObject ret = xinge.createMultipush(message);
     if (ret.getInt("ret_code") != 0)
@@ -335,8 +336,8 @@ public class Demo {
   }
 
   protected void buildMesssges() {
-    message1 = new Message();
-    message1.setType(Message.TYPE_NOTIFICATION);
+    message1 = new MessageAndroid();
+    message1.setType(MessageAndroid.TYPE_NOTIFICATION);
     Style style = new Style(1);
     style = new Style(3, 1, 0, 1, 0);
     ClickAction action = new ClickAction();
@@ -353,8 +354,8 @@ public class Demo {
     TimeInterval acceptTime1 = new TimeInterval(0, 0, 23, 59);
     message1.addAcceptTime(acceptTime1);
 
-    message2 = new Message();
-    message2.setType(Message.TYPE_NOTIFICATION);
+    message2 = new MessageAndroid();
+    message2.setType(MessageAndroid.TYPE_NOTIFICATION);
     message2.setTitle("title");
     message2.setContent("通知点击执行Intent测试");
     style = new Style(1);
@@ -380,7 +381,7 @@ public class Demo {
   }
 
   private XingeApp xinge;
-  private Message message1;
-  private Message message2;
+  private MessageAndroid message1;
+  private MessageAndroid message2;
   private MessageIOS messageIOS;
 }

@@ -1,4 +1,4 @@
-package com.tencent.xinge;
+package com.tencent.xinge.bean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import org.json.JSONObject;
  * 推送的消息体是 JSON 格式<br>
  * Android普通消息
  */
-public class Message {
+public class MessageAndroid extends Message {
   public static final int TYPE_NOTIFICATION = 1;
   public static final int TYPE_MESSAGE = 2;
   
@@ -33,16 +33,16 @@ public class Message {
    * 消息将在哪些时间段允许推送给用户，建议小于10个
    */
   private Vector<TimeInterval> accept_time;
-  private int m_type;
+  private int type;
   private int m_multiPkg;
-  private Style m_style;
-  private ClickAction m_action;
+  private Style style;
+  private ClickAction cickAction;
   private Map<String, Object> m_custom;
   private String m_raw;
   private int m_loopInterval;
   private int m_loopTimes;
 
-  public Message() {
+  public MessageAndroid() {
     this.title = "";
     this.content = "";
     this.m_sendTime = "2013-12-20 18:31:00";
@@ -51,8 +51,8 @@ public class Message {
     this.m_raw = "";
     this.m_loopInterval = -1;
     this.m_loopTimes = -1;
-    this.m_action = new ClickAction();
-    this.m_style = new Style(0);
+    this.cickAction = new ClickAction();
+    this.style = new Style(0);
   }
 
   /**
@@ -112,11 +112,11 @@ public class Message {
   }
 
   public void setType(int type) {
-    this.m_type = type;
+    this.type = type;
   }
 
   public int getType() {
-    return m_type;
+    return type;
   }
 
   public void setMultiPkg(int multiPkg) {
@@ -128,11 +128,11 @@ public class Message {
   }
 
   public void setStyle(Style style) {
-    this.m_style = style;
+    this.style = style;
   }
 
   public void setAction(ClickAction action) {
-    this.m_action = action;
+    this.cickAction = action;
   }
 
   public void setCustom(Map<String, Object> custom) {
@@ -161,11 +161,11 @@ public class Message {
 
   public boolean isValid() {
     if (!m_raw.isEmpty()) return true;
-    if (m_type < TYPE_NOTIFICATION || m_type > TYPE_MESSAGE) return false;
+    if (type < TYPE_NOTIFICATION || type > TYPE_MESSAGE) return false;
     if (m_multiPkg < 0 || m_multiPkg > 1) return false;
-    if (m_type == TYPE_NOTIFICATION) {
-      if (!m_style.isValid()) return false;
-      if (!m_action.isValid()) return false;
+    if (type == TYPE_NOTIFICATION) {
+      if (!style.isValid()) return false;
+      if (!cickAction.isValid()) return false;
     }
     if (m_expireTime < 0 || m_expireTime > 3 * 24 * 60 * 60) return false;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -187,23 +187,23 @@ public class Message {
   public String toJson() {
     if (!m_raw.isEmpty()) return m_raw;
     JSONObject json = new JSONObject();
-    if (m_type == TYPE_NOTIFICATION) {
+    if (type == TYPE_NOTIFICATION) {
       json.put("title", title);
       json.put("content", content);
       json.put("accept_time", acceptTimeToJsonArray());
-      json.put("builder_id", m_style.getBuilderId());
-      json.put("ring", m_style.getRing());
-      json.put("vibrate", m_style.getVibrate());
-      json.put("clearable", m_style.getClearable());
-      json.put("n_id", m_style.getNId());
-      json.put("ring_raw", m_style.getRingRaw());
-      json.put("lights", m_style.getLights());
-      json.put("icon_type", m_style.getIconType());
-      json.put("icon_res", m_style.getIconRes());
-      json.put("style_id", m_style.getStyleId());
-      json.put("small_icon", m_style.getSmallIcon());
-      json.put("action", m_action.toJsonObject());
-    } else if (m_type == TYPE_MESSAGE) {
+      json.put("builder_id", style.getBuilderId());
+      json.put("ring", style.getRing());
+      json.put("vibrate", style.getVibrate());
+      json.put("clearable", style.getClearable());
+      json.put("n_id", style.getNId());
+      json.put("ring_raw", style.getRingRaw());
+      json.put("lights", style.getLights());
+      json.put("icon_type", style.getIconType());
+      json.put("icon_res", style.getIconRes());
+      json.put("style_id", style.getStyleId());
+      json.put("small_icon", style.getSmallIcon());
+      json.put("action", cickAction.toJsonObject());
+    } else if (type == TYPE_MESSAGE) {
       json.put("title", title);
       json.put("content", content);
       json.put("accept_time", acceptTimeToJsonArray());

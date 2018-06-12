@@ -2,6 +2,10 @@ package com.tencent.xinge;
 
 import org.json.JSONObject;
 import org.junit.Test;
+
+import com.tencent.xinge.api.RESTAPI;
+import com.tencent.xinge.bean.MessageIOS;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
