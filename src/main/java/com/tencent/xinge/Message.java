@@ -15,6 +15,29 @@ import org.json.JSONObject;
 public class Message {
   public static final int TYPE_NOTIFICATION = 1;
   public static final int TYPE_MESSAGE = 2;
+  
+  /**
+   * 消息标题
+   */
+  private String m_title;
+  /**
+   * 消息内容
+   */
+  private String m_content;
+  /**
+   * 
+   */
+  private int m_expireTime;
+  private String m_sendTime;
+  private Vector<TimeInterval> m_acceptTimes;
+  private int m_type;
+  private int m_multiPkg;
+  private Style m_style;
+  private ClickAction m_action;
+  private Map<String, Object> m_custom;
+  private String m_raw;
+  private int m_loopInterval;
+  private int m_loopTimes;
 
   public Message() {
     this.m_title = "";
@@ -182,21 +205,9 @@ public class Message {
       json.put("content", m_content);
       json.put("accept_time", acceptTimeToJsonArray());
     }
-    json.put("custom_content", m_custom);
+    json.put("custom_content", new JSONObject(m_custom));
     return json.toString();
   }
 
-  private String m_title;
-  private String m_content;
-  private int m_expireTime;
-  private String m_sendTime;
-  private Vector<TimeInterval> m_acceptTimes;
-  private int m_type;
-  private int m_multiPkg;
-  private Style m_style;
-  private ClickAction m_action;
-  private Map<String, Object> m_custom;
-  private String m_raw;
-  private int m_loopInterval;
-  private int m_loopTimes;
+
 }

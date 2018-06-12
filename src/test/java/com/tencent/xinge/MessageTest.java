@@ -1,6 +1,12 @@
 package com.tencent.xinge;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONObject;
 import org.junit.Test;
+
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class MessageTest extends TestCase {
@@ -36,6 +42,20 @@ public class MessageTest extends TestCase {
     m.setType(Message.TYPE_MESSAGE);
     assertEquals("{\"title\":\"\",\"custom_content\":{},\"accept_time\":[],\"content\":\"\"}",
         m.toJson());
+  }
+  
+  /**
+   * 不能使用 JSONObject#put(String,Map)
+   * 而是使用 JSONObject#put(String, new JSONObject(Map))
+   */
+  @Test
+  public void testJSonMap() {
+	  Map<String,String> map = new HashMap<String,String>();
+	  map.put("a", "a1");
+	  map.put("b", "b1");
+	  map.put("c", "c1");
+	  JSONObject obj = new JSONObject();
+	  assertEquals(obj.put("test", map), obj.put("test", new JSONObject(map)));
   }
 
 }

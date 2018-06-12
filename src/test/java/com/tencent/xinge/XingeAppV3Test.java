@@ -47,6 +47,7 @@ public class XingeAppV3Test {
     jsonObj.put("seq", 123);
     jsonObj.put("environment", "product");
     jsonRequest = jsonObj.toString();
+    System.out.println(jsonRequest);
     System.out.println(xinge.pushApp(jsonRequest));
   }
 }

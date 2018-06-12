@@ -1,10 +1,23 @@
 package com.tencent.xinge;
 
 public class Style {
+	
+ /**
+  * 	
+  * @param builderId
+  */
   public Style(int builderId) {
     this(builderId, 0, 0, 1, 0, 1, 0, 1);
   }
 
+  /**
+   * 
+   * @param builderId
+   * @param ring
+   * @param vibrate
+   * @param clearable
+   * @param nId
+   */
   public Style(int builderId, int ring, int vibrate, int clearable, int nId) {
     this.m_builderId = builderId;
     this.m_ring = ring;
@@ -13,6 +26,17 @@ public class Style {
     this.m_nId = nId;
   }
 
+  /**
+   * 
+   * @param builderId
+   * @param ring
+   * @param vibrate
+   * @param clearable
+   * @param nId
+   * @param lights
+   * @param iconType
+   * @param styleId
+   */
   public Style(int builderId, int ring, int vibrate, int clearable, int nId, int lights,
       int iconType, int styleId) {
     this.m_builderId = builderId;

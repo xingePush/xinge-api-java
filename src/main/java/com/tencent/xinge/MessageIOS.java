@@ -12,8 +12,26 @@ import org.json.JSONObject;
  *
  */
 public class MessageIOS {
+	
+  /**
+   * 
+   */
   public static final int TYPE_APNS_NOTIFICATION = 11;
   public static final int TYPE_REMOTE_NOTIFICATION = 12;
+  
+  private int m_expireTime;
+  private String m_sendTime;
+  private Vector<TimeInterval> m_acceptTimes;
+  private int m_type;
+  private Map<String, Object> m_custom;
+  private String m_raw;
+  private String m_alertStr;
+  private JSONObject m_alertJo;
+  private int m_badge;
+  private String m_sound;
+  private String m_category;
+  private int m_loopInterval;
+  private int m_loopTimes;
 
   public MessageIOS() {
     this.m_sendTime = "2014-03-13 16:13:00";
@@ -174,17 +192,5 @@ public class MessageIOS {
     return json.toString();
   }
 
-  private int m_expireTime;
-  private String m_sendTime;
-  private Vector<TimeInterval> m_acceptTimes;
-  private int m_type;
-  private Map<String, Object> m_custom;
-  private String m_raw;
-  private String m_alertStr;
-  private JSONObject m_alertJo;
-  private int m_badge;
-  private String m_sound;
-  private String m_category;
-  private int m_loopInterval;
-  private int m_loopTimes;
+
 }

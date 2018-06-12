@@ -23,5 +23,11 @@ public class RESTAPI_V3 extends RESTAPI {
    */
   public static final String RESTAPI_PUSHSINGLEDEVICE =
       RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/push/app";
+  
+  /**
+   * v3/tag
+   */
+  public static final String RESTAPI_TAG =
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tag";
 
 }
