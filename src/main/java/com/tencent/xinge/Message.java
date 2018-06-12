@@ -19,17 +19,20 @@ public class Message {
   /**
    * 消息标题
    */
-  private String m_title;
+  private String title;
   /**
    * 消息内容
    */
-  private String m_content;
+  private String content;
   /**
    * 
    */
   private int m_expireTime;
   private String m_sendTime;
-  private Vector<TimeInterval> m_acceptTimes;
+  /**
+   * 消息将在哪些时间段允许推送给用户，建议小于10个
+   */
+  private Vector<TimeInterval> accept_time;
   private int m_type;
   private int m_multiPkg;
   private Style m_style;
@@ -40,10 +43,10 @@ public class Message {
   private int m_loopTimes;
 
   public Message() {
-    this.m_title = "";
-    this.m_content = "";
+    this.title = "";
+    this.content = "";
     this.m_sendTime = "2013-12-20 18:31:00";
-    this.m_acceptTimes = new Vector<TimeInterval>();
+    this.accept_time = new Vector<TimeInterval>();
     this.m_multiPkg = 0;
     this.m_raw = "";
     this.m_loopInterval = -1;
@@ -58,11 +61,11 @@ public class Message {
    * @param title
    */
   public void setTitle(String title) {
-    this.m_title = title;
+    this.title = title;
   }
 
   public void setContent(String content) {
-    this.m_content = content;
+    this.content = content;
   }
 
   public void setExpireTime(int expireTime) {
@@ -87,12 +90,12 @@ public class Message {
    * @param acceptTime
    */
   public void addAcceptTime(TimeInterval acceptTime) {
-    this.m_acceptTimes.add(acceptTime);
+    this.accept_time.add(acceptTime);
   }
 
   public String acceptTimeToJson() {
     JSONArray json_arr = new JSONArray();
-    for (TimeInterval ti : m_acceptTimes) {
+    for (TimeInterval ti : accept_time) {
       JSONObject jtmp = ti.toJsonObject();
       json_arr.put(jtmp);
     }
@@ -101,7 +104,7 @@ public class Message {
 
   public JSONArray acceptTimeToJsonArray() {
     JSONArray json_arr = new JSONArray();
-    for (TimeInterval ti : m_acceptTimes) {
+    for (TimeInterval ti : accept_time) {
       JSONObject jtmp = ti.toJsonObject();
       json_arr.put(jtmp);
     }
@@ -171,7 +174,7 @@ public class Message {
     } catch (ParseException e) {
       return false;
     }
-    for (TimeInterval ti : m_acceptTimes) {
+    for (TimeInterval ti : accept_time) {
       if (!ti.isValid()) return false;
     }
     if (m_loopInterval > 0 && m_loopTimes > 0 && ((m_loopTimes - 1) * m_loopInterval + 1) > 15) {
@@ -185,8 +188,8 @@ public class Message {
     if (!m_raw.isEmpty()) return m_raw;
     JSONObject json = new JSONObject();
     if (m_type == TYPE_NOTIFICATION) {
-      json.put("title", m_title);
-      json.put("content", m_content);
+      json.put("title", title);
+      json.put("content", content);
       json.put("accept_time", acceptTimeToJsonArray());
       json.put("builder_id", m_style.getBuilderId());
       json.put("ring", m_style.getRing());
@@ -201,8 +204,8 @@ public class Message {
       json.put("small_icon", m_style.getSmallIcon());
       json.put("action", m_action.toJsonObject());
     } else if (m_type == TYPE_MESSAGE) {
-      json.put("title", m_title);
-      json.put("content", m_content);
+      json.put("title", title);
+      json.put("content", content);
       json.put("accept_time", acceptTimeToJsonArray());
     }
     json.put("custom_content", new JSONObject(m_custom));
