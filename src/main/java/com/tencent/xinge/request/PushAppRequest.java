@@ -122,11 +122,8 @@ public class PushAppRequest {
 		jsonObj.put("audience_type", this.getAudience_type());
 		jsonObj.put("platform", this.getPlatform());
 		jsonObj.put("message", this.getMessage().toString());
-		jsonObj.put("message_type", "notify");
-		jsonObj.put("seq", 123);
-		jsonObj.put("environment", "product");
+		jsonObj.put("message_type", this.getMessage_type());
 		return jsonObj.toString();
-
 	}
 
 	public String getEnvironment() {
