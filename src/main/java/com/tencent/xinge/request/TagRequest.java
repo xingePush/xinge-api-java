@@ -66,7 +66,7 @@ public class TagRequest {
 	 * 1）operator_type=1,2,3,4,5,6时如果该参数包含多个token只会设置第一个token <br>
 	 * 2）格式eg：["token1","token2"]
 	 * 
-	 * @param token_list
+	 * @param token_list token_list
 	 */
 	public void setToken_list(List<String> token_list) {
 		this.token_list = token_list;
@@ -82,7 +82,7 @@ public class TagRequest {
 	 * 1）operator_type=1,2,3,4,6,7,8时如果该参数包含多个tag时，如果只是对单个tag操作，则只会设置第一个tag <br>
 	 * 2）格式eg：["tag1","tag2"]
 	 * 
-	 * @param tag_list
+	 * @param tag_list tag_list
 	 */
 	public void setTag_list(List<String> tag_list) {
 		this.tag_list = tag_list;
@@ -97,7 +97,7 @@ public class TagRequest {
 	 * operator_type =9,10时必填 <br>
 	 * 1）格式eg： [["tag1","token1"],["tag2","token2"]]
 	 * 
-	 * @param tag_token_list
+	 * @param tag_token_list tag_token_list
 	 */
 	public void setTag_token_list(List<String> tag_token_list) {
 		this.tag_token_list = tag_token_list;
@@ -111,7 +111,7 @@ public class TagRequest {
 	 * 可选参数<br>
 	 * 接口调用时，在应答包中信鸽会回射该字段,可用于异步请求
 	 * 
-	 * @param seq
+	 * @param seq seq
 	 */
 	public void setSeq(int seq) {
 		this.seq = seq;

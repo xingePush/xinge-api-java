@@ -34,7 +34,7 @@ public class Style {
 	 */
 	private int lights;
 	/**
-	 * 通知栏图标是应用内图标还是上传图标  0：应用内图标 1：上传图标
+	 * 通知栏图标是应用内图标还是上传图标 0：应用内图标 1：上传图标
 	 */
 	private int icon_type = 0;
 	private String icon_res;
@@ -49,7 +49,8 @@ public class Style {
 
 	/**
 	 * 
-	 * @param builder_id 本地通知样式标识
+	 * @param builder_id
+	 *            本地通知样式标识
 	 */
 	public Style(int builder_id) {
 		this(builder_id, 0, 0, 1, 0, 1, 0, 1);
@@ -57,11 +58,16 @@ public class Style {
 
 	/**
 	 * 
-	 * @param builderId 本地通知样式标识
-	 * @param ring 是否有铃声 0：没有铃声1：有铃声
-	 * @param vibrate  是否使用震动 0：没有震动 1：有震动
-	 * @param clearable 通知栏是否可清除
-	 * @param n_id 通知消息对象的唯一标识
+	 * @param builderId
+	 *            本地通知样式标识
+	 * @param ring
+	 *            是否有铃声 0：没有铃声1：有铃声
+	 * @param vibrate
+	 *            是否使用震动 0：没有震动 1：有震动
+	 * @param clearable
+	 *            通知栏是否可清除
+	 * @param n_id
+	 *            通知消息对象的唯一标识
 	 */
 	public Style(int builderId, int ring, int vibrate, int clearable, int n_id) {
 		this.builder_id = builderId;
@@ -73,16 +79,25 @@ public class Style {
 
 	/**
 	 * 
-	 * @param builder_id 本地通知样式标识
-	 * @param ring 是否有铃声 0：没有铃声1：有铃声
-	 * @param vibrate  是否使用震动 0：没有震动 1：有震动
-	 * @param clearable 通知栏是否可清除
-	 * @param nId 通知消息对象的唯一标识
-	 * @param lights 是否使用呼吸灯 0：使用呼吸灯 1：不使用呼吸灯
-	 * @param icon_type 通知栏图标是应用内图标还是上传图标  0：应用内图标 1：上传图标
-	 * @param style_id 设置是否覆盖指定编号的通知样式
+	 * @param builder_id
+	 *            本地通知样式标识
+	 * @param ring
+	 *            是否有铃声 0：没有铃声1：有铃声
+	 * @param vibrate
+	 *            是否使用震动 0：没有震动 1：有震动
+	 * @param clearable
+	 *            通知栏是否可清除
+	 * @param nId
+	 *            通知消息对象的唯一标识
+	 * @param lights
+	 *            是否使用呼吸灯 0：使用呼吸灯 1：不使用呼吸灯
+	 * @param icon_type
+	 *            通知栏图标是应用内图标还是上传图标 0：应用内图标 1：上传图标
+	 * @param style_id
+	 *            设置是否覆盖指定编号的通知样式
 	 */
-	public Style(int builder_id, int ring, int vibrate, int clearable, int nId, int lights, int icon_type, int style_id) {
+	public Style(int builder_id, int ring, int vibrate, int clearable, int nId, int lights, int icon_type,
+			int style_id) {
 		this.builder_id = builder_id;
 		this.ring = ring;
 		this.vibrate = vibrate;
@@ -94,9 +109,9 @@ public class Style {
 	}
 
 	/**
-	 * 本地通知样式标识
 	 * 
-	 * @return
+	 * 
+	 * @return 本地通知样式标识
 	 */
 	public int getBuilderId() {
 		return builder_id;
@@ -107,7 +122,7 @@ public class Style {
 	 * 0：没有铃声<br>
 	 * 1：有铃声<br>
 	 * 
-	 * @return
+	 * @return 0 or 1
 	 */
 	public int getRing() {
 		return ring;
@@ -118,16 +133,16 @@ public class Style {
 	 * 0：没有震动<br>
 	 * 1：有震动
 	 * 
-	 * @return
+	 * @return 0 or 1
 	 */
 	public int getVibrate() {
 		return vibrate;
 	}
 
 	/**
-	 * 通知栏是否可清除
 	 * 
-	 * @return
+	 * 
+	 * @return 通知栏是否可清除
 	 */
 	public int getClearable() {
 		return clearable;
@@ -148,7 +163,7 @@ public class Style {
 	 * 0：使用呼吸灯<br>
 	 * 1：不使用呼吸灯<br>
 	 * 
-	 * @return
+	 * @return 0 or 1
 	 */
 	public int getLights() {
 		return lights;
@@ -159,7 +174,7 @@ public class Style {
 	 * 0：应用内图标<br>
 	 * 1：上传图标<br>
 	 * 
-	 * @return
+	 * @return 0 or 1
 	 */
 	public int getIconType() {
 		return icon_type;
@@ -173,6 +188,7 @@ public class Style {
 	 * 指定Android工程里raw目录中的铃声文件名，不需要后缀名
 	 * 
 	 * @param ringRaw
+	 *            ringRaw
 	 */
 	public void setRingRaw(String ringRaw) {
 		this.ring_raw = ringRaw;
@@ -186,6 +202,7 @@ public class Style {
 	 * 应用内图标文件名或者下载图标的url地址
 	 * 
 	 * @param iconRes
+	 *            iconRes
 	 */
 	public void setIconRes(String iconRes) {
 		this.icon_res = iconRes;

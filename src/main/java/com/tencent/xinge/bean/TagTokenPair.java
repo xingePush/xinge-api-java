@@ -3,8 +3,8 @@ package com.tencent.xinge.bean;
 public class TagTokenPair {
 	/**
 	 * 
-	 * @param tag
-	 * @param token
+	 * @param tag tag
+	 * @param token token
 	 */
 	public TagTokenPair(String tag, String token) {
 		this.tag = tag;

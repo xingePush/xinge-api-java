@@ -74,7 +74,7 @@ public class MessageAndroid extends Message {
 
   /**
    * 
-   * @param expireTime
+   * @param expireTime expireTime
    */
   public void setExpireTime(int expireTime) {
     this.m_expireTime = expireTime;
@@ -86,7 +86,7 @@ public class MessageAndroid extends Message {
 
   /**
    * 
-   * @param sendTime
+   * @param sendTime sendTime
    */
   public void setSendTime(String sendTime) {
     this.m_sendTime = sendTime;

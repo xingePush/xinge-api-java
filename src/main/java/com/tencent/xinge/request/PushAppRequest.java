@@ -90,10 +90,10 @@ public class PushAppRequest {
 
 	/**
 	 * 
-	 * @param audience_type
-	 * @param platform
-	 * @param message_type
-	 * @param message
+	 * @param audience_type audience_type
+	 * @param platform platform
+	 * @param message_type message_type
+	 * @param message message
 	 */
 	public PushAppRequest(String audience_type, String platform, String message_type, Message message) {
 		this.audience_type = audience_type;
@@ -176,7 +176,7 @@ public class PushAppRequest {
 	/**
 	 * Push API 必要参数 <br>
 	 * 
-	 * @param message
+	 * @param message message
 	 */
 	public void setMessage(Message message) {
 		this.message = message;
@@ -215,7 +215,7 @@ public class PushAppRequest {
 	 *            客户端平台类型 <br>
 	 *            android：安卓 <br>
 	 *            ios：苹果 <br>
-	 *            all：安卓&&苹果，仅支持全量推送和标签推送
+	 *            all：安卓 苹果，仅支持全量推送和标签推送
 	 */
 	public void setPlatform(String platform) {
 		this.platform = platform;
@@ -266,7 +266,7 @@ public class PushAppRequest {
 	 * account：单账号推送 <br>
 	 * account_list：账号列表推送
 	 * 
-	 * @param account_type
+	 * @param account_type account_type
 	 */
 	public void setAccount_type(int account_type) {
 		this.account_type = account_type;
@@ -278,7 +278,7 @@ public class PushAppRequest {
 
 	/**
 	 * 
-	 * @param token_list
+	 * @param token_list token_list
 	 */
 	public void setToken_list(List<String> token_list) {
 		this.token_list = token_list;

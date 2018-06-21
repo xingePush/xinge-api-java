@@ -35,8 +35,8 @@ public class XingeAppV3 {
    * base64_auth_string 生成规则是：base64(appId:secretKey)<br>
    * 留意 appId 与 secretKey 中间使用 ":" 冒号隔开<br>
    * 
-   * @param appId
-   * @param secretKey
+   * @param appId appId
+   * @param secretKey secretKey
    */
   public XingeAppV3(String appId, String secretKey) {
     this.authString = appId + ":" + secretKey;
@@ -47,9 +47,8 @@ public class XingeAppV3 {
   }
 
   /**
-   * 通用基础返回值，是所有请求的响应中都会包含的字段
-   * 
-   * @return
+   * @param jsonRequest jsonRequest
+   * @return 通用基础返回值，是所有请求的响应中都会包含的字段
    */
   public JSONObject pushApp(String jsonRequest) {
 
