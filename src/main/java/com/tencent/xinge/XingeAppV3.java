@@ -43,7 +43,14 @@ public class XingeAppV3 {
 
     byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
     authStringEnc = new String(authEncBytes);
-    // System.out.println("Base64 encoded auth string: " + authStringEnc);
+  }
+
+  /**
+   *
+   * @param authStringEnc base64_auth_string
+   */
+  public XingeAppV3(String authStringEnc) {
+    this.authStringEnc = authStringEnc;
   }
 
   /**
