@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MessageIOS {
 
     @JsonProperty("aps")
-    private String aps;
+    private Aps aps;
 
     @JsonProperty("custom")
     private String custom;
@@ -32,11 +32,11 @@ public class MessageIOS {
     }
 
 
-    public String getAps() {
+    public Aps getAps() {
         return aps;
     }
 
-    public void setAps(String  aps) {
+    public void setAps(Aps  aps) {
         this.aps = aps;
     }
 
