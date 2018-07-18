@@ -3,6 +3,8 @@ package com.tencent.xinge;
 import com.tencent.xinge.bean.*;
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class PushAllAndroidTest extends BaseXgTest {
@@ -40,10 +42,17 @@ public class PushAllAndroidTest extends BaseXgTest {
         pushAppRequest.setMessage(message);
         pushAppRequest.setPlatform(Platform.all);
         pushAppRequest.setSeq(123);
+        pushAppRequest.setSend_time("1111111");
+        pushAppRequest.setStat_tag("test");
+
 
         String repoStr = pushAppRequest.toString();
+
         System.out.println(repoStr);
-        System.out.println(xingeAndroid.pushApp(repoStr));
+
+        JSONObject response = xingeAndroid.pushApp(repoStr);
+        System.out.println(response);
+
 
     }
 }
