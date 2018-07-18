@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageIOS {
 
-    @JsonProperty("aps")
+    @JsonProperty(value = "aps", required = true)
     private Aps aps;
 
-    @JsonProperty("custom")
+    @JsonProperty(value = "custom", required = true)
     private String custom;
 
-    @JsonProperty("xg")
+    @JsonProperty(value = "xg",required = true)
     private String xg;
 
 

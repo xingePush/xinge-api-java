@@ -13,8 +13,10 @@ public class MessageAndroid {
                     "<br>等于-1：将清除先前所有消息，仅展示本条消息")
     private int n_id = 0;
 
+    @JsonProperty("builder_id")
     private int builder_id;
 
+    @JsonProperty("ring")
     private int ring = 1;
 
     private String ring_raw;

@@ -1,9 +1,15 @@
 package com.tencent.xinge.bean;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Alert {
 
+    @JsonProperty(value = "title",required = true)
     private String title;
 
+    @JsonProperty(value ="body", required = true)
     private String body;
 
 
@@ -22,9 +28,6 @@ public class Alert {
     public void setBody(String body) {
         this.body = body;
     }
-
-
-
 
 
 }
