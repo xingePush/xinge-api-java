@@ -197,8 +197,7 @@ public class MessageAndroid extends Message {
     return true;
   }
 
-  public String toString() {
-    if (!m_raw.isEmpty()) return m_raw;
+  public JSONObject toJSONObject() {
     JSONObject json = new JSONObject();
     if (type == TYPE_NOTIFICATION) {
       json.put("title", title);
@@ -222,7 +221,7 @@ public class MessageAndroid extends Message {
       json.put("accept_time", acceptTimeToJsonArray());
     }
     json.put("custom_content", new JSONObject(m_custom));
-    return json.toString();
+    return json;
   }
 
 

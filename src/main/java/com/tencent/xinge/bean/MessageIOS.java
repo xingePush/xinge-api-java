@@ -184,10 +184,8 @@ public class MessageIOS extends Message {
 	}
 
 	@Override
-	public String toString() {
-		if (!m_raw.isEmpty()) {
-			return m_raw;
-		}
+	public JSONObject toJSONObject() {
+
 		JSONObject json = new JSONObject(custom_content);
 		json.put("accept_time", acceptTimeToJsonArray());
 
@@ -212,7 +210,7 @@ public class MessageIOS extends Message {
 		}
 		json.put("aps", aps);
 
-		return json.toString();
+		return json;
 	}
 
 }

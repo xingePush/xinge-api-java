@@ -47,7 +47,7 @@ public class XingeAppV3Test {
 		pushAppRequest.setEnvironment("product");
 
 		System.out.println(pushAppRequest.toString());
-		System.out.println(xinge.pushApp(pushAppRequest.toString()));
+//		System.out.println(xinge.pushApp(pushAppRequest.toString()));
 	}
 
 	@Test

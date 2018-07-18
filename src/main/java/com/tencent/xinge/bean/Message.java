@@ -1,10 +1,11 @@
 package com.tencent.xinge.bean;
 
+import org.json.JSONObject;
+
 public class Message {
 
-	@Override
-	public String toString() {
-		return null;
+	public JSONObject toJSONObject() {
+		return new JSONObject();
 	}
 
 }
