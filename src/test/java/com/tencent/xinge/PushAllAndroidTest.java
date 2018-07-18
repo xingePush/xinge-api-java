@@ -2,6 +2,7 @@ package com.tencent.xinge;
 
 import com.tencent.xinge.bean.*;
 import com.tencent.xinge.push.app.PushAppRequest;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 public class PushAllAndroidTest extends BaseXgTest {
@@ -40,8 +41,9 @@ public class PushAllAndroidTest extends BaseXgTest {
         pushAppRequest.setPlatform(Platform.all);
         pushAppRequest.setSeq(123);
 
-        System.out.println(pushAppRequest);
-        System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
+        String repoStr = pushAppRequest.toString();
+        System.out.println(repoStr);
+        System.out.println(xingeAndroid.pushApp(repoStr));
 
     }
 }

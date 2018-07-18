@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tencent.xinge.bean.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import java.util.ArrayList;
 
@@ -70,6 +71,20 @@ public class PushAppRequest {
 
     @ApiModelProperty(value = "账号列表推送、设备列表推送时必需")
     private String push_id;
+
+
+    @Override
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        String repoStr = null;
+        try {
+            repoStr = mapper.writeValueAsString(this);
+
+        } catch (Exception e) {
+            //TODO do someting
+        }
+        return repoStr;
+    }
 
     public String getSend_time() {
         return send_time;
@@ -208,5 +223,6 @@ public class PushAppRequest {
     public void setExpire_time(int expire_time) {
         this.expire_time = expire_time;
     }
+
 
 }
