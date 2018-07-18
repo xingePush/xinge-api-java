@@ -2,9 +2,7 @@ package com.tencent.xinge;
 
 import com.tencent.xinge.bean.*;
 import com.tencent.xinge.push.app.PushAppRequest;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class PushAllAndroidTest extends BaseXgTest {
