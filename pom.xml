@@ -4,7 +4,7 @@
 
     <groupId>com.github.xingePush</groupId>
     <artifactId>xinge</artifactId>
-    <version>1.1.9</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>xinge-api-java</name>
@@ -71,6 +71,25 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--添加SpringFox-Swagger依赖 -->
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-core</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
         </dependency>
     </dependencies>
 

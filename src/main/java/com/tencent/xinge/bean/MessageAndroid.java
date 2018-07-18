@@ -1,228 +1,149 @@
 package com.tencent.xinge.bean;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Map;
-import java.util.Vector;
-import org.json.JSONArray;
-import org.json.JSONObject;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class MessageAndroid {
 
-/**
- * 消息体，即下发到客户端的消息<br>
- * 推送的消息体是 JSON 格式<br>
- * Android普通消息
- */
-public class MessageAndroid extends Message {
-  public static final int TYPE_NOTIFICATION = 1;
-  public static final int TYPE_MESSAGE = 2;
-  
-  /**
-   * 消息标题
-   */
-  private String title;
-  /**
-   * 消息内容
-   */
-  private String content;
-  /**
-   * 
-   */
-  private int m_expireTime;
-  private String m_sendTime;
-  /**
-   * 消息将在哪些时间段允许推送给用户，建议小于10个
-   */
-  private Vector<TimeInterval> accept_time;
-  private int type;
-  private int m_multiPkg;
-  private Style style;
-  private ClickAction cickAction;
-  private Map<String, Object> m_custom;
-  private String m_raw;
-  private int m_loopInterval;
-  private int m_loopTimes;
+    @JsonProperty("n_id")
+    @ApiModelProperty(required = true,
+            value = "通知消息对象的唯一标识<br>大于0：会覆盖先前相同id的消息, " +
+                    "<br>等于0：展示本条通知且不影响其他消息," +
+                    "<br>等于-1：将清除先前所有消息，仅展示本条消息")
+    private int n_id = 0;
 
-  public MessageAndroid() {
-    this.title = "";
-    this.content = "";
-    this.m_sendTime = "2013-12-20 18:31:00";
-    this.accept_time = new Vector<TimeInterval>();
-    this.m_multiPkg = 0;
-    this.m_raw = "";
-    this.m_loopInterval = -1;
-    this.m_loopTimes = -1;
-    this.cickAction = new ClickAction();
-    this.style = new Style(0);
-  }
+    private int builder_id;
 
-  /**
-   * 设置 消息标题
-   * 
-   * @param title 消息标题
-   */
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    private int ring = 1;
 
-  /**
-   * 设置消息内容
-   * @param content 消息内容
-   */
-  public void setContent(String content) {
-    this.content = content;
-  }
+    private String ring_raw;
 
-  /**
-   * 
-   * @param expireTime expireTime
-   */
-  public void setExpireTime(int expireTime) {
-    this.m_expireTime = expireTime;
-  }
+    private int vibrate = 1;
 
-  public int getExpireTime() {
-    return this.m_expireTime;
-  }
+    private int lights = 1;
 
-  /**
-   * 
-   * @param sendTime sendTime
-   */
-  public void setSendTime(String sendTime) {
-    this.m_sendTime = sendTime;
-  }
+    private int clearable = 1;
 
-  public String getSendTime() {
-    return this.m_sendTime;
-  }
+    private int icon_type = 0;
 
-  /**
-   * 消息将在哪些时间段允许推送给用户，<br>
-   * 建议小于10个
-   * 
-   * @param acceptTime 时间段
-   */
-  public void addAcceptTime(TimeInterval acceptTime) {
-    this.accept_time.add(acceptTime);
-  }
+    private String icon_res;
 
-  public String acceptTimeToJson() {
-    JSONArray json_arr = new JSONArray();
-    for (TimeInterval ti : accept_time) {
-      JSONObject jtmp = ti.toJsonObject();
-      json_arr.put(jtmp);
-    }
-    return json_arr.toString();
-  }
+    private int  style_id =1;
 
-  public JSONArray acceptTimeToJsonArray() {
-    JSONArray json_arr = new JSONArray();
-    for (TimeInterval ti : accept_time) {
-      JSONObject jtmp = ti.toJsonObject();
-      json_arr.put(jtmp);
-    }
-    return json_arr;
-  }
+    private String small_icon ;
 
-  public void setType(int type) {
-    this.type = type;
-  }
+    private String action;
 
-  public int getType() {
-    return type;
-  }
 
-  public void setMultiPkg(int multiPkg) {
-    this.m_multiPkg = multiPkg;
-  }
+    private String custom_content;
 
-  public int getMultiPkg() {
-    return m_multiPkg;
-  }
 
-  public void setStyle(Style style) {
-    this.style = style;
-  }
-
-  public void setAction(ClickAction action) {
-    this.cickAction = action;
-  }
-
-  public void setCustom(Map<String, Object> custom) {
-    this.m_custom = custom;
-  }
-
-  public void setRaw(String raw) {
-    this.m_raw = raw;
-  }
-
-  public int getLoopInterval() {
-    return m_loopInterval;
-  }
-
-  public void setLoopInterval(int loopInterval) {
-    m_loopInterval = loopInterval;
-  }
-
-  public int getLoopTimes() {
-    return m_loopTimes;
-  }
-
-  public void setLoopTimes(int loopTimes) {
-    m_loopTimes = loopTimes;
-  }
-
-  public boolean isValid() {
-    if (!m_raw.isEmpty()) return true;
-    if (type < TYPE_NOTIFICATION || type > TYPE_MESSAGE) return false;
-    if (m_multiPkg < 0 || m_multiPkg > 1) return false;
-    if (type == TYPE_NOTIFICATION) {
-      if (!style.isValid()) return false;
-      if (!cickAction.isValid()) return false;
-    }
-    if (m_expireTime < 0 || m_expireTime > 3 * 24 * 60 * 60) return false;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    try {
-      sdf.parse(m_sendTime);
-    } catch (ParseException e) {
-      return false;
-    }
-    for (TimeInterval ti : accept_time) {
-      if (!ti.isValid()) return false;
-    }
-    if (m_loopInterval > 0 && m_loopTimes > 0 && ((m_loopTimes - 1) * m_loopInterval + 1) > 15) {
-      return false;
+    public int getN_id() {
+        return n_id;
     }
 
-    return true;
-  }
-
-  public JSONObject toJSONObject() {
-    JSONObject json = new JSONObject();
-    if (type == TYPE_NOTIFICATION) {
-      json.put("title", title);
-      json.put("content", content);
-      json.put("accept_time", acceptTimeToJsonArray());
-      json.put("builder_id", style.getBuilderId());
-      json.put("ring", style.getRing());
-      json.put("vibrate", style.getVibrate());
-      json.put("clearable", style.getClearable());
-      json.put("n_id", style.getNId());
-      json.put("ring_raw", style.getRingRaw());
-      json.put("lights", style.getLights());
-      json.put("icon_type", style.getIconType());
-      json.put("icon_res", style.getIconRes());
-      json.put("style_id", style.getStyleId());
-      json.put("small_icon", style.getSmallIcon());
-      json.put("action", cickAction.toJsonObject());
-    } else if (type == TYPE_MESSAGE) {
-      json.put("title", title);
-      json.put("content", content);
-      json.put("accept_time", acceptTimeToJsonArray());
+    public void setN_id(int n_id) {
+        this.n_id = n_id;
     }
-    json.put("custom_content", new JSONObject(m_custom));
-    return json;
-  }
+
+    public int getBuilder_id() {
+        return builder_id;
+    }
+
+    public void setBuilder_id(int builder_id) {
+        this.builder_id = builder_id;
+    }
+
+    public int getRing() {
+        return ring;
+    }
+
+    public void setRing(int ring) {
+        this.ring = ring;
+    }
+
+    public String getRing_raw() {
+        return ring_raw;
+    }
+
+    public void setRing_raw(String ring_raw) {
+        this.ring_raw = ring_raw;
+    }
+
+    public int getVibrate() {
+        return vibrate;
+    }
+
+    public void setVibrate(int vibrate) {
+        this.vibrate = vibrate;
+    }
+
+    public int getLights() {
+        return lights;
+    }
+
+    public void setLights(int lights) {
+        this.lights = lights;
+    }
+
+    public int getClearable() {
+        return clearable;
+    }
+
+    public void setClearable(int clearable) {
+        this.clearable = clearable;
+    }
+
+    public int getIcon_type() {
+        return icon_type;
+    }
+
+    public void setIcon_type(int icon_type) {
+        this.icon_type = icon_type;
+    }
+
+    public String getIcon_res() {
+        return icon_res;
+    }
+
+    public void setIcon_res(String icon_res) {
+        this.icon_res = icon_res;
+    }
+
+    public int getStyle_id() {
+        return style_id;
+    }
+
+    public void setStyle_id(int style_id) {
+        this.style_id = style_id;
+    }
+
+    public String getSmall_icon() {
+        return small_icon;
+    }
+
+    public void setSmall_icon(String small_icon) {
+        this.small_icon = small_icon;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getCustom_content() {
+        return custom_content;
+    }
+
+    public void setCustom_content(String custom_content) {
+        this.custom_content = custom_content;
+    }
+
+
 
 
 }
