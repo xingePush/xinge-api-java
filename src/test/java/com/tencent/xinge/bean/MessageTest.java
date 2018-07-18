@@ -44,7 +44,7 @@ public class MessageTest extends TestCase {
     MessageAndroid m = new MessageAndroid();
     m.setType(MessageAndroid.TYPE_MESSAGE);
     assertEquals("{\"title\":\"\",\"custom_content\":{},\"accept_time\":[],\"content\":\"\"}",
-        m.toString());
+        m.toJSONObject().toString());
   }
   
   /**
