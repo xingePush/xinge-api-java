@@ -73,7 +73,7 @@ public class PushAppRequest {
 
     @JsonProperty("account_type")
     @ApiModelProperty(dataType = "int", value = "单账号推送时可选")
-    private int account_type = AccountType.qq_openid.getType();
+    private int account_type = AccountType.unknown.getType();
 
     @JsonProperty("token_list")
     @ApiModelProperty(value = "单设备推送、设备列表推送时必需")
