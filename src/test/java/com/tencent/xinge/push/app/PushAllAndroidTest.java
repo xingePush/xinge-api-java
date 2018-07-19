@@ -1,18 +1,19 @@
-package com.tencent.xinge;
+package com.tencent.xinge.push.app;
 
-import com.tencent.xinge.bean.ClickAction;
-import com.tencent.xinge.bean.Message;
-import com.tencent.xinge.bean.MessageAndroid;
+import com.tencent.xinge.BaseXgTest;
+import com.tencent.xinge.bean.*;
 import com.tencent.xinge.push.app.PushAppRequest;
+import org.json.JSONObject;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-public class PushTagAndroidTest extends BaseXgTest {
+public class PushAllAndroidTest extends BaseXgTest {
 
     @Test
-    public void testPushTagAndroid() {
+    public void testPushAllAndroid() {
 
+        Message message = new Message();
+        message.setTitle("testPushAllAndroid xxx");
+        message.setContent("from Java SDK");
 
         ClickAction action = new ClickAction();
         action.setActionType(0);
@@ -32,27 +33,25 @@ public class PushTagAndroidTest extends BaseXgTest {
         messageAndroid.setIcon_type(0);
         messageAndroid.setStyle_id(1);
 
-
-        Message message = new Message();
-        message.setTitle("testPushTagAndroid");
-        message.setContent("from Java SDK");
-
         message.setAndroid(messageAndroid);
 
         PushAppRequest pushAppRequest = new PushAppRequest();
-        ArrayList<String> tagList = new ArrayList<>();
-        tagList.add("agtestTag");
-        tagList.add("agtestTag2");
-        pushAppRequest.setToken_list(tagList);
-        pushAppRequest.setPush_id("0");
-        pushAppRequest.setSeq(123);
+        pushAppRequest.setMessage_type(MessageType.notify);
+        pushAppRequest.setEnvironment(Environment.product);
         pushAppRequest.setMessage(message);
+        pushAppRequest.setPlatform(Platform.all);
+        pushAppRequest.setSeq(123);
         pushAppRequest.setSend_time("1111111");
         pushAppRequest.setStat_tag("test");
 
 
-        System.out.println(pushAppRequest.toString());
-        System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
+        String repoStr = pushAppRequest.toString();
+
+        System.out.println(repoStr);
+
+        JSONObject response = xingeAndroid.pushApp(repoStr);
+        System.out.println(response);
+
 
     }
 }

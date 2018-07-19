@@ -9,11 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AcceptTimePoint {
 
-    @JsonProperty("hour")
+    @JsonProperty(value = "hour", required = true)
     @ApiModelProperty(value = "时间点，小时： HH",required = true)
     public String hour;
 
-    @JsonProperty("min")
+    @JsonProperty(value = "min", required = true)
     @ApiModelProperty(value = "时间点，分钟： mm",required = true)
     public String min;
 

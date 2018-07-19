@@ -1,20 +1,21 @@
-package com.tencent.xinge;
+package com.tencent.xinge.push.app;
 
+import com.tencent.xinge.BaseXgTest;
 import com.tencent.xinge.bean.*;
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-//account list推送
-public class PushAccountListIOSTest extends BaseXgTest {
+//ios account单推
+public class PushSingleAccountIOSTest extends BaseXgTest {
 
     @Test
-    public void testPushAccountListIOS() {
+    public void testPushSingleAccountIOS() {
 
         Message message = new Message();
-        message.setContent("testPushAccountListIOS from Java API");
-        message.setTitle("testPushAccountListIOS");
+        message.setContent("testPushSingleAccountIOS from Java API");
+        message.setTitle("testPushSingleAccountIOS");
 
 
         MessageIOS msgIOS = new MessageIOS();
@@ -31,7 +32,6 @@ public class PushAccountListIOSTest extends BaseXgTest {
 
         ArrayList<String> accountList = new ArrayList<>();
         accountList.add("xg_account");
-        accountList.add("xg_account1");
 
         PushAppRequest pushAppRequest = new PushAppRequest();
         pushAppRequest.setPlatform(Platform.ios);
@@ -42,9 +42,10 @@ public class PushAccountListIOSTest extends BaseXgTest {
         pushAppRequest.setStat_tag("test");
         pushAppRequest.setPush_id("0");
         pushAppRequest.setAccount_list(accountList);
-        pushAppRequest.setAudience_type(AudienceType.account_list);
+        pushAppRequest.setAudience_type(AudienceType.account);
 
         System.out.println(pushAppRequest.toString());
         System.out.println(xingeIOS.pushApp(pushAppRequest.toString()));
+
     }
 }
