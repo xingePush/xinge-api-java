@@ -28,6 +28,6 @@ public class RESTAPI_V3 extends RESTAPI {
    * v3/tag
    */
   public static final String RESTAPI_TAG =
-      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/tag";
+      RESTAPI_DOMAINS + RESTAPI_VERSIONS + "/device/tag";
 
 }

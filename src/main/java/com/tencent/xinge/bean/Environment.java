@@ -1,5 +1,6 @@
 package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -21,6 +22,7 @@ public enum Environment {
         return type;
     }
 
+    @JsonValue
     public String getName() {
         return name;
     }
