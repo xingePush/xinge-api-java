@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 
 @ApiModel(description = "仅标签推送必需")
-public class TagList {
+public class TagListObject {
 
     @ApiModelProperty(value = "标签列表")
     private ArrayList<String> tags;

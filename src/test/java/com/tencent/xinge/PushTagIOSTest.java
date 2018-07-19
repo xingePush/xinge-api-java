@@ -4,18 +4,16 @@ import com.tencent.xinge.bean.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
-import org.json.JSONObject;
+
 import com.tencent.xinge.push.app.PushAppRequest;
 
 public class PushTagIOSTest extends BaseXgTest {
 
     @Test
     public void testPushTagIOS() {
-        //TODO
 
 		Message message = new Message();
-		message.setContent("testPushAllIOS from Java API");
+		message.setContent("testPushTagIOS from Java API");
 		message.setTitle("testtest");
 
 
@@ -35,7 +33,7 @@ public class PushTagIOSTest extends BaseXgTest {
 		tagList.add("xg_tag");
 		tagList.add("xg_tag2");
 
-		TagList tagListl = new TagList();
+		TagListObject tagListl = new TagListObject();
         tagListl.setOp(OpType.OR);
         tagListl.setTags(tagList);
 
