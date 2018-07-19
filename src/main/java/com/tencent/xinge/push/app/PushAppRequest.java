@@ -39,36 +39,47 @@ public class PushAppRequest {
     @ApiModelProperty(value = "指定推送时间")
     private String send_time;
 
+    @JsonProperty("multi_pkg")
     @ApiModelProperty(value = "多包名推送")
     private boolean multi_pkg = false;
 
+    @JsonProperty("loop_times")
     @ApiModelProperty(value = "多包名推送")
     private int loop_times = 0;
 
+    @JsonProperty("loop_interval")
     @ApiModelProperty(value = "多包名推送")
     private int loop_interval = 0;
 
+    @JsonProperty("environment")
     @ApiModelProperty(value = "用户指定推送环境，仅限iOS平台推送使用")
     private Environment environment = Environment.product;
 
+    @JsonProperty("stat_tag")
     @ApiModelProperty(value = "统计标签，用于聚合统计")
     private String stat_tag;
 
+    @JsonProperty("seq")
     @ApiModelProperty(value = "接口调用时，在应答包中信鸽会回射该字段，可用于异步请求 使用场景：异步服务中可以通过该字段找到server端返回的对应应答包\n")
     private int seq = 0;
 
+    @JsonProperty("tag_list")
     @ApiModelProperty(value = "仅标签推送必需")
     private TagListObject tag_list;
 
+    @JsonProperty("account_list")
     @ApiModelProperty(value = "单账号推送、账号列表推送时必需")
     private ArrayList<String> account_list = new ArrayList<String>();
 
+    @JsonProperty("account_type")
     @ApiModelProperty(dataType = "string", value = "单账号推送时可选")
     private AccountType account_type = AccountType.qq_openid;
 
+    @JsonProperty("token_list")
     @ApiModelProperty(value = "单设备推送、设备列表推送时必需")
     private ArrayList<String> token_list = new ArrayList<String>();
 
+    @JsonProperty("push_id")
     @ApiModelProperty(value = "账号列表推送、设备列表推送时必需")
     private String push_id;
 
