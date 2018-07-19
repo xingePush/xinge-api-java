@@ -72,8 +72,8 @@ public class PushAppRequest {
     private ArrayList<String> account_list = new ArrayList<String>();
 
     @JsonProperty("account_type")
-    @ApiModelProperty(dataType = "string", value = "单账号推送时可选")
-    private AccountType account_type = AccountType.qq_openid;
+    @ApiModelProperty(dataType = "int", value = "单账号推送时可选")
+    private int account_type = AccountType.qq_openid.getType();
 
     @JsonProperty("token_list")
     @ApiModelProperty(value = "单设备推送、设备列表推送时必需")
@@ -169,11 +169,11 @@ public class PushAppRequest {
         this.account_list = account_list;
     }
 
-    public AccountType getAccount_type() {
+    public int getAccount_type() {
         return account_type;
     }
 
-    public void setAccount_type(AccountType account_type) {
+    public void setAccount_type(int account_type) {
         this.account_type = account_type;
     }
 
