@@ -35,7 +35,7 @@ public class MessageAndroid {
 
     private String small_icon ;
 
-    private String action;
+    private ClickAction action;
 
 
     private String custom_content;
@@ -129,11 +129,11 @@ public class MessageAndroid {
         this.small_icon = small_icon;
     }
 
-    public String getAction() {
+    public ClickAction getAction() {
         return action;
     }
 
-    public void setAction(String action) {
+    public void setAction(ClickAction action) {
         this.action = action;
     }
 
