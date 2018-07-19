@@ -28,7 +28,7 @@ public class PushAllIOSTest extends BaseXgTest {
 
 		PushAppRequest pushAppRequest = new PushAppRequest();
 		pushAppRequest.setPlatform(Platform.all);
-		pushAppRequest.setEnvironment(Environment.product);
+		pushAppRequest.setEnvironment(Environment.dev);
 		pushAppRequest.setMessage_type(MessageType.notify);
         pushAppRequest.setMessage(message);
         pushAppRequest.setSend_time("1111111");

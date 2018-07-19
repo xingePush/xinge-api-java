@@ -11,7 +11,7 @@ public class PushAccountListIOSTest extends BaseXgTest {
 
     @Test
     public void testPushAccountListIOS() {
-        
+
         Message message = new Message();
         message.setContent("testPushAccountListIOS from Java API");
         message.setTitle("testPushAccountListIOS");
