@@ -1,5 +1,6 @@
-package com.tencent.xinge;
+package com.tencent.xinge.push.app;
 
+import com.tencent.xinge.BaseXgTest;
 import com.tencent.xinge.bean.*;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
