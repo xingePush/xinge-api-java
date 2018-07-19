@@ -1,5 +1,6 @@
 package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 
 @ApiModel(value = "账号类型")
@@ -29,6 +30,7 @@ public enum AccountType {
         this.name = name;
     }
 
+    @JsonValue
     public int getType() {
         return type;
     }
