@@ -58,7 +58,7 @@ public class PushAppRequest {
     private int seq = 0;
 
     @ApiModelProperty(value = "仅标签推送必需")
-    private Object tag_list;
+    private TagList tag_list;
 
     @ApiModelProperty(value = "单账号推送、账号列表推送时必需")
     private ArrayList<String> account_list = new ArrayList<String>();
@@ -142,11 +142,11 @@ public class PushAppRequest {
         this.seq = seq;
     }
 
-    public Object getTag_list() {
+    public TagList getTag_list() {
         return tag_list;
     }
 
-    public void setTag_list(Object tag_list) {
+    public void setTag_list(TagList tag_list) {
         this.tag_list = tag_list;
     }
 

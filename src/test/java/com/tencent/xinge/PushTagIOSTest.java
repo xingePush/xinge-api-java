@@ -31,13 +31,13 @@ public class PushTagIOSTest extends BaseXgTest {
 
 		message.setIos(msgIOS);
 
-		List<String> tagList = new ArrayList<>();
+        ArrayList<String> tagList = new ArrayList<>();
 		tagList.add("xg_tag");
 		tagList.add("xg_tag2");
 
-		JSONObject tagJsonobj = new JSONObject();
-		tagJsonobj.put("tags", tagList);
-		tagJsonobj.put("op", "OR");
+		TagList tagListl = new TagList();
+        tagListl.setOp(OpType.OR);
+        tagListl.setTags(tagList);
 
 		PushAppRequest pushAppRequest = new PushAppRequest();
 		pushAppRequest.setPlatform(Platform.ios);
@@ -47,7 +47,7 @@ public class PushTagIOSTest extends BaseXgTest {
 		pushAppRequest.setSend_time("1111111");
 		pushAppRequest.setStat_tag("test");
 		pushAppRequest.setPush_id("0");
-		pushAppRequest.setTag_list(tagJsonobj);
+		pushAppRequest.setTag_list(tagListl);
 		pushAppRequest.setAudience_type(AudienceType.tag);
 
 		System.out.println(pushAppRequest.toString());
