@@ -29,7 +29,7 @@ public class PushTokenListAndroidTest extends BaseXgTest {
 
         Message message = new Message();
         message.setAndroid(messageAndroid);
-        message.setTitle("testPushSingleTokenAndroid");
+        message.setTitle("testPushTokenListAndroid");
         message.setContent("from Java SDK");
 
 
@@ -47,6 +47,7 @@ public class PushTokenListAndroidTest extends BaseXgTest {
 		pushAppRequest.setToken_list(tokenList);
         pushAppRequest.setSend_time("1111111");
         pushAppRequest.setStat_tag("test");
+        pushAppRequest.setMessage(message);
 
         System.out.println(pushAppRequest.toString());
         System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));

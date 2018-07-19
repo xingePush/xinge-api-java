@@ -1,8 +1,6 @@
 package com.tencent.xinge;
 
-import com.tencent.xinge.bean.ClickAction;
-import com.tencent.xinge.bean.Message;
-import com.tencent.xinge.bean.MessageAndroid;
+import com.tencent.xinge.bean.*;
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.junit.Test;
 
@@ -26,7 +24,6 @@ public class PushAccountListAndroidTest extends BaseXgTest {
         accountList.add("xg_account");
         accountList.add("xg_account1");
 
-
         Message message = new Message();
         message.setTitle("testPushAccountListAndroid xxx");
         message.setContent("from Java SDK");
@@ -37,8 +34,11 @@ public class PushAccountListAndroidTest extends BaseXgTest {
         pushAppRequest.setSeq(123);
         pushAppRequest.setPush_id("0");
         pushAppRequest.setAccount_list(accountList);
+        pushAppRequest.setAudience_type(AudienceType.account_list);
         pushAppRequest.setSend_time("1111111");
         pushAppRequest.setStat_tag("test");
+        pushAppRequest.setMessage(message);
+        pushAppRequest.setPlatform(Platform.android);
 
         System.out.println(pushAppRequest.toString());
         System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));

@@ -46,6 +46,10 @@ public class PushTagAndroidTest extends BaseXgTest {
         pushAppRequest.setToken_list(tagList);
         pushAppRequest.setPush_id("0");
         pushAppRequest.setSeq(123);
+        pushAppRequest.setMessage(message);
+        pushAppRequest.setSend_time("1111111");
+        pushAppRequest.setStat_tag("test");
+
 
         System.out.println(pushAppRequest.toString());
         System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
