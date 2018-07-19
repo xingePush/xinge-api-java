@@ -12,10 +12,9 @@ public class PushTagIOSTest extends BaseXgTest {
 
     @Test
     public void testPushTagIOS() {
-        //TODO
 
 		Message message = new Message();
-		message.setContent("testPushAllIOS from Java API");
+		message.setContent("testPushTagIOS from Java API");
 		message.setTitle("testtest");
 
 
