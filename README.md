@@ -11,13 +11,20 @@ Master Branch: [![Travis CI](https://travis-ci.org/xingePush/xinge-api-java.svg?
     - 在项目pom.xml中引入依赖项
     
 ```xml
-    <dependencies>
-        <dependency>
-            <groupId>com.github.xingePush</groupId>
-            <artifactId>xinge</artifactId>
-            <version>1.1.9</version>
-        </dependency>
-    </dependencies>
+
+	<repositories>
+		<repository>
+			<id>xingePush</id>
+			<url>https://raw.githubusercontent.com/xingePush/maven-repository/snapshot/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>com.github.xingePush</groupId>
+			<artifactId>xinge</artifactId>
+			<version>1.2.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 ```
 - 方法二：checkout源代码
     - git clone https://github.com/xingePush/xinge-api-java.git
