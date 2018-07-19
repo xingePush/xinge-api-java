@@ -1,5 +1,6 @@
 package com.tencent.xinge.bean;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -24,6 +25,7 @@ public enum Platform {
         this.name = name;
     }
 
+    @JsonValue
     public int getType() {
         return type;
     }

@@ -1,6 +1,7 @@
 package com.tencent.xinge;
 
 import com.tencent.xinge.bean.*;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,12 +23,12 @@ public class TagTest extends BaseXgTest {
 
 
         DeviceTagRequest deviceTagRequest = new DeviceTagRequest();
-        deviceTagRequest.setOperator_type(1);
+        deviceTagRequest.setOperator_type(OperatorType.ADD_SINGLE_TAG_SINGLE.getType());
         deviceTagRequest.setPlatform(Platform.android);
         deviceTagRequest.setToken_list(tokenList);
         deviceTagRequest.setTag_list(tagList);
 
         System.out.println(deviceTagRequest.toString());
-        System.out.println(xingeIOS.pushApp(deviceTagRequest.toString()));
+        System.out.println(xingeAndroid.deviceTag(deviceTagRequest.toString()));
     }
 }

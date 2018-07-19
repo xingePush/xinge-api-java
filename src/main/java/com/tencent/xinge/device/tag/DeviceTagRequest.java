@@ -7,6 +7,7 @@ import com.tencent.xinge.bean.Platform;
 import com.tencent.xinge.bean.TagTokenPair;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,20 @@ public class DeviceTagRequest {
 
     @JsonProperty(value = "op_id")
     private String op_id;
+
+
+    @Override
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        String repoStr = null;
+        try {
+            repoStr = mapper.writeValueAsString(this);
+
+        } catch (Exception e) {
+            //TODO do someting
+        }
+        return repoStr;
+    }
 
     public int getOperator_type() {
         return operator_type;
