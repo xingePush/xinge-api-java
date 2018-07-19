@@ -12,11 +12,35 @@ public class Aps {
     @JsonProperty(value ="badge", required = true)
     private int badge;
 
-    @JsonProperty(value ="sound", required = true)
+    @JsonProperty(value ="sound")
     private String sound;
 
-    @JsonProperty(value ="category", required = true)
+    @JsonProperty(value ="content-available")
+    private int content_available;
+
+    @JsonProperty(value ="category")
     private String category;
+
+    @JsonProperty(value ="thread-id")
+    private String thread_id;
+
+    public int getContent_available() {
+        return content_available;
+    }
+
+    public void setContent_available(int content_available) {
+        this.content_available = content_available;
+    }
+
+    public String getThread_id() {
+        return thread_id;
+    }
+
+    public void setThread_id(String thread_id) {
+        this.thread_id = thread_id;
+    }
+
+
 
     public Alert getAlert() {
         return alert;
