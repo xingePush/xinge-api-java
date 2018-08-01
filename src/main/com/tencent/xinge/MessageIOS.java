@@ -18,7 +18,7 @@ public class MessageIOS {
         this.m_raw = "";
         this.m_alertStr = "";
         this.m_alertJo = new JSONObject();
-        this.m_badge = 0;
+        this.m_badge_type = 0;
         this.m_sound = "";
         this.m_category = "";
         this.m_loopInterval = -1;
@@ -88,8 +88,8 @@ public class MessageIOS {
         m_alertJo = alert;
     }
 
-    public void setBadge(int badge) {
-        m_badge = badge;
+    public void setBadge_type(int badge_type) {
+        m_badge_type = badge_type;
     }
 
     public void setSound(String sound) {
@@ -158,8 +158,8 @@ public class MessageIOS {
             } else {
                 aps.put("alert", m_alertStr);
             }
-            if (m_badge != 0) {
-                aps.put("badge", m_badge);
+            if (m_badge_type != 0) {
+                aps.put("badge_type", m_badge_type);
             }
             if (!m_sound.isEmpty()) {
                 aps.put("sound", m_sound);
@@ -181,7 +181,7 @@ public class MessageIOS {
     private String m_raw;
     private String m_alertStr;
     private JSONObject m_alertJo;
-    private int m_badge;
+    private int m_badge_type;
     private String m_sound;
     private String m_category;
     private int m_loopInterval;
