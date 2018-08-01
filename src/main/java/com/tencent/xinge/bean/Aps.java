@@ -6,22 +6,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Aps {
 
-    @JsonProperty(value ="alert", required = true)
+    @JsonProperty(value = "alert", required = true)
     private Alert alert;
 
-    @JsonProperty(value ="badge", required = true)
-    private int badge;
+    @JsonProperty(value = "badge_type", required = true)
+    private int badge_type;
 
-    @JsonProperty(value ="sound")
+    @JsonProperty(value = "sound")
     private String sound;
 
-    @JsonProperty(value ="content-available")
+    @JsonProperty(value = "content-available")
     private int content_available;
 
-    @JsonProperty(value ="category")
+    @JsonProperty(value = "category")
     private String category;
 
-    @JsonProperty(value ="thread-id")
+    @JsonProperty(value = "thread-id")
     private String thread_id;
 
     public int getContent_available() {
@@ -41,7 +41,6 @@ public class Aps {
     }
 
 
-
     public Alert getAlert() {
         return alert;
     }
@@ -50,12 +49,12 @@ public class Aps {
         this.alert = alert;
     }
 
-    public int getBadge() {
-        return badge;
+    public int getBadge_type() {
+        return badge_type;
     }
 
-    public void setBadge(int badge) {
-        this.badge = badge;
+    public void setBadge_type(int badge_type) {
+        this.badge_type = badge_type;
     }
 
     public String getCategory() {
