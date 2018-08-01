@@ -24,7 +24,7 @@ public class PushAccountListIOSTest extends BaseXgTest {
         alert.setBody(" body alert from Java API");
 
         Aps aps = new Aps();
-        aps.setBadge(8);
+        aps.setBadge_type(8);
         aps.setAlert(alert);
         msgIOS.setAps(aps);
 
