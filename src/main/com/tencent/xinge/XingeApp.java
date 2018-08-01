@@ -294,7 +294,7 @@ public class XingeApp {
     public static JSONObject pushTokenIos(long accessId, String secretKey, String content, String token, int env) {
         MessageIOS message = new MessageIOS();
         message.setAlert(content);
-        message.setBadge(1);
+        message.setBadge_type(1);
         message.setSound("beep.wav");
 
         XingeApp xinge = new XingeApp(accessId, secretKey);
@@ -315,7 +315,7 @@ public class XingeApp {
     public static JSONObject pushAccountIos(long accessId, String secretKey, String content, String account, int env) {
         MessageIOS message = new MessageIOS();
         message.setAlert(content);
-        message.setBadge(1);
+        message.setBadge_type(1);
         message.setSound("beep.wav");
 
         XingeApp xinge = new XingeApp(accessId, secretKey);
@@ -335,7 +335,7 @@ public class XingeApp {
     public static JSONObject pushAllIos(long accessId, String secretKey, String content, int env) {
         MessageIOS message = new MessageIOS();
         message.setAlert(content);
-        message.setBadge(1);
+        message.setBadge_type(1);
         message.setSound("beep.wav");
 
         XingeApp xinge = new XingeApp(accessId, secretKey);
@@ -356,7 +356,7 @@ public class XingeApp {
     public static JSONObject pushTagIos(long accessId, String secretKey, String content, String tag, int env) {
         MessageIOS message = new MessageIOS();
         message.setAlert(content);
-        message.setBadge(1);
+        message.setBadge_type(1);
         message.setSound("beep.wav");
 
         XingeApp xinge = new XingeApp(accessId, secretKey);

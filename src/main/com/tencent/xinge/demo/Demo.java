@@ -147,7 +147,7 @@ public class Demo {
         MessageIOS message = new MessageIOS();
         message.setExpireTime(86400);
         message.setAlert("ios test");
-        message.setBadge(1);
+        message.setBadge_type(1);
         message.setSound("beep.wav");
         TimeInterval acceptTime1 = new TimeInterval(0, 0, 23, 59);
         message.addAcceptTime(acceptTime1);
@@ -363,7 +363,7 @@ public class Demo {
         messageIOS.setType(MessageIOS.TYPE_APNS_NOTIFICATION);
         messageIOS.setExpireTime(86400);
         messageIOS.setAlert("ios test");
-        messageIOS.setBadge(1);
+        messageIOS.setBadge_type(1);
         messageIOS.setCategory("INVITE_CATEGORY");
         messageIOS.setSound("beep.wav");
     }
