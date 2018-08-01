@@ -108,7 +108,7 @@ public class XingeApp {
         InputStreamReader isr = null;
         BufferedReader br = null;
         try {
-            URL u = new URL(url);
+            URL u = new URL(null, url, new com.sun.net.ssl.internal.www.protocol.https.Handler());
             conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("POST");
             conn.setConnectTimeout(10000);
