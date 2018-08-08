@@ -1,9 +1,7 @@
 package com.tencent.xinge;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -129,15 +127,18 @@ public class XingeApp {
             while ((temp = br.readLine()) != null) {
                 ret += temp;
             }
-            //System.out.println(ret);
             jsonRet = new JSONObject(ret);
 
         } catch (java.net.SocketTimeoutException e) {
-            //e.printStackTrace();
-            jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful timeout\"}");
+            jsonRet = new JSONObject();
+            jsonRet.put("ret_code", 10100);
+            jsonRet.put("err_msg", stringifyError(e));
+
         } catch (Exception e) {
-            //e.printStackTrace();
-            jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful error\"}");
+            jsonRet = new JSONObject();
+            jsonRet.put("ret_code", 10101);
+            jsonRet.put("err_msg", stringifyError(e));
+
         } finally {
             if (br != null) {
                 try {
@@ -159,6 +160,16 @@ public class XingeApp {
         }
         return jsonRet;
     }
+
+
+    public static String stringifyError(Throwable error) {
+        StringWriter result = new StringWriter();
+        PrintWriter printer = new PrintWriter(result);
+        error.printStackTrace(printer);
+        printer.close();
+        return result.toString();
+    }
+
 
     protected boolean ValidateToken(String token) {
         if (this.m_accessId >= 2200000000L) {
