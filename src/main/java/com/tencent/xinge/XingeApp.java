@@ -78,7 +78,7 @@ public class XingeApp {
         JSONObject jsonRet = null;
 
         try {
-            url = new URL(apiAddress);
+            url = new URL(null, apiAddress, new com.sun.net.ssl.internal.www.protocol.https.Handler());
             URLConnection con = url.openConnection();
             http = (HttpURLConnection) con;
             http.setRequestMethod(RESTAPI_V3.HTTP_POST);
