@@ -21,7 +21,7 @@ import com.tencent.xinge.api.RESTAPI_V3;
  * 2. v3中请求信息是json类型，v2中是key-value字符串<br>
  * <p>
  * 接口文档说明请访问：<br>
- * http://docs.developer.qq.com/xg/server_api/rest-api-v3ban-ben-shi-yong-zhi-nan.html
+ * http://xg.qq.com/docs/server_api.html
  */
 public class XingeApp {
 
