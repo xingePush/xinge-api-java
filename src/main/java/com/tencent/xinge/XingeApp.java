@@ -1,9 +1,6 @@
 package com.tencent.xinge;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -114,11 +111,15 @@ public class XingeApp {
             jsonRet = new JSONObject(ret);
 
         } catch (MalformedURLException e) {
-            jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful timeout\"}");
+            jsonRet = new JSONObject();
+            jsonRet.put("ret_code", 10100);
+            jsonRet.put("err_msg", stringifyError(e));
 
         } catch (IOException e) {
-            jsonRet = new JSONObject("{\"ret_code\":-1,\"err_msg\":\"call restful error\"}");
-
+            jsonRet = new JSONObject();
+            jsonRet.put("ret_code", 10101);
+            jsonRet.put("err_msg", stringifyError(e));
+            
         } finally {
             if (br != null) {
                 try {
@@ -140,6 +141,14 @@ public class XingeApp {
         }
 
         return jsonRet;
+    }
+
+    public static String stringifyError(Throwable error) {
+        StringWriter result = new StringWriter();
+        PrintWriter printer = new PrintWriter(result);
+        error.printStackTrace(printer);
+        printer.close();
+        return result.toString();
     }
 
 }
