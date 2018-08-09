@@ -1,4 +1,4 @@
-package com.tencent.xinge.push.app;
+package com.tencent.xinge.device.tag;
 
 import com.tencent.xinge.BaseXgTest;
 import com.tencent.xinge.bean.*;

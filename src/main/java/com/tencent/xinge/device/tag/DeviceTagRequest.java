@@ -16,10 +16,11 @@ import java.util.ArrayList;
 public class DeviceTagRequest {
 
     @JsonProperty(value = "audience_type", required = true, defaultValue = "1")
-    @ApiModelProperty(value = "推送目标", required = true)
+    @ApiModelProperty(value = "推送目标", required = true, allowableValues = "range[1,10]")
     private int operator_type = OperatorType.ADD_MULT_TAGS_SINGLE.getType();
 
     @JsonProperty(value = "platform", required = true)
+    @ApiModelProperty(value = "客户端平台类型", required = true)
     private Platform platform;
 
     @JsonProperty(value = "token_list")
