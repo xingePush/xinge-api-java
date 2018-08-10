@@ -16,10 +16,9 @@ public class PushAllAndroidTest extends BaseXgTest {
         message.setContent("from Java SDK");
 
         ClickAction action = new ClickAction();
-        action.setActionType(0);
+        action.setAction_type(0);
         action.setActivity("xxx");
         action.setIntent("xxx");
-        action.setActionType(0);
 
         MessageAndroid messageAndroid = new MessageAndroid();
         messageAndroid.setAction(action);

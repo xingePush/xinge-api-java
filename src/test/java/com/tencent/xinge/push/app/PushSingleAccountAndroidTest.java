@@ -17,10 +17,9 @@ public class PushSingleAccountAndroidTest extends BaseXgTest {
         MessageAndroid messageAndroid = new MessageAndroid();
 
         ClickAction action = new ClickAction();
-        action.setActionType(0);
+        action.setAction_type(0);
         action.setActivity("xxx");
         action.setIntent("xxx");
-        action.setActionType(0);
 
         messageAndroid.setAction(action);
         Style style = new Style(0, 1, 1, 1, 0, 1, 0, 1);
