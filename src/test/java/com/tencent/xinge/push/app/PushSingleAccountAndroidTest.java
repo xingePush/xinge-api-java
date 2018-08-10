@@ -22,7 +22,6 @@ public class PushSingleAccountAndroidTest extends BaseXgTest {
         action.setIntent("xxx");
 
         messageAndroid.setAction(action);
-        Style style = new Style(0, 1, 1, 1, 0, 1, 0, 1);
 
         messageAndroid.setBuilder_id(0);
         messageAndroid.setRing(1);
