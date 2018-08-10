@@ -1,8 +1,11 @@
 package com.tencent.xinge.bean;
 
 public enum RetCode {
+    SUCCESS(0, "成功"),
+    UNKNOWN_ERROR(10000, "未知异常"),
+    NETWORK_TIMEOUT(10001, "超时失败,请重试"),
 
-    ddd(10100, "系统繁忙请稍后重试!"), ;
+    ;
 
     RetCode(int type, String name) {
         this.type = type;
