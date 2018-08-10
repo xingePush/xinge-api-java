@@ -47,7 +47,7 @@ public class XingeAppIosUnitTest extends XingeApp {
         messageIOS.setType(MessageIOS.TYPE_APNS_NOTIFICATION);
         messageIOS.setExpireTime(86400);
         messageIOS.setAlert("ios test");
-        messageIOS.setBadge(1);
+        messageIOS.setBadge_type(1);
         messageIOS.setCategory("INVITE_CATEGORY");
         messageIOS.setSound("beep.wav");
 
