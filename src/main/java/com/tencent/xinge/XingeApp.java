@@ -12,6 +12,10 @@ import org.json.JSONObject;
 
 import com.tencent.xinge.api.RESTAPI_V3;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+
 /**
  * 提供V3接口<br>
  * 1. v3中appId是String类型，v2中是long <br>
@@ -70,7 +74,7 @@ public class XingeApp {
     private JSONObject callRestful(String apiAddress, String jsonRequestString) {
 
         URL url;
-        HttpURLConnection http = null;
+        HttpsURLConnection http = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
         String ret = "";
@@ -80,7 +84,8 @@ public class XingeApp {
         try {
             url = new URL(null, apiAddress, new com.sun.net.ssl.internal.www.protocol.https.Handler());
             URLConnection con = url.openConnection();
-            http = (HttpURLConnection) con;
+            http = (HttpsURLConnection) con;
+            http.setHostnameVerifier(new TrustAnyHostnameVerifier());
             http.setRequestMethod(RESTAPI_V3.HTTP_POST);
             http.setDoOutput(true);
             http.setRequestProperty("Authorization", "Basic " + authStringEnc);
@@ -149,6 +154,13 @@ public class XingeApp {
         error.printStackTrace(printer);
         printer.close();
         return result.toString();
+    }
+
+    public class TrustAnyHostnameVerifier implements HostnameVerifier {
+        public boolean verify(String hostname, SSLSession session) {
+            // 直接返回true
+            return true;
+        }
     }
 
 }
