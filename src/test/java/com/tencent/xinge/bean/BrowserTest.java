@@ -2,7 +2,6 @@ package com.tencent.xinge.bean;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.Assert;
 
 import static org.junit.Assert.*;
 

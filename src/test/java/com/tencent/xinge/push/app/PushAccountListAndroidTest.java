@@ -2,7 +2,6 @@ package com.tencent.xinge.push.app;
 
 import com.tencent.xinge.BaseXgTest;
 import com.tencent.xinge.bean.*;
-import com.tencent.xinge.push.app.PushAppRequest;
 import org.junit.Test;
 
 import java.util.ArrayList;

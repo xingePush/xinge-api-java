@@ -84,9 +84,10 @@ public class PushAppRequest {
     private String push_id;
 
 
+    private final static ObjectMapper mapper = new ObjectMapper();
+
     @Override
     public String toString() {
-        ObjectMapper mapper = new ObjectMapper();
         String repoStr = null;
         try {
             repoStr = mapper.writeValueAsString(this);
