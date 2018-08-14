@@ -1,12 +1,11 @@
 package com.tencent.xinge;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+import com.tencent.xinge.push.app.PushAppRequest;
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 
@@ -64,6 +63,17 @@ public class XingeApp {
 
     /**
      *
+     * @param pushAppRequest PushAppRequest
+     * @return 通用基础返回值，是所有请求的响应中都会包含的字段
+     */
+    public JSONObject pushApp(PushAppRequest pushAppRequest) {
+        String jsonRequest = pushAppRequest.toString();
+       return pushApp(jsonRequest);
+    }
+
+
+    /**
+     *
      * @param jsonRequest jsonRequest
      * @return 通用基础返回值，是所有请求的响应中都会包含的字段
      */
@@ -74,7 +84,7 @@ public class XingeApp {
     private JSONObject callRestful(String apiAddress, String jsonRequestString) {
 
         URL url;
-        HttpsURLConnection http = null;
+        HttpsURLConnection https = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
         String ret = "";
@@ -82,23 +92,22 @@ public class XingeApp {
         JSONObject jsonRet = null;
 
         try {
-            url = new URL(null, apiAddress, new com.sun.net.ssl.internal.www.protocol.https.Handler());
-            URLConnection con = url.openConnection();
-            http = (HttpsURLConnection) con;
-            http.setHostnameVerifier(new TrustAnyHostnameVerifier());
-            http.setRequestMethod(RESTAPI_V3.HTTP_POST);
-            http.setDoOutput(true);
-            http.setRequestProperty("Authorization", "Basic " + authStringEnc);
+            url = new URL(null, apiAddress, new sun.net.www.protocol.https.Handler());
+            https = (HttpsURLConnection) url.openConnection();
+            https.setHostnameVerifier(new TrustAnyHostnameVerifier());
+            https.setRequestMethod(RESTAPI_V3.HTTP_POST);
+            https.setDoOutput(true);
+            https.setRequestProperty("Authorization", "Basic " + authStringEnc);
 
             byte[] out = jsonRequestString.getBytes(StandardCharsets.UTF_8);
             int length = out.length;
 
-            http.setFixedLengthStreamingMode(length);
-            http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            https.setFixedLengthStreamingMode(length);
+            https.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
-            http.connect();
+            https.connect();
             try {
-                OutputStream os = http.getOutputStream();
+                OutputStream os = https.getOutputStream();
                 os.write(out);
 
             } catch (Exception e) {
@@ -106,9 +115,9 @@ public class XingeApp {
             }
 
 
-            http.getOutputStream().flush();
-            http.getOutputStream().close();
-            isr = new InputStreamReader(http.getInputStream());
+            https.getOutputStream().flush();
+            https.getOutputStream().close();
+            isr = new InputStreamReader(https.getInputStream());
             br = new BufferedReader(isr);
             while ((temp = br.readLine()) != null) {
                 ret += temp;
@@ -140,8 +149,8 @@ public class XingeApp {
                     // ignore
                 }
             }
-            if (http != null) {
-                http.disconnect();
+            if (https != null) {
+                https.disconnect();
             }
         }
 
