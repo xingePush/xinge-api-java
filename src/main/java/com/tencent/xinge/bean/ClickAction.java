@@ -2,6 +2,7 @@ package com.tencent.xinge.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import org.json.JSONObject;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -12,6 +13,7 @@ public class ClickAction {
     public static final int TYPE_INTENT = 3;
 
     @JsonProperty(value = "action_type", required = true, defaultValue = "1")
+    @ApiModelProperty(notes = "动作类型，1，打开activity或app本身；2，打开浏览器；3，打开Intent")
     private int action_type = 1;
 
     @JsonProperty(value = "activity", required = true, defaultValue = "")
@@ -21,9 +23,11 @@ public class ClickAction {
     private Browser browser;
 
     @JsonProperty(value = "aty_attr", required = true)
+    @ApiModelProperty(notes = "activity属性，只针对action_type=1的情况")
     private AtyAttr aty_attr;
 
     @JsonProperty(value = "intent", required = true)
+    @ApiModelProperty(notes = "客户端 Android SDK版本需要大于等于3.2.3，然后在客户端的intent配置data标签，并设置scheme属性")
     private String intent;
 
     public int getAction_type() {

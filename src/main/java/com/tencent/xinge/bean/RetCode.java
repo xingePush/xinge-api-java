@@ -2,8 +2,8 @@ package com.tencent.xinge.bean;
 
 public enum RetCode {
     SUCCESS(0, "成功"),
-    UNKNOWN_ERROR(10000, "未知异常"),
-    NETWORK_TIMEOUT(10001, "超时失败,请重试"),
+    UNKNOWN_ERROR(10100, "发送provider失败l5、链接失败"),
+    NETWORK_TIMEOUT(10101, "发送provider 超时"),
 
     ;
 

@@ -2,14 +2,17 @@ package com.tencent.xinge.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Browser {
 
     @JsonProperty(value = "url", required = true)
+    @ApiModelProperty(notes = "仅支持http、https")
     private String url="";
 
     @JsonProperty(value = "confirm", required = true)
+    @ApiModelProperty(notes = "是否需要用户确认")
     private int confirm;
 
     public String getUrl() {
