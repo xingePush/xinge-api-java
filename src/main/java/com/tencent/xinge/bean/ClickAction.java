@@ -14,9 +14,10 @@ public class ClickAction {
 
     @JsonProperty(value = "action_type", required = true, defaultValue = "1")
     @ApiModelProperty(notes = "动作类型，1，打开activity或app本身；2，打开浏览器；3，打开Intent")
-    private int action_type = 1;
+    private int action_type = ActionType.OPEN_ACTIVITY_OR_APP.getType();
 
     @JsonProperty(value = "activity", required = true, defaultValue = "")
+    @ApiModelProperty(notes = "MyActivityClassName")
     private String activity = "";
 
     @JsonProperty(value = "browser", required = true)
