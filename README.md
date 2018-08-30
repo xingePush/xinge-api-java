@@ -4,7 +4,7 @@ Master Branch: [![Travis CI](https://travis-ci.org/xingePush/xinge-api-java.svg?
 ## 概述
 [信鸽](http://xg.qq.com) 是腾讯云提供的一款支持**百亿级**消息的移动App推送平台，开发者可以调用Java SDK访问信鸽推送服务。
 
-目前最新的SDK版本是 `1.2.0-SNAPSHOT`，请及时更新SDK版本以获取最新的功能特性。
+目前最新的SDK版本是 `1.2.0`，请及时更新SDK版本以获取最新的功能特性。
 
 ## 引用SDK
 - 方法一：使用maven库(**推荐**)
@@ -15,14 +15,14 @@ Master Branch: [![Travis CI](https://travis-ci.org/xingePush/xinge-api-java.svg?
 	<repositories>
 		<repository>
 			<id>xingePush</id>
-			<url>https://raw.githubusercontent.com/xingePush/maven-repository/snapshot/</url>
+			<url>https://raw.githubusercontent.com/xingePush/maven-repository/release/</url>
 		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>com.github.xingePush</groupId>
 			<artifactId>xinge</artifactId>
-			<version>1.2.0-SNAPSHOT</version>
+			<version>1.2.0</version>
 		</dependency>
 	</dependencies>
 ```
@@ -32,6 +32,25 @@ Master Branch: [![Travis CI](https://travis-ci.org/xingePush/xinge-api-java.svg?
 - 方法三：下载库文件
     - 在[信鸽官网](http://xg.qq.com/xg/ctr_index/download)下载最新版本的包
     - 使用时引用XingeApp包即可
+    
+**注意：**     对于REST API V2接口请使用 `1.1.8`版本，此版本和 `1.2.0`版本差异很大
+
+```xml
+
+	<repositories>
+		<repository>
+			<id>xingePush</id>
+			<url>https://raw.githubusercontent.com/xingePush/maven-repository/release/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>com.github.xingePush</groupId>
+			<artifactId>xinge</artifactId>
+			<version>1.1.8</version>
+		</dependency>
+	</dependencies>
+```
 
 ## 接口说明
 信鸽提供的主要推送和查询接口包括3种
