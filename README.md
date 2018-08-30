@@ -6,6 +6,8 @@ Master Branch: [![Travis CI](https://travis-ci.org/xingePush/xinge-api-java.svg?
 
 目前最新的SDK版本是 `1.2.0`，请及时更新SDK版本以获取最新的功能特性。
 
+可以查看 [JavaDoc](https://xingepush.github.io/xinge-api-java/)
+
 ## 引用SDK
 - 方法一：使用maven库(**推荐**)
     - 在项目pom.xml中引入依赖项
