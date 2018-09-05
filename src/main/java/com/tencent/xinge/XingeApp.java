@@ -107,8 +107,9 @@ public class XingeApp {
 
             https.connect();
             try {
-                OutputStream os = https.getOutputStream();
+                DataOutputStream os = new DataOutputStream(https.getOutputStream());
                 os.write(out);
+                os.close();
 
             } catch (Exception e) {
 
