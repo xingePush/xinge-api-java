@@ -15,10 +15,10 @@ public class AddSingleTagToSingleToken extends BaseXgTest {
     public void testAddSingleTagToSingleToken() {
         //1增加单个tag，对单个token而言
 
-        ArrayList<String> tokenList = new ArrayList<>();
+        ArrayList<String> tokenList = new ArrayList<String>();
         tokenList.add("0d7b5ab1afe4b58973b02a8c80caea51ad6e51f517de6ead3b42576653a69457");
 
-        ArrayList<String> tagList = new ArrayList<>();
+        ArrayList<String> tagList = new ArrayList<String>();
         tagList.add("singleTag");
 
         DeviceTagRequest deviceTagRequest = new DeviceTagRequest();
