@@ -40,7 +40,7 @@ public class PushTagAndroidTest extends BaseXgTest {
         message.setAndroid(messageAndroid);
 
         PushAppRequest pushAppRequest = new PushAppRequest();
-        ArrayList<String> tagList = new ArrayList<>();
+        ArrayList<String> tagList = new ArrayList<String>();
         tagList.add("agtestTag");
         tagList.add("agtestTag2");
         pushAppRequest.setToken_list(tagList);

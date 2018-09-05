@@ -49,7 +49,7 @@ public class PushSingleAccountAndroidTest extends BaseXgTest {
         pushAppRequest.setStat_tag("test");
         pushAppRequest.setMessage(message);
 
-        ArrayList<String> accountList = new ArrayList<>();
+        ArrayList<String> accountList = new ArrayList<String>();
         accountList.add("xg_account");
         pushAppRequest.setAccount_list(accountList);
 

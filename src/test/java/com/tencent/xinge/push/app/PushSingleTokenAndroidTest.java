@@ -42,7 +42,7 @@ public class PushSingleTokenAndroidTest extends BaseXgTest {
         pushAppRequest.setMessage(message);
         pushAppRequest.setPush_id("0");
         pushAppRequest.setSeq(123);
-        ArrayList<String> tokenList = new ArrayList<>();
+        ArrayList<String> tokenList = new ArrayList<String>();
         tokenList.add("ece9c2a0fccc41554fcdad95b8a16fe4366d0404");
         pushAppRequest.setToken_list(tokenList);
         pushAppRequest.setSend_time("1111111");

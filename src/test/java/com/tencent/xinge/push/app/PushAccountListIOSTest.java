@@ -30,7 +30,7 @@ public class PushAccountListIOSTest extends BaseXgTest {
 
         message.setIos(msgIOS);
 
-        ArrayList<String> accountList = new ArrayList<>();
+        ArrayList<String> accountList = new ArrayList<String>();
         accountList.add("xg_account");
         accountList.add("xg_account1");
 

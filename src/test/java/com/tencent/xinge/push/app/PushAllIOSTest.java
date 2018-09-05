@@ -13,8 +13,7 @@ public class PushAllIOSTest extends BaseXgTest {
         message.setContent("testPushAllIOS from Java API");
         message.setTitle("testtest");
 
-
-		MessageIOS msgIOS = new MessageIOS();
+        MessageIOS msgIOS = new MessageIOS();
         Alert alert = new Alert();
         alert.setTitle("alert from Java API");
         alert.setBody(" body alert from Java API");
@@ -26,17 +25,16 @@ public class PushAllIOSTest extends BaseXgTest {
 
         message.setIos(msgIOS);
 
-
-		PushAppRequest pushAppRequest = new PushAppRequest();
-		pushAppRequest.setPlatform(Platform.all);
-		pushAppRequest.setEnvironment(Environment.dev);
-		pushAppRequest.setMessage_type(MessageType.notify);
+        PushAppRequest pushAppRequest = new PushAppRequest();
+        pushAppRequest.setPlatform(Platform.all);
+        pushAppRequest.setEnvironment(Environment.dev);
+        pushAppRequest.setMessage_type(MessageType.notify);
         pushAppRequest.setMessage(message);
         pushAppRequest.setSend_time("1111111");
         pushAppRequest.setStat_tag("test");
 
-		System.out.println(pushAppRequest.toString());
-		System.out.println(xingeIOS.pushApp(pushAppRequest.toString()));
+        System.out.println(pushAppRequest.toString());
+        System.out.println(xingeIOS.pushApp(pushAppRequest.toString()));
     }
 
 }
