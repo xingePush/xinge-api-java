@@ -1,6 +1,6 @@
 language: java
 jdk:
-    - oraclejdk6
+    - openjdk-6-jdk
     - oraclejdk8
 cache:
   directories:
