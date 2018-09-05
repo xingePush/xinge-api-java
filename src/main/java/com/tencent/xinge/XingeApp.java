@@ -1,9 +1,9 @@
 package com.tencent.xinge;
 
+import com.google.common.base.Charsets;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.apache.commons.codec.binary.Base64;
@@ -99,7 +99,7 @@ public class XingeApp {
             https.setDoOutput(true);
             https.setRequestProperty("Authorization", "Basic " + authStringEnc);
 
-            byte[] out = jsonRequestString.getBytes(StandardCharsets.UTF_8);
+            byte[] out = jsonRequestString.getBytes(Charsets.UTF_8);
             int length = out.length;
 
             https.setFixedLengthStreamingMode(length);
