@@ -1,6 +1,7 @@
 package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tencent.xinge.bean.ios.Aps;
 import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -40,7 +41,7 @@ public class MessageIOS {
         return aps;
     }
 
-    public void setAps(Aps  aps) {
+    public void setAps(Aps aps) {
         this.aps = aps;
     }
 

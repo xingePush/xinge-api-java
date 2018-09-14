@@ -2,10 +2,11 @@ package com.tencent.xinge.push.app;
 
 import com.tencent.xinge.BaseXgTest;
 import com.tencent.xinge.bean.*;
+import com.tencent.xinge.bean.ios.Alert;
+import com.tencent.xinge.bean.ios.Aps;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import com.tencent.xinge.push.app.PushAppRequest;
 
 //token list推送
 public class PushTokenListIOSTest extends BaseXgTest {

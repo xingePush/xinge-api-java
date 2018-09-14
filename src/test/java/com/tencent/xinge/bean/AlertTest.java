@@ -1,11 +1,8 @@
 package com.tencent.xinge.bean;
 
-import jdk.nashorn.internal.runtime.ECMAException;
-import netscape.javascript.JSObject;
+import com.tencent.xinge.bean.ios.Alert;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class AlertTest {
 
