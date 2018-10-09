@@ -2,6 +2,7 @@ package com.tencent.xinge;
 
 import com.google.common.base.Charsets;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -81,7 +82,7 @@ public class XingeApp {
         return callRestful(RESTAPI_V3.RESTAPI_TAG, jsonRequest);
     }
 
-    private JSONObject callRestful(String apiAddress, String jsonRequestString) {
+    private synchronized JSONObject callRestful(String apiAddress, String jsonRequestString) {
 
         URL url;
         HttpsURLConnection https = null;
@@ -97,15 +98,22 @@ public class XingeApp {
             https.setHostnameVerifier(new TrustAnyHostnameVerifier());
             https.setRequestMethod(RESTAPI_V3.HTTP_POST);
             https.setDoOutput(true);
+            https.setDoInput(true);
+            https.setUseCaches(false);
+            https.setConnectTimeout(10000);
+            https.setReadTimeout(10000);
+            https.setRequestProperty("Content-Type", "application/json");
             https.setRequestProperty("Authorization", "Basic " + authStringEnc);
+            https.setRequestProperty("Connection", "Keep-Alive ");
 
-            byte[] out = jsonRequestString.getBytes(Charsets.UTF_8);
+
+          byte[] out = jsonRequestString.getBytes(Charsets.UTF_8);
             int length = out.length;
 
             https.setFixedLengthStreamingMode(length);
-            https.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
             https.connect();
+
             try {
                 DataOutputStream os = new DataOutputStream(https.getOutputStream());
                 os.write(out);
@@ -118,7 +126,16 @@ public class XingeApp {
 
             https.getOutputStream().flush();
             https.getOutputStream().close();
-            isr = new InputStreamReader(https.getInputStream());
+
+            InputStream in = null;
+            if (https.getResponseCode() >= 400) {
+              in = https.getErrorStream();
+            } else {
+              in = https.getInputStream();
+            }
+            isr = new InputStreamReader(in);
+
+            isr = new InputStreamReader(in);
             br = new BufferedReader(isr);
             while ((temp = br.readLine()) != null) {
                 ret += temp;

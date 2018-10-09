@@ -2,14 +2,15 @@ package com.tencent.xinge.push.app;
 
 import com.tencent.xinge.BaseXgTest;
 import com.tencent.xinge.bean.*;
+import com.tencent.xinge.XingeApp;
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 public class PushSingleAccountAndroidTest extends BaseXgTest {
-
-
+           private String appIdAndroid = "d617a675b62d0";
+            private String secretKeyAndroid = "b5da4c1faf95ee9409cd33792b02f5d2";
     @Test
     public void testPushSingleAccountAndroid() {
 
@@ -45,7 +46,7 @@ public class PushSingleAccountAndroidTest extends BaseXgTest {
         pushAppRequest.setAudience_type(AudienceType.account);
         pushAppRequest.setSeq(123);
         pushAppRequest.setPush_id("0");
-        pushAppRequest.setSend_time("1111111");
+        pushAppRequest.setSend_time("2018-10-09 17:24:20");
         pushAppRequest.setStat_tag("test");
         pushAppRequest.setMessage(message);
 
@@ -54,7 +55,14 @@ public class PushSingleAccountAndroidTest extends BaseXgTest {
         pushAppRequest.setAccount_list(accountList);
 
         System.out.println(pushAppRequest.toString());
-        System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
+        for (int i=0; i< 5; i++) {
+//          try {
+//            Thread.sleep(5000);
+//          } catch (Exception e) {
+//            
+//          }
+            System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
+        }
 
     }
 }
