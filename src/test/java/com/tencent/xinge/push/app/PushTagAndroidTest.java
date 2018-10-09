@@ -52,7 +52,12 @@ public class PushTagAndroidTest extends BaseXgTest {
 
 
         System.out.println(pushAppRequest.toString());
-        System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
+        for (int i=0; i< 3; i++) {
+            System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));
+
+        }
+
+
 
     }
 }
