@@ -39,7 +39,7 @@ public class PushSingleAccountIOSTest extends BaseXgTest {
         pushAppRequest.setEnvironment(Environment.dev);
         pushAppRequest.setMessage_type(MessageType.notify);
         pushAppRequest.setMessage(message);
-        pushAppRequest.setSend_time("1111111");
+        pushAppRequest.setSend_time("2018-10-10 10:49:22");
         pushAppRequest.setStat_tag("test");
         pushAppRequest.setPush_id("0");
         pushAppRequest.setAccount_list(accountList);

@@ -16,7 +16,7 @@ public class Aps {
   private int badge_type;
 
   @JsonProperty(value = "sound")
-  private Sound sound;
+  private String sound;
 
   @JsonProperty(value = "content-available")
   private int content_available;
@@ -85,11 +85,11 @@ public class Aps {
     this.category = category;
   }
 
-  public Sound getSound() {
+  public String getSound() {
     return sound;
   }
 
-  public void setSound(Sound sound) {
+  public void setSound(String sound) {
     this.sound = sound;
   }
 
