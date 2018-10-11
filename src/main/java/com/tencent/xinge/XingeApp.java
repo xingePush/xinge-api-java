@@ -5,6 +5,8 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.apache.commons.codec.binary.Base64;
@@ -12,9 +14,7 @@ import org.json.JSONObject;
 
 import com.tencent.xinge.api.RESTAPI_V3;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
+import javax.net.ssl.*;
 
 /**
  * 提供V3接口<br>
@@ -29,6 +29,7 @@ public class XingeApp {
 
     private String authString = null;
     private String authStringEnc = null;
+    X509TrustManager trustManager = new DefaultX509TrustManager();
 
     /**
      * HTTP Header Authorization 的值：Basic base64_auth_string<br>
@@ -104,8 +105,9 @@ public class XingeApp {
             https.setReadTimeout(10000);
             https.setRequestProperty("Content-Type", "application/json");
             https.setRequestProperty("Authorization", "Basic " + authStringEnc);
-            https.setRequestProperty("Connection", "Keep-Alive ");
+            https.setRequestProperty("Connection", "Keep-Alive");
 
+            https.setSSLSocketFactory(this.getSSLSocketFactory());
 
           byte[] out = jsonRequestString.getBytes(Charsets.UTF_8);
             int length = out.length;
@@ -152,6 +154,14 @@ public class XingeApp {
             jsonRet.put("ret_code", 10101);
             jsonRet.put("err_msg", stringifyError(e));
             
+        } catch (NoSuchAlgorithmException e) {
+            jsonRet = new JSONObject();
+            jsonRet.put("ret_code", 10102);
+            jsonRet.put("err_msg", stringifyError(e));
+        } catch (KeyManagementException e) {
+            jsonRet = new JSONObject();
+            jsonRet.put("ret_code", 10103);
+            jsonRet.put("err_msg", stringifyError(e));
         } finally {
             if (br != null) {
                 try {
@@ -181,6 +191,22 @@ public class XingeApp {
         error.printStackTrace(printer);
         printer.close();
         return result.toString();
+    }
+
+    private SSLSocketFactory getSSLSocketFactory() throws KeyManagementException, NoSuchAlgorithmException {
+        TrustManager[] tm = {this.trustManager};
+        SSLContext sslContext = SSLContext.getInstance("TLSv1");
+        sslContext.init(null, tm, new java.security.SecureRandom());
+        SSLSocketFactory ssf  = sslContext.getSocketFactory();
+        return ssf;
+    }
+
+    /**
+     * 设置证书信任管理器
+     * @param trustManager
+     */
+    public void setTrustManager(X509TrustManager trustManager) {
+        this.trustManager = trustManager;
     }
 
     public class TrustAnyHostnameVerifier implements HostnameVerifier {
