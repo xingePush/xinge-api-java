@@ -2,12 +2,13 @@ package com.tencent.xinge.device.tag;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tencent.xinge.bean.OperatorType;
 import com.tencent.xinge.bean.Platform;
 import com.tencent.xinge.bean.TagTokenPair;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.codehaus.jackson.map.ObjectMapper;
+
 
 import java.util.ArrayList;
 

@@ -25,6 +25,9 @@ public class Message {
 //    private ArrayList<AcceptTimePair> accept_time;
     private Object accept_time;
 
+    @JsonProperty("xg_media_resources")
+    private Object xgMediaResources;
+
     @JsonProperty("android")
     private MessageAndroid android;
 
@@ -69,5 +72,13 @@ public class Message {
 
     public void setAccept_time(Object accept_time) {
         this.accept_time = accept_time;
+    }
+
+    public Object getXgMediaResources() {
+        return xgMediaResources;
+    }
+
+    public void setXgMediaResources(Object xgMediaResources) {
+        this.xgMediaResources = xgMediaResources;
     }
 }

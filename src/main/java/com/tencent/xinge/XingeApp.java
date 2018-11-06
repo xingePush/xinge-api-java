@@ -7,12 +7,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.TimeUnit;
 
 import com.tencent.xinge.push.app.PushAppRequest;
+import okhttp3.*;
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 
-import com.tencent.xinge.api.RESTAPI_V3;
+import com.tencent.xinge.api.RESTAPIV3;
 
 import javax.net.ssl.*;
 
@@ -26,10 +28,17 @@ import javax.net.ssl.*;
  */
 public class XingeApp {
 
+    public static MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json");
 
     private String authString = null;
     private String authStringEnc = null;
-    X509TrustManager trustManager = new DefaultX509TrustManager();
+
+
+    RESTAPIV3 restapiV3 = new RESTAPIV3();
+    private OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
+            .readTimeout(10, TimeUnit.SECONDS)//设置读取超时时间
+            .build();
 
     /**
      * HTTP Header Authorization 的值：Basic base64_auth_string<br>
@@ -46,6 +55,8 @@ public class XingeApp {
         authStringEnc = new String(authEncBytes);
     }
 
+
+
     /**
      * @param authStringEnc base64_auth_string
      */
@@ -54,13 +65,18 @@ public class XingeApp {
     }
 
     /**
+     * 设置信鸽api http 服务器地址
+     * @param url
+     */
+    public void setDomainUrl(String url){
+        restapiV3.setDomainUrl(url);
+    }
+    /**
      * @param jsonRequest jsonRequest
      * @return 通用基础返回值，是所有请求的响应中都会包含的字段
      */
     public JSONObject pushApp(String jsonRequest) {
-
-        return callRestful(RESTAPI_V3.RESTAPI_PUSHSINGLEDEVICE, jsonRequest);
-
+        return callRestful(restapiV3.getRestApiPushUrl(), jsonRequest);
     }
 
     /**
@@ -73,115 +89,45 @@ public class XingeApp {
        return pushApp(jsonRequest);
     }
 
-
     /**
      *
      * @param jsonRequest jsonRequest
      * @return 通用基础返回值，是所有请求的响应中都会包含的字段
      */
     public JSONObject deviceTag(String jsonRequest) {
-        return callRestful(RESTAPI_V3.RESTAPI_TAG, jsonRequest);
+        return callRestful(restapiV3.getRestApiTagUrl(), jsonRequest);
     }
 
     private synchronized JSONObject callRestful(String apiAddress, String jsonRequestString) {
-
-        URL url;
-        HttpsURLConnection https = null;
-        InputStreamReader isr = null;
-        BufferedReader br = null;
-        String ret = "";
-        String temp;
         JSONObject jsonRet = null;
 
+        RequestBody requestBody = RequestBody.create(JSON_MEDIA_TYPE, jsonRequestString);
+        Request request = new Request.Builder()
+                .url(apiAddress)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Basic " + authStringEnc)
+                .post(requestBody)
+                .build();
+
         try {
-            url = new URL(null, apiAddress, new sun.net.www.protocol.https.Handler());
-            https = (HttpsURLConnection) url.openConnection();
-            https.setHostnameVerifier(new TrustAnyHostnameVerifier());
-            https.setRequestMethod(RESTAPI_V3.HTTP_POST);
-            https.setDoOutput(true);
-            https.setDoInput(true);
-            https.setUseCaches(false);
-            https.setConnectTimeout(10000);
-            https.setReadTimeout(10000);
-            https.setRequestProperty("Content-Type", "application/json");
-            https.setRequestProperty("Authorization", "Basic " + authStringEnc);
-            https.setRequestProperty("Connection", "Keep-Alive");
-
-            https.setSSLSocketFactory(this.getSSLSocketFactory());
-
-          byte[] out = jsonRequestString.getBytes(Charsets.UTF_8);
-            int length = out.length;
-
-            https.setFixedLengthStreamingMode(length);
-
-            https.connect();
-
-            try {
-                DataOutputStream os = new DataOutputStream(https.getOutputStream());
-                os.write(out);
-                os.close();
-
-            } catch (Exception e) {
-
+            Response response = client.newCall(request).execute();
+            if(response.isSuccessful()){
+                if(response.code() == 200){
+                    String retMsg = response.body().string();
+                    System.out.println(retMsg);
+                    jsonRet = new JSONObject(retMsg);
+                }
+                else{
+                    jsonRet = new JSONObject();
+                    jsonRet.put("ret_code", 10101);
+                    jsonRet.put("err_msg", "CallApiError,HttpStatus Code:" + response.code());
+                }
             }
-
-
-            https.getOutputStream().flush();
-            https.getOutputStream().close();
-
-            InputStream in = null;
-            if (https.getResponseCode() >= 400) {
-              in = https.getErrorStream();
-            } else {
-              in = https.getInputStream();
-            }
-            isr = new InputStreamReader(in);
-
-            isr = new InputStreamReader(in);
-            br = new BufferedReader(isr);
-            while ((temp = br.readLine()) != null) {
-                ret += temp;
-            }
-            jsonRet = new JSONObject(ret);
-
-        } catch (MalformedURLException e) {
+        } catch (IOException e) {
             jsonRet = new JSONObject();
             jsonRet.put("ret_code", 10100);
             jsonRet.put("err_msg", stringifyError(e));
-
-        } catch (IOException e) {
-            jsonRet = new JSONObject();
-            jsonRet.put("ret_code", 10101);
-            jsonRet.put("err_msg", stringifyError(e));
-            
-        } catch (NoSuchAlgorithmException e) {
-            jsonRet = new JSONObject();
-            jsonRet.put("ret_code", 10102);
-            jsonRet.put("err_msg", stringifyError(e));
-        } catch (KeyManagementException e) {
-            jsonRet = new JSONObject();
-            jsonRet.put("ret_code", 10103);
-            jsonRet.put("err_msg", stringifyError(e));
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
-            if (isr != null) {
-                try {
-                    isr.close();
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
-            if (https != null) {
-                https.disconnect();
-            }
         }
-
         return jsonRet;
     }
 
@@ -193,27 +139,5 @@ public class XingeApp {
         return result.toString();
     }
 
-    private SSLSocketFactory getSSLSocketFactory() throws KeyManagementException, NoSuchAlgorithmException {
-        TrustManager[] tm = {this.trustManager};
-        SSLContext sslContext = SSLContext.getInstance("TLSv1");
-        sslContext.init(null, tm, new java.security.SecureRandom());
-        SSLSocketFactory ssf  = sslContext.getSocketFactory();
-        return ssf;
-    }
-
-    /**
-     * 设置证书信任管理器
-     * @param trustManager
-     */
-    public void setTrustManager(X509TrustManager trustManager) {
-        this.trustManager = trustManager;
-    }
-
-    public class TrustAnyHostnameVerifier implements HostnameVerifier {
-        public boolean verify(String hostname, SSLSession session) {
-            // 直接返回true
-            return true;
-        }
-    }
 
 }

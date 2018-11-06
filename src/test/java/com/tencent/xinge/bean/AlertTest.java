@@ -1,7 +1,7 @@
 package com.tencent.xinge.bean;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tencent.xinge.bean.ios.Alert;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 public class AlertTest {

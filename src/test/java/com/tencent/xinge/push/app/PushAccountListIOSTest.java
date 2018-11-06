@@ -17,7 +17,7 @@ public class PushAccountListIOSTest extends BaseXgTest {
         Message message = new Message();
         message.setContent("testPushAccountListIOS from Java API");
         message.setTitle("testPushAccountListIOS");
-
+        message.setXgMediaResources("media");
 
         MessageIOS msgIOS = new MessageIOS();
         Alert alert = new Alert();
@@ -40,13 +40,14 @@ public class PushAccountListIOSTest extends BaseXgTest {
         pushAppRequest.setEnvironment(Environment.dev);
         pushAppRequest.setMessage_type(MessageType.notify);
         pushAppRequest.setMessage(message);
-        pushAppRequest.setSend_time("1111111");
+        pushAppRequest.setSend_time("2018-11-12 12:30:01");
         pushAppRequest.setStat_tag("test");
         pushAppRequest.setPush_id("0");
         pushAppRequest.setAccount_list(accountList);
         pushAppRequest.setAudience_type(AudienceType.account_list);
 
         System.out.println(pushAppRequest.toString());
+        xingeIOS.setDomainUrl("http://10.242.131.147:8080/");
         System.out.println(xingeIOS.pushApp(pushAppRequest.toString()));
     }
 }

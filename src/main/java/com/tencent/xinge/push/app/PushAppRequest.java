@@ -2,10 +2,11 @@ package com.tencent.xinge.push.app;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.tencent.xinge.bean.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import java.util.ArrayList;
 
@@ -18,10 +19,12 @@ public class PushAppRequest {
     private AudienceType audience_type = AudienceType.all;
 
     @JsonProperty("platform")
+    @JsonSerialize(using = EnumSerializer.class)
     @ApiModelProperty(value = "客户端平台类型", required = true)
     private Platform platform = Platform.all;
 
     @JsonProperty("message_type")
+    @JsonSerialize(using = EnumSerializer.class)
     @ApiModelProperty(value = "消息类型", required = true)
     private MessageType message_type = MessageType.notify;
 
@@ -52,6 +55,7 @@ public class PushAppRequest {
     private int loop_interval = 0;
 
     @JsonProperty("environment")
+    @JsonSerialize(using = EnumSerializer.class)
     @ApiModelProperty(value = "用户指定推送环境，仅限iOS平台推送使用")
     private Environment environment = Environment.product;
 
