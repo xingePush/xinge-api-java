@@ -35,6 +35,9 @@ public class PushAccountListIOSTest extends BaseXgTest {
         accountList.add("xg_account");
         accountList.add("xg_account1");
 
+        TimeInterval accepTime = new TimeInterval(0,0,23,59);
+        message.setAccept_time(accepTime);
+
         PushAppRequest pushAppRequest = new PushAppRequest();
         pushAppRequest.setPlatform(Platform.ios);
         pushAppRequest.setEnvironment(Environment.dev);

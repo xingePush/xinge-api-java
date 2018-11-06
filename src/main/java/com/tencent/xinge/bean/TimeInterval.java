@@ -1,7 +1,14 @@
 package com.tencent.xinge.bean;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+@JsonSerialize(using = TimeIntervalSerializer.class)
 public class TimeInterval {
   
   public TimeInterval(int startHour, int startMin, int endHour, int endMin) {
@@ -33,9 +40,35 @@ public class TimeInterval {
     return json;
   }
 
-  private int m_startHour;
-  private int m_startMin;
-  private int m_endHour;
-  private int m_endMin;
+  protected int m_startHour;
+  protected int m_startMin;
+  protected int m_endHour;
+  protected int m_endMin;
+
+
+
 }
 
+
+class TimeIntervalSerializer extends JsonSerializer<TimeInterval>{
+
+  @Override
+  public void serialize(TimeInterval timeInterval, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    jsonGenerator.writeStartObject();
+    jsonGenerator.writeFieldName("start");
+    jsonGenerator.writeStartObject();
+    jsonGenerator.writeFieldName("hour");
+    jsonGenerator.writeString(String.valueOf(timeInterval.m_startHour));
+    jsonGenerator.writeFieldName("min");
+    jsonGenerator.writeString(String.valueOf(timeInterval.m_startMin));
+    jsonGenerator.writeEndObject();
+
+    jsonGenerator.writeFieldName("end");
+    jsonGenerator.writeStartObject();
+    jsonGenerator.writeFieldName("hour");
+    jsonGenerator.writeString(String.valueOf(timeInterval.m_endHour));
+    jsonGenerator.writeFieldName("min");
+    jsonGenerator.writeString(String.valueOf(timeInterval.m_endMin));
+    jsonGenerator.writeEndObject();
+  }
+}
