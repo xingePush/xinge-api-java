@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ActionType {
 
-  OPEN_APP(0, "默认打开app"),
   OPEN_ACTIVITY_BY_CLASS_NAME(1, "显式通过类名打开activity或app本身"),
   OPEN_WEB(2, "打开浏览器"),
   OPEN_INTENT(3, "打开Intent"),

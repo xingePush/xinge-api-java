@@ -8,10 +8,6 @@ import org.json.JSONObject;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClickAction {
 
-    public static final int TYPE_ACTIVITY = 1;
-    public static final int TYPE_URL = 2;
-    public static final int TYPE_INTENT = 3;
-
     @JsonProperty(value = "action_type", required = true, defaultValue = "1")
     @ApiModelProperty(notes = "动作类型，1，打开activity或app本身；2，打开浏览器；3，打开Intent")
     private int action_type = ActionType.OPEN_ACTIVITY_BY_CLASS_NAME.getType();
