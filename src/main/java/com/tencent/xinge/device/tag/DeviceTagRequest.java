@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @ApiModel(value = "有多种设置、更新、删除接口")
 public class DeviceTagRequest {
 
-    @JsonProperty(value = "audience_type", required = true, defaultValue = "1")
+    @JsonProperty(value = "operator_type", required = true, defaultValue = "1")
     @ApiModelProperty(value = "推送目标", required = true, allowableValues = "range[1,10]")
     private int operator_type = OperatorType.ADD_MULT_TAGS_SINGLE.getType();
 
