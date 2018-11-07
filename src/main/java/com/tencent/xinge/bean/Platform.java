@@ -25,11 +25,12 @@ public enum Platform {
         this.name = name;
     }
 
-    @JsonValue
+
     public int getType() {
         return type;
     }
 
+    @JsonValue
     public String getName() {
         return name;
     }
