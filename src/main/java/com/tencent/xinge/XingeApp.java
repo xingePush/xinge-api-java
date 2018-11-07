@@ -124,6 +124,7 @@ public class XingeApp {
                     jsonRet.put("err_msg", "CallApiError,HttpStatus Code:" + response.code());
                 }
             }
+            response.close();
         } catch (IOException e) {
             jsonRet = new JSONObject();
             jsonRet.put("ret_code", 10100);
