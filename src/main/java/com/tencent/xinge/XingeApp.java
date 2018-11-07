@@ -34,7 +34,8 @@ public class XingeApp {
     private String authStringEnc = null;
 
 
-    RESTAPIV3 restapiV3 = new RESTAPIV3();
+    private RESTAPIV3 restapiV3 = new RESTAPIV3();
+
     private OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
             .readTimeout(10, TimeUnit.SECONDS)//设置读取超时时间
@@ -98,7 +99,7 @@ public class XingeApp {
         return callRestful(restapiV3.getRestApiTagUrl(), jsonRequest);
     }
 
-    private synchronized JSONObject callRestful(String apiAddress, String jsonRequestString) {
+    private JSONObject callRestful(String apiAddress, String jsonRequestString) {
         JSONObject jsonRet = null;
 
         RequestBody requestBody = RequestBody.create(JSON_MEDIA_TYPE, jsonRequestString);
