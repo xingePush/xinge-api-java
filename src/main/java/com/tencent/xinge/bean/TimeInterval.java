@@ -55,7 +55,9 @@ class TimeIntervalSerializer extends JsonSerializer<TimeInterval>{
   @Override
   public void serialize(TimeInterval timeInterval, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
     jsonGenerator.writeStartObject();
+
     jsonGenerator.writeFieldName("start");
+
     jsonGenerator.writeStartObject();
     jsonGenerator.writeFieldName("hour");
     jsonGenerator.writeString(String.valueOf(timeInterval.m_startHour));
@@ -64,11 +66,14 @@ class TimeIntervalSerializer extends JsonSerializer<TimeInterval>{
     jsonGenerator.writeEndObject();
 
     jsonGenerator.writeFieldName("end");
+
     jsonGenerator.writeStartObject();
     jsonGenerator.writeFieldName("hour");
     jsonGenerator.writeString(String.valueOf(timeInterval.m_endHour));
     jsonGenerator.writeFieldName("min");
     jsonGenerator.writeString(String.valueOf(timeInterval.m_endMin));
+    jsonGenerator.writeEndObject();
+
     jsonGenerator.writeEndObject();
   }
 }
