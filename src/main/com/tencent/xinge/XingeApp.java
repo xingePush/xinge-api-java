@@ -55,9 +55,7 @@ public class XingeApp {
 
     public static final long IOS_MIN_ID = 2200000000L;
 
-    public static void main(String[] args) {
-        System.out.println("Hello Xinge!");
-    }
+
 
     public XingeApp(long accessId, String secretKey) {
         this.m_accessId = accessId;
@@ -106,7 +104,7 @@ public class XingeApp {
         InputStreamReader isr = null;
         BufferedReader br = null;
         try {
-            URL u = new URL(null, url, new com.sun.net.ssl.internal.www.protocol.https.Handler());
+            URL u = new URL(url);
             conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("POST");
             conn.setConnectTimeout(10000);
