@@ -14,7 +14,13 @@ public class BaseXgTest {
 
     @Before
     public void init() {
-        xingeAndroid = new XingeApp(appIdAndroid, secretKeyAndroid);
-        xingeIOS = new XingeApp(appIdIOS, secretKeyIOS);
+        xingeAndroid = new XingeApp.Builder()
+                .appId(appIdAndroid)
+                .secretKey(secretKeyAndroid)
+                .build();
+        xingeIOS = new XingeApp.Builder()
+                .appId(appIdIOS)
+                .secretKey(secretKeyIOS)
+                .build();
     }
 }
