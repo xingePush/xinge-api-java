@@ -1,12 +1,7 @@
 package com.tencent.xinge;
 
-import com.google.common.base.Charsets;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
+import java.net.Proxy;
 import java.util.concurrent.TimeUnit;
 
 import com.tencent.xinge.push.app.PushAppRequest;
@@ -15,8 +10,6 @@ import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 
 import com.tencent.xinge.api.RESTAPIV3;
-
-import javax.net.ssl.*;
 
 /**
  * 提供V3接口<br>
@@ -36,10 +29,7 @@ public class XingeApp {
 
     private RESTAPIV3 restapiV3 = new RESTAPIV3();
 
-    private OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
-            .readTimeout(10, TimeUnit.SECONDS)//设置读取超时时间
-            .build();
+    private OkHttpClient client;
 
     /**
      * HTTP Header Authorization 的值：Basic base64_auth_string<br>
@@ -49,11 +39,29 @@ public class XingeApp {
      * @param appId     appId
      * @param secretKey secretKey
      */
-    public XingeApp(String appId, String secretKey) {
+    private XingeApp(String appId, String secretKey) {
         this.authString = appId + ":" + secretKey;
 
         byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
         authStringEnc = new String(authEncBytes);
+
+        client = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(10, TimeUnit.SECONDS)//设置读取超时时间
+                .build();
+    }
+
+    private XingeApp(Builder builder){
+        this.authString = builder.appId + ":" + builder.secretKey;
+
+        byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
+        authStringEnc = new String(authEncBytes);
+
+        client = new OkHttpClient.Builder()
+                .proxy(builder.proxy)
+                .connectTimeout(builder.connectTimeOut, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(builder.readTimeOut, TimeUnit.SECONDS)//设置读取超时时间
+                .build();
     }
 
 
@@ -61,9 +69,10 @@ public class XingeApp {
     /**
      * @param authStringEnc base64_auth_string
      */
+    /**
     public XingeApp(String authStringEnc) {
         this.authStringEnc = authStringEnc;
-    }
+    }**/
 
     /**
      * 设置信鸽api http 服务器地址
@@ -138,6 +147,54 @@ public class XingeApp {
         error.printStackTrace(printer);
         printer.close();
         return result.toString();
+    }
+
+    public static class Builder {
+        private String appId;
+        private String secretKey;
+        private Proxy proxy = Proxy.NO_PROXY;
+        private int connectTimeOut;
+        private int readTimeOut;
+
+        public Builder() {
+            proxy = Proxy.NO_PROXY;
+            connectTimeOut = 10;
+            readTimeOut = 10;
+        }
+
+        public Builder appId(String appId) {
+            this.appId = appId;
+            return this;
+        }
+
+        public Builder secretKey(String secretKey) {
+            this.secretKey = secretKey;
+            return this;
+        }
+
+        public Builder proxy(Proxy proxy) {
+            this.proxy = proxy;
+            return this;
+        }
+
+        public Builder connectTimeOut(int connectTimeOut) {
+            this.connectTimeOut = connectTimeOut;
+            return this;
+        }
+
+        public Builder readTimeOut(int readTimeOut) {
+            this.readTimeOut = readTimeOut;
+            return this;
+        }
+
+        public XingeApp build() {
+            if (appId == null || secretKey == null) {
+                throw new IllegalArgumentException("Please set appId and secret key.");
+            }
+
+            return new XingeApp(this);
+        }
+
     }
 
 
