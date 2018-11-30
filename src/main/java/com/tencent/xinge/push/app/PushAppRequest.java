@@ -16,7 +16,7 @@ public class PushAppRequest {
 
     @JsonProperty("audience_type")
     @ApiModelProperty(value = "推送目标", required = true)
-    private AudienceType audience_type = AudienceType.all;
+    private AudienceType audience_type;
 
     @JsonProperty("platform")
     @JsonSerialize(using = EnumSerializer.class)

@@ -27,7 +27,7 @@ public class XingeApp {
     private String authStringEnc = null;
 
 
-    private RESTAPIV3 restapiV3 = new RESTAPIV3();
+    private RESTAPIV3 restapiV3 =  new RESTAPIV3();;
 
     private OkHttpClient client;
 
@@ -56,6 +56,10 @@ public class XingeApp {
 
         byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
         authStringEnc = new String(authEncBytes);
+
+        if(builder.domainUrl != null){
+            restapiV3.setDomainUrl(builder.domainUrl);
+        }
 
         client = new OkHttpClient.Builder()
                 .proxy(builder.proxy)
@@ -156,6 +160,7 @@ public class XingeApp {
         private Proxy proxy = Proxy.NO_PROXY;
         private int connectTimeOut;
         private int readTimeOut;
+        private String domainUrl;
 
         public Builder() {
             proxy = Proxy.NO_PROXY;
@@ -165,6 +170,11 @@ public class XingeApp {
 
         public Builder appId(String appId) {
             this.appId = appId;
+            return this;
+        }
+
+        public Builder domainUrl(String domainUrl){
+            this.domainUrl = domainUrl;
             return this;
         }
 
