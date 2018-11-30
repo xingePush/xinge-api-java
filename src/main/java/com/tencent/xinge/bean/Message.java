@@ -22,8 +22,8 @@ public class Message {
     private String content;
 
     @JsonProperty("accept_time")
-//    private ArrayList<AcceptTimePair> accept_time;
-    private Object accept_time;
+    private ArrayList<TimeInterval> accept_time;
+//    private Object accept_time;
 
     @JsonProperty("xg_media_resources")
     private Object xgMediaResources;
@@ -66,11 +66,11 @@ public class Message {
         this.content = content;
     }
 
-    public Object getAccept_time() {
+    public ArrayList<TimeInterval> getAccept_time() {
         return accept_time;
     }
 
-    public void setAccept_time(Object accept_time) {
+    public void setAccept_time(ArrayList<TimeInterval> accept_time) {
         this.accept_time = accept_time;
     }
 
