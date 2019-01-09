@@ -96,7 +96,7 @@ public class XingeAppSimpleTest {
 
     @Test
     public  void testPushAllIos(){
-        JSONObject jsonObject = xingeIOS.pushAllIos("测试title", "ios Tag 推送", "dev");
+        JSONObject jsonObject = xingeIOS.pushAllIos("测试title", "ios 全 推送", "dev");
         System.out.println(jsonObject);
     }
 }
