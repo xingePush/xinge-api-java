@@ -98,7 +98,7 @@ public class XingeAppSimple {
         pushAppRequest.setAudience_type(AudienceType.account);
         pushAppRequest.setPlatform(Platform.android);
         pushAppRequest.setMessage_type(MessageType.notify);
-
+        pushAppRequest.setAccount_push_type(1);
         Message message = new Message();
         message.setTitle(title);
         message.setContent(content);

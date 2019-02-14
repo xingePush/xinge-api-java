@@ -13,7 +13,7 @@ public class XingeAppSimpleTest {
     private String secretKeyAndroid = "00f4272930388ad7b9d6335e51757d07";
     private String appIdIOS = "88c715375044d";
     private String secretKeyIOS = "04c86cafb4e31d583e3b843ea078a59e";
-    private String url = "http://10.242.131.147:8080/";
+    private String url = "https://openapi.xg.qq.com/";
     @Before
     public void init() {
         xingeAndroid = new XingeAppSimple(appIdAndroid, secretKeyAndroid, url);

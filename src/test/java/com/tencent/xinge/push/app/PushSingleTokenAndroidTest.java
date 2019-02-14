@@ -6,6 +6,8 @@ import com.tencent.xinge.push.app.PushAppRequest;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PushSingleTokenAndroidTest extends BaseXgTest {
 
@@ -28,12 +30,14 @@ public class PushSingleTokenAndroidTest extends BaseXgTest {
         messageAndroid.setIcon_type(0);
         messageAndroid.setStyle_id(1);
 
+        Map<String, String> custom_content = new HashMap();
+        custom_content.put("testKey", "testValue");
+        messageAndroid.setCustom_content(custom_content);
         Message message = new Message();
 
         message.setAndroid(messageAndroid);
         message.setTitle("testPushSingleTokenAndroid");
         message.setContent("from Java SDK");
-
 
         PushAppRequest pushAppRequest = new PushAppRequest();
         pushAppRequest.setAudience_type(AudienceType.token);
@@ -47,7 +51,6 @@ public class PushSingleTokenAndroidTest extends BaseXgTest {
         pushAppRequest.setToken_list(tokenList);
         pushAppRequest.setSend_time("1111111");
         pushAppRequest.setStat_tag("test");
-
 
         System.out.println(pushAppRequest.toString());
         System.out.println(xingeAndroid.pushApp(pushAppRequest.toString()));

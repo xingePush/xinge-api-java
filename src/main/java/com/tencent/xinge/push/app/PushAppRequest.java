@@ -87,6 +87,9 @@ public class PushAppRequest {
     @ApiModelProperty(value = "账号列表推送、设备列表推送时必需")
     private String push_id;
 
+    @JsonProperty("account_push_type")
+    @ApiModelProperty(value = "账号列表推送 时设置, 是否往所有绑定设备上进行推送 0:否, 1:是")
+    private int account_push_type = 0;
 
     private final static ObjectMapper mapper = new ObjectMapper();
 
@@ -100,6 +103,14 @@ public class PushAppRequest {
             //TODO do someting
         }
         return repoStr;
+    }
+    
+    public int getAccount_push_type() {
+        return account_push_type;
+    }
+
+    public void setAccount_push_type(int account_push_type) {
+        this.account_push_type = account_push_type;
     }
 
     public String getSend_time() {
