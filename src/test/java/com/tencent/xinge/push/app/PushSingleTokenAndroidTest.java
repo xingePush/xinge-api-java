@@ -30,9 +30,6 @@ public class PushSingleTokenAndroidTest extends BaseXgTest {
         messageAndroid.setIcon_type(0);
         messageAndroid.setStyle_id(1);
 
-        Map<String, String> custom_content = new HashMap();
-        custom_content.put("testKey", "testValue");
-        messageAndroid.setCustom_content(custom_content);
         Message message = new Message();
 
         message.setAndroid(messageAndroid);
