@@ -5,90 +5,88 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.tencent.xinge.bean.*;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "推送请求信息")
+//@ApiModel(value = "推送请求信息")
 public class PushAppRequest {
 
     @JsonProperty("audience_type")
-    @ApiModelProperty(value = "推送目标", required = true)
+    // @ApiModelProperty(value = "推送目标", required = true)
     private AudienceType audience_type;
 
     @JsonProperty("platform")
     @JsonSerialize(using = EnumSerializer.class)
-    @ApiModelProperty(value = "客户端平台类型", required = true)
+    // @ApiModelProperty(value = "客户端平台类型", required = true)
     private Platform platform = Platform.all;
 
     @JsonProperty("message_type")
     @JsonSerialize(using = EnumSerializer.class)
-    @ApiModelProperty(value = "消息类型", required = true)
+    // @ApiModelProperty(value = "消息类型", required = true)
     private MessageType message_type = MessageType.notify;
 
     @JsonProperty("message")
-    @ApiModelProperty(value = "消息体", required = true)
+    // @ApiModelProperty(value = "消息体", required = true)
     private Message message;
 
     /////////如下是可选的高级参数//////////
 
     @JsonProperty("expire_time")
-    @ApiModelProperty(value = "消息离线存储时间（单位为秒）")
+    // @ApiModelProperty(value = "消息离线存储时间（单位为秒）")
     private int expire_time = 259200;
 
     @JsonProperty("send_time")
-    @ApiModelProperty(value = "指定推送时间")
+    // @ApiModelProperty(value = "指定推送时间")
     private String send_time;
 
     @JsonProperty("multi_pkg")
-    @ApiModelProperty(value = "多包名推送")
+    // @ApiModelProperty(value = "多包名推送")
     private boolean multi_pkg = false;
 
     @JsonProperty("loop_times")
-    @ApiModelProperty(value = "多包名推送")
+    // @ApiModelProperty(value = "多包名推送")
     private int loop_times = 0;
 
     @JsonProperty("loop_interval")
-    @ApiModelProperty(value = "多包名推送")
+    // @ApiModelProperty(value = "多包名推送")
     private int loop_interval = 0;
 
     @JsonProperty("environment")
     @JsonSerialize(using = EnumSerializer.class)
-    @ApiModelProperty(value = "用户指定推送环境，仅限iOS平台推送使用")
+    // @ApiModelProperty(value = "用户指定推送环境，仅限iOS平台推送使用")
     private Environment environment = Environment.product;
 
     @JsonProperty("stat_tag")
-    @ApiModelProperty(value = "统计标签，用于聚合统计")
+    // @ApiModelProperty(value = "统计标签，用于聚合统计")
     private String stat_tag;
 
     @JsonProperty("seq")
-    @ApiModelProperty(value = "接口调用时，在应答包中信鸽会回射该字段，可用于异步请求 使用场景：异步服务中可以通过该字段找到server端返回的对应应答包\n")
+    // @ApiModelProperty(value = "接口调用时，在应答包中信鸽会回射该字段，可用于异步请求 使用场景：异步服务中可以通过该字段找到server端返回的对应应答包\n")
     private int seq = 0;
 
     @JsonProperty("tag_list")
-    @ApiModelProperty(value = "仅标签推送必需")
+    // @ApiModelProperty(value = "仅标签推送必需")
     private TagListObject tag_list;
 
     @JsonProperty("account_list")
-    @ApiModelProperty(value = "单账号推送、账号列表推送时必需")
+    // @ApiModelProperty(value = "单账号推送、账号列表推送时必需")
     private ArrayList<String> account_list = new ArrayList<String>();
 
     @JsonProperty("account_type")
-    @ApiModelProperty(dataType = "int", value = "单账号推送时可选")
+    // @ApiModelProperty(dataType = "int", value = "单账号推送时可选")
     private int account_type = AccountType.unknown.getType();
 
     @JsonProperty("token_list")
-    @ApiModelProperty(value = "单设备推送、设备列表推送时必需")
+    // @ApiModelProperty(value = "单设备推送、设备列表推送时必需")
     private ArrayList<String> token_list = new ArrayList<String>();
 
     @JsonProperty("push_id")
-    @ApiModelProperty(value = "账号列表推送、设备列表推送时必需")
+    // @ApiModelProperty(value = "账号列表推送、设备列表推送时必需")
     private String push_id;
 
     @JsonProperty("account_push_type")
-    @ApiModelProperty(value = "账号列表推送 时设置, 是否往所有绑定设备上进行推送 0:否, 1:是")
+    // @ApiModelProperty(value = "账号列表推送 时设置, 是否往所有绑定设备上进行推送 0:否, 1:是")
     private int account_push_type = 0;
 
     private final static ObjectMapper mapper = new ObjectMapper();

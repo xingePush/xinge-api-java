@@ -6,22 +6,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tencent.xinge.bean.OperatorType;
 import com.tencent.xinge.bean.Platform;
 import com.tencent.xinge.bean.TagTokenPair;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 
 
 import java.util.ArrayList;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "有多种设置、更新、删除接口")
+//@ApiModel(value = "有多种设置、更新、删除接口")
 public class DeviceTagRequest {
 
     @JsonProperty(value = "operator_type", required = true, defaultValue = "1")
-    @ApiModelProperty(value = "推送目标", required = true, allowableValues = "range[1,10]")
+    // @ApiModelProperty(value = "推送目标", required = true, allowableValues = "range[1,10]")
     private int operator_type = OperatorType.ADD_MULT_TAGS_SINGLE.getType();
 
     @JsonProperty(value = "platform", required = true)
-    @ApiModelProperty(value = "客户端平台类型", required = true)
+    // @ApiModelProperty(value = "客户端平台类型", required = true)
     private Platform platform;
 
     @JsonProperty(value = "token_list")

@@ -1,9 +1,8 @@
 package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 
-@ApiModel(value = "账号类型")
+//@ApiModel(value = "账号类型")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public enum AccountType {
 

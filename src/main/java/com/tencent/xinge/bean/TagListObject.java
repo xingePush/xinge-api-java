@@ -1,19 +1,18 @@
 package com.tencent.xinge.bean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 
 import java.util.ArrayList;
 
-@ApiModel(description = "仅标签推送必需")
+//@ApiModel(description = "仅标签推送必需")
 public class TagListObject {
 
-    @ApiModelProperty(value = "标签列表")
+    // @ApiModelProperty(value = "标签列表")
     @JsonProperty("tags")
     private ArrayList<String> tags;
 
-    @ApiModelProperty(value = "操作类型")
+    // @ApiModelProperty(value = "操作类型")
     @JsonProperty("op")
     private OpType op;
 

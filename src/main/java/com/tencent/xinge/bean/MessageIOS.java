@@ -2,29 +2,29 @@ package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tencent.xinge.bean.ios.Aps;
-import io.swagger.annotations.ApiModelProperty;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageIOS {
 
     @JsonProperty(value = "aps", required = true)
-    @ApiModelProperty(notes = "苹果推送服务(APNs)特有的消息体字段")
+    // @ApiModelProperty(notes = "苹果推送服务(APNs)特有的消息体字段")
     private Aps aps;
 
     @JsonProperty(value = "custom")
-    @ApiModelProperty(notes = "自定义下发的参数")
-    private String custom;
+    // @ApiModelProperty(notes = "自定义下发的参数")
+    private Object custom;
 
     @JsonProperty(value = "xg")
-    @ApiModelProperty(notes = "系统保留key，应避免使用")
+    // @ApiModelProperty(notes = "系统保留key，应避免使用")
     private String xg;
 
 
-    public String  getCustom() {
+    public Object  getCustom() {
         return custom;
     }
 
-    public void setCustom(String custom) {
+    public void setCustom(Object custom) {
         this.custom = custom;
     }
 

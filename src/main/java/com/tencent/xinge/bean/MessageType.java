@@ -1,13 +1,12 @@
 package com.tencent.xinge.bean;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "消息类型")
+
+//@ApiModel(value = "消息类型")
 public enum MessageType {
 
-    @ApiModelProperty(value = "通知栏展示消息", required = true)
+    // @ApiModelProperty(value = "通知栏展示消息", required = true)
     notify(0, "notify"),
-    @ApiModelProperty(value = "透传消息/静默消息，通知栏不展示消息", required = true)
+    // @ApiModelProperty(value = "透传消息/静默消息，通知栏不展示消息", required = true)
     message(1, "message"),;
 
     MessageType(int type, String name) {

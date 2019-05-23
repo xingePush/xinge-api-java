@@ -1,7 +1,6 @@
 package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Created by Administrator on 2018/7/10.
@@ -10,11 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class AcceptTimePoint {
 
     @JsonProperty(value = "hour", required = true)
-    @ApiModelProperty(value = "时间点，小时： HH",required = true)
+    // @ApiModelProperty(value = "时间点，小时： HH",required = true)
     public String hour;
 
     @JsonProperty(value = "min", required = true)
-    @ApiModelProperty(value = "时间点，分钟： mm",required = true)
+    // @ApiModelProperty(value = "时间点，分钟： mm",required = true)
     public String min;
 
     public String getHour() {

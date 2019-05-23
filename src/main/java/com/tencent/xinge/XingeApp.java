@@ -90,7 +90,11 @@ public class XingeApp {
      * @return 通用基础返回值，是所有请求的响应中都会包含的字段
      */
     public JSONObject pushApp(String jsonRequest) {
-        return callRestful(restapiV3.getRestApiPushUrl(), jsonRequest);
+        long start = System.currentTimeMillis();
+        JSONObject ret =  callRestful(restapiV3.getRestApiPushUrl(), jsonRequest);
+        long end =   System.currentTimeMillis();
+        System.out.println("sendTime: " + (end-start));
+        return  ret;
     }
 
     /**
@@ -125,6 +129,7 @@ public class XingeApp {
 
         try {
             Response response = client.newCall(request).execute();
+            System.out.println(response.code());
             if(response.isSuccessful()){
                 if(response.code() == 200){
                     String retMsg = response.body().string();

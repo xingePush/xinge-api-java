@@ -3,7 +3,7 @@ package com.tencent.xinge.bean.ios;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +16,7 @@ public class Alert {
   private String title;
 
   @JsonProperty(value = "subtitle")
-  @ApiModelProperty(notes = "The localized subtitle, containing a secondary description of the reason for the alert.")
+  // @ApiModelProperty(notes = "The localized subtitle, containing a secondary description of the reason for the alert.")
   private String subtitle;
 
   @JsonProperty(value = "body", required = true)

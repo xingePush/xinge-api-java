@@ -1,18 +1,17 @@
 package com.tencent.xinge.bean;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  *   客户端平台类型
  */
 public enum Platform {
 
-    @ApiModelProperty(value = "安卓&&苹果，仅支持全量推送和标签推送")
+    // @ApiModelProperty(value = "安卓&&苹果，仅支持全量推送和标签推送")
     all(0, "all"),
-    @ApiModelProperty(value = "安卓")
+    // @ApiModelProperty(value = "安卓")
     android(1, "android"),
-    @ApiModelProperty(value = "苹果")
+    // @ApiModelProperty(value = "苹果")
     ios(2, "ios"),
     wns(3, "wns"),
     web(4, "web"),

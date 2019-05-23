@@ -1,27 +1,26 @@
 package com.tencent.xinge.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageAndroid {
 
     @JsonProperty(value = "n_id", defaultValue = "0")
-    @ApiModelProperty(required = true,
-            value = "通知消息对象的唯一标识<br>大于0：会覆盖先前相同id的消息, " +
-                    "<br>等于0：展示本条通知且不影响其他消息," +
-                    "<br>等于-1：将清除先前所有消息，仅展示本条消息")
+//    // @ApiModelProperty(required = true,
+//            value = "通知消息对象的唯一标识<br>大于0：会覆盖先前相同id的消息, " +
+//                    "<br>等于0：展示本条通知且不影响其他消息," +
+//                    "<br>等于-1：将清除先前所有消息，仅展示本条消息")
     private int n_id = 0;
 
     @JsonProperty(value = "builder_id", required = true)
-    @ApiModelProperty(notes = "本地通知样式标识")
+    // @ApiModelProperty(notes = "本地通知样式标识")
     private int builder_id;
 
     @JsonProperty(value = "ring", defaultValue = "1")
-    @ApiModelProperty(name = "是否有铃声,0：没有铃声, 1：有铃声", allowableValues = "0,1")
+    // @ApiModelProperty(name = "是否有铃声,0：没有铃声, 1：有铃声", allowableValues = "0,1")
     private int ring = 1;
 
-    @ApiModelProperty(notes = "指定Android工程里raw目录中的铃声文件名，不需要后缀名")
+    // @ApiModelProperty(notes = "指定Android工程里raw目录中的铃声文件名，不需要后缀名")
     private String ring_raw;
 
     @JsonProperty(value = "vibrate", defaultValue = "1")
@@ -46,11 +45,11 @@ public class MessageAndroid {
     private String small_icon ;
 
     @JsonProperty(value = "action")
-    @ApiModelProperty(notes = "设置点击通知栏之后的行为，默认为打开app")
+    // @ApiModelProperty(notes = "设置点击通知栏之后的行为，默认为打开app")
     private ClickAction action;
 
     @JsonProperty(value = "custom_content")
-    private String custom_content;
+    private Object custom_content;
 
     public int getN_id() {
         return n_id;
@@ -148,11 +147,11 @@ public class MessageAndroid {
         this.action = action;
     }
 
-    public String getCustom_content() {
+    public Object getCustom_content() {
         return custom_content;
     }
 
-    public void setCustom_content(String custom_content) {
+    public void setCustom_content(Object custom_content) {
         this.custom_content = custom_content;
     }
 

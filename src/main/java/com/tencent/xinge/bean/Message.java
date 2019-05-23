@@ -2,23 +2,21 @@ package com.tencent.xinge.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
+
 
 import java.util.ArrayList;
 
-@ApiModel(value = "消息体")
+//@ApiModel(value = "消息体")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Message {
 
     @JsonProperty("title")
-    @ApiModelProperty(value = "消息标题",required = true)
-    @ApiParam(required = true)
+    // @ApiModelProperty(value = "消息标题",required = true)
+//    @ApiParam(required = true)
     private String title;
 
     @JsonProperty("content")
-    @ApiModelProperty(value = "消息内容",required = true)
+    // @ApiModelProperty(value = "消息内容",required = true)
     private String content;
 
     @JsonProperty("accept_time")

@@ -2,17 +2,17 @@ package com.tencent.xinge.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AtyAttr {
 
     @JsonProperty(value = "if", required = true, defaultValue = "0")
-    @ApiModelProperty(notes = "Intent的Flag属性")
+    // @ApiModelProperty(notes = "Intent的Flag属性")
     private int atyAttrIntentFlag = 0;
 
     @JsonProperty(value = "pf", required = true, defaultValue = "0")
-    @ApiModelProperty(notes = "PendingIntent的Flag属性")
+    // @ApiModelProperty(notes = "PendingIntent的Flag属性")
     private int atyAttrPendingIntentFlag = 0;
 
     public int getIf() {
