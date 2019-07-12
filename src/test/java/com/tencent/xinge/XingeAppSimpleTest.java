@@ -9,25 +9,22 @@ import java.util.ArrayList;
 public class XingeAppSimpleTest {
     public XingeAppSimple xingeAndroid = null;
     public XingeAppSimple xingeIOS = null;
-    private String appIdAndroid = "0e6502fdfdd10";
-    private String secretKeyAndroid = "00f4272930388ad7b9d6335e51757d07";
+    private String appIdAndroid = "2100001048";
+    private String secretKeyAndroid = "b5da4c1faf95ee9409cd33792b02f5d2";
     private String appIdIOS = "88c715375044d";
     private String secretKeyIOS = "04c86cafb4e31d583e3b843ea078a59e";
-    private String url = "https://openapi.xg.qq.com/2100326304/";
+    private String url = "http://49.51.130.43:80/";
     @Before
     public void init() {
         xingeAndroid = new XingeAppSimple(appIdAndroid, secretKeyAndroid, url);
         xingeIOS =  new XingeAppSimple(appIdIOS, secretKeyIOS, url);
     }
 
-    @Test
-    public void testPushTokenAndroid(){
-        long start = System.currentTimeMillis();
-        JSONObject jsonObject = xingeAndroid.pushTokenAndroid("测试title", "测试Token单推", "fe01f28eb56b55ba48f3b276e15597686db52402");
-        long end = System.currentTimeMillis();
-        System.out.println(jsonObject);
-        System.out.println("send_time:" + (end-start));
-    }
+//    @Test
+//    public void testPushTokenAndroid(){
+//        JSONObject jsonObject = xingeAndroid.pushTokenAndroid("测试title", "测试Token单推", "fe01f28eb56b55ba48f3b276e15597686db52402");
+//        System.out.println(jsonObject);
+//    }
 
 //    @Test
 //    public void testPushTokenListAndroid(){
@@ -57,11 +54,11 @@ public class XingeAppSimpleTest {
 //        System.out.println(jsonObject);
 //    }
 //
-//    @Test
-//    public void testPushAllAndroid(){
-//        JSONObject jsonObject = xingeAndroid.pushAllAndroid("测试title", "全推送");
-//        System.out.println(jsonObject);
-//    }
+    @Test
+    public void testPushAllAndroid(){
+        JSONObject jsonObject = xingeAndroid.pushAllAndroid("测试title", "全推送");
+        System.out.println(jsonObject);
+    }
 //
 //    @Test
 //    public  void testPushTokenIos(){

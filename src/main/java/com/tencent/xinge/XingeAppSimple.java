@@ -6,6 +6,10 @@ import com.tencent.xinge.bean.ios.Aps;
 import com.tencent.xinge.push.app.PushAppRequest;
 import org.json.JSONObject;
 
+
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 
 public class XingeAppSimple {
@@ -24,6 +28,15 @@ public class XingeAppSimple {
                 .appId(appid)
                 .secretKey(secretKey)
                 .domainUrl(domainUrl)
+                .build();
+    }
+
+    public XingeAppSimple(String appid, String secretKey, String domainUrl, Proxy proxy) {
+        this.xingeApp = new XingeApp.Builder()
+                .appId(appid)
+                .secretKey(secretKey)
+                .domainUrl(domainUrl)
+                .proxy(proxy)
                 .build();
     }
 
