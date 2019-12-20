@@ -50,7 +50,7 @@ public class MessageAndroid {
     private ClickAction action;
 
     @JsonProperty(value = "custom_content")
-    private String custom_content;
+    private Object custom_content;
 
     public int getN_id() {
         return n_id;
@@ -148,11 +148,11 @@ public class MessageAndroid {
         this.action = action;
     }
 
-    public String getCustom_content() {
+    public Object getCustom_content() {
         return custom_content;
     }
 
-    public void setCustom_content(String custom_content) {
+    public void setCustom_content(Object custom_content) {
         this.custom_content = custom_content;
     }
 

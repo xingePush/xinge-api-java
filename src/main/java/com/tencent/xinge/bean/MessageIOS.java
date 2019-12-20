@@ -13,18 +13,18 @@ public class MessageIOS {
 
     @JsonProperty(value = "custom")
     @ApiModelProperty(notes = "自定义下发的参数")
-    private String custom;
+    private Object custom;
 
     @JsonProperty(value = "xg")
     @ApiModelProperty(notes = "系统保留key，应避免使用")
     private String xg;
 
 
-    public String  getCustom() {
+    public Object  getCustom() {
         return custom;
     }
 
-    public void setCustom(String custom) {
+    public void setCustom(Object custom) {
         this.custom = custom;
     }
 
