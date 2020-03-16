@@ -8,8 +8,7 @@
     <packaging>jar</packaging>
 
     <name>xinge-api-java</name>
-    <description>xingePush is a tool for developers, providing various ways to get in touch with specific moible APPs
-    </description>
+    <description>TPNs is a tool for developers, providing various ways to get in touch with specific moible APPs</description>
     <url>https://github.com/xingePush/xinge-api-java</url>
 
     <licenses>
@@ -48,11 +47,11 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
         <repository>
-            <id>ossrh</id>
+            <id>oss</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
